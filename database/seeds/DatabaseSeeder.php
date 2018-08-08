@@ -11,6 +11,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        DB::table('players')->insert([
+            'username' => 'player1'
+        ]);
+        DB::table('players')->insert([
+            'username' => 'player2'
+        ]);
+        DB::table('players')->insert([
+            'username' => 'player3'
+        ]);
+        
+        $this->call([
+            cards_black_seeder::class,
+            cards_white_seeder::class,
+        ]);
     }
 }
