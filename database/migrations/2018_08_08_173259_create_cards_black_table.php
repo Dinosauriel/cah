@@ -18,6 +18,7 @@ class CreateCardsBlackTable extends Migration
             $table->integer('number_to_draw');
             $table->integer('number_to_play');
             $table->text('text');
+            $table->unsignedInteger('cardset_id');
             $table->foreign('cardset_id')->references('id')->on('cardsets');
         });
     }

@@ -20,6 +20,16 @@ class DatabaseSeeder extends Seeder
         DB::table('players')->insert([
             'username' => 'player3'
         ]);
+
+        DB::table('cardsets')->insert([
+            'id' => 0,
+            'name' => 'test-cards'
+        ]);
+
+        DB::table('games')->insert([
+            'name' => 'Test-Game',
+            'owner_id' => 1
+        ]);
         
         $this->call([
             cards_black_seeder::class,

@@ -16,6 +16,7 @@ class CreateCardsWhiteTable extends Migration
         Schema::create('cards_white', function (Blueprint $table) {
             $table->increments('id');
             $table->text('text');
+            $table->unsignedInteger('cardset_id');
             $table->foreign('cardset_id')->references('id')->on('cardsets');
         });
     }
