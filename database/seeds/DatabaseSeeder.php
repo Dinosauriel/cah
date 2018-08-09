@@ -26,8 +26,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('games')->insert([
+            'public_id' => 'jkl',
+            'status' => 'draft',
             'name' => 'Test-Game',
             'owner_id' => 1
+        ]);
+
+        DB::table('games')->insert([
+            'public_id' => 'asdf',
+            'status' => 'ingame',
+            'name' => 'Test-In-Game',
+            'owner_id' => 2
         ]);
         
         $this->call([

@@ -15,10 +15,19 @@ Route::get('/', function () {
     return view('admin_login');
 });
 
-Route::get('/lobby/', function () {
-    return view('lobby');
+Route::get('/games/', function () {
+    $games = DB::table('games')->get();
+    foreach ($games as $game) {
+        dump($game);
+    }
+    return view('games.lobby');
 });
 
-Route::get('/game/', function () {
-    return view('game');
+Route::get('/games/{gameId}', function ($gameId) {
+    
+    $game = DB::table('games')->where('public_id', $gameId)->first();
+
+    dd($game);
+
+    return view('games.play');
 });

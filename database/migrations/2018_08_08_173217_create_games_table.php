@@ -13,10 +13,11 @@ class CreateGamesTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('status');
+            $table->string('public_id')->unique();
             $table->unsignedInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('players');
         });

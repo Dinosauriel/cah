@@ -13,7 +13,6 @@ class CreateCardsetsTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::create('cardsets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

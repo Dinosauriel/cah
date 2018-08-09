@@ -13,7 +13,6 @@ class CreateCardsWhiteTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
         Schema::create('cards_white', function (Blueprint $table) {
             $table->increments('id');
             $table->text('text');
