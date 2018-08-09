@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin_login');
+});
+
+Route::get('/lobby/', function () {
+    return view('lobby');
+});
+
+Route::get('/game/', function () {
+    return view('game');
 });
