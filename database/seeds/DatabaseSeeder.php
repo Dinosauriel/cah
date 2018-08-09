@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('cardsets')->insert([
-            'id' => 0,
             'name' => 'test-cards'
         ]);
 
@@ -32,8 +31,8 @@ class DatabaseSeeder extends Seeder
         ]);
         
         $this->call([
-            cards_black_seeder::class,
-            cards_white_seeder::class,
+            //cards_black_seeder::class,
+            //cards_white_seeder::class,
         ]);
     }
 }

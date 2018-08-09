@@ -13,22 +13,22 @@ class cards_white_seeder extends Seeder
     {
         DB::table('cards_white')->insert([
             'text' => 'A',
-            'cardset_id' => 0,
+            'cardset_id' => 1,
         ]);
 
         DB::table('cards_white')->insert([
             'text' => 'B',
-            'cardset_id' => 0,
+            'cardset_id' => 1,
         ]);
 
         DB::table('cards_white')->insert([
             'text' => 'C',
-            'cardset_id' => 0,
+            'cardset_id' => 1,
         ]);
 
         DB::table('cards_white')->insert([
             'text' => 'D',
-            'cardset_id' => 0,
+            'cardset_id' => 1,
         ]);
     }
 }

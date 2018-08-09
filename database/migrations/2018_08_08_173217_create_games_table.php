@@ -13,6 +13,7 @@ class CreateGamesTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

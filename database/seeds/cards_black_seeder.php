@@ -15,7 +15,7 @@ class cards_black_seeder extends Seeder
             'number_to_draw' => 3,
             'number_to_play' => 2,
             'text' => 'this {{}} is {{}} a {{}} test',
-            'cardset_id' => 0,
+            'cardset_id' => 1,
         ]);
     }
 }
