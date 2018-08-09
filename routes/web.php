@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/games/', function () {
-    $games = DB::table('games')->get();
+    $games = App\Game::all();
     foreach ($games as $game) {
         dump($game);
     }
@@ -25,7 +25,7 @@ Route::get('/games/', function () {
 
 Route::get('/games/{gameId}', function ($gameId) {
     
-    $game = DB::table('games')->where('public_id', $gameId)->first();
+    $game = App\Game::publicId($gameId)->first();
 
     dd($game);
 
