@@ -15,6 +15,7 @@ class CreatePlayersTable extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('isAdmin')->default(0);
             $table->string('username');
         });
     }
