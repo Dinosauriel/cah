@@ -14,18 +14,18 @@ class Game extends Model
     }
 
     public function getBaseUrl() {
-        return '/games/' . $this->public_id;
+        return route('viewGame', ['publicId' => $this->public_id]);
     }
 
     public function getUpdateUrl() {
-        return $this->getBaseUrl() . '/update';
+        return route('updateGame', ['publicId' => $this->public_id]);
     }
 
     public function getDeleteUrl() {
-        return $this->getBaseUrl() . '/delete';
+        return route('deleteGame', ['publicId' => $this->public_id]);
     }
 
     public static function getStoreUrl() {
-        return '/games/create';
+        return route('storeGame');
     }
 }

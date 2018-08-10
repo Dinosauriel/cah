@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', 'AdminLoginController@index');
+Route::get('/', 'AdminLoginController@index')->name('root');
 
-Route::get('/games/', 'GameController@list');
-Route::patch('/games/{gameId}/update', 'GameController@update');
-Route::get('/games/{gameId}/delete', 'GameController@delete');
-Route::get('/games/create', 'GameController@store');
-Route::get('/games/{gameId}', 'GameController@index');
+Route::get('/games/', 'GameController@list')->name('listGames');
+Route::get('/games/create', 'GameController@store')->name('storeGame');
+Route::patch('/games/{gameId}/update', 'GameController@update')->name('updateGame');
+Route::get('/games/{gameId}/delete', 'GameController@delete')->name('deleteGame');
+Route::get('/games/{gameId}', 'GameController@index')->name('viewGame');
