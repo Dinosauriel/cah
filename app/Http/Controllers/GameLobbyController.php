@@ -10,9 +10,8 @@ class GameLobbyController extends Controller
     public function index()
     {
         $games = Game::all();
-        foreach ($games as $game) {
-            dump($game);
-        }
-        return view('games.lobby');
+        return view('games.lobby', [
+            'games' => $games
+        ]);
     }
 }

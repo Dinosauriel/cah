@@ -4,4 +4,6 @@
 
 @section('content')
 
+    @foreach ()
+
 @endsection

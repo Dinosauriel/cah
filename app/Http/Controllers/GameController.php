@@ -11,7 +11,7 @@ class GameController extends Controller
     public function index($gameId)
     { 
         $game = Game::publicId($gameId)->first();
-        dd($game);
-        return view('games.play');
+        //dd($game);
+        return view('games.edit');
     }
 }
