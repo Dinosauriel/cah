@@ -11,10 +11,8 @@ class GameController extends Controller
     public function index($gameId)
     { 
         $game = Game::publicId($gameId)->first();
-        dump($game);
-        dump(secure_url('games/'));
         return view('games.edit', [
-            
+            'game' => $game,
         ]);
     }
 
@@ -24,7 +22,6 @@ class GameController extends Controller
 
         return view('games.lobby', [
             'games' => $games,
-            'newGameUrl' => Game::getStoreUrl()
         ]);
     }
 
@@ -42,7 +39,7 @@ class GameController extends Controller
 
         $game->save();
 
-        return redirect($game->getBaseUrl());
+        return redirect($game->getDraftUrl());
     }
 
     /*
@@ -62,7 +59,7 @@ class GameController extends Controller
         $game = Game::publicId($gameId)->first();
         $game->delete();
 
-        return back();
+        return redirect(Game::getListUrl());
     }
 
     /**

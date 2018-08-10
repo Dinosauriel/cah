@@ -13,7 +13,7 @@ class Game extends Model
         return $query->where('public_id', $publicId);
     }
 
-    public function getBaseUrl() {
+    public function getDraftUrl() {
         return route('viewGame', ['publicId' => $this->public_id]);
     }
 
@@ -27,5 +27,9 @@ class Game extends Model
 
     public static function getStoreUrl() {
         return route('storeGame');
+    }
+
+    public static function getListUrl() {
+        return route('listGames');
     }
 }

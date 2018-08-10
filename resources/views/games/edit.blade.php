@@ -6,6 +6,8 @@ New Game
 
 @section('content')
 <div class="row mt-3">
+
+
     <form class="col col-sm-8" method="POST" action="/games/asdf/update">
         {{ csrf_field() }}
         <div class="form-group">
@@ -20,14 +22,19 @@ New Game
         @include('forms.errors')
         <button type="submit" class="btn btn-primary">Start Game</button>
     </form>
+
+
+
     <div class="col col-sm-4">
+
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Invite</h5>
-                <p class="card-text">https://domain.com/games/asdf</p>
-                <a href="#" class="btn btn-primary">Copy Link</a>
+                <p class="card-text">{{ $game->getDraftUrl() }}</p>
+                <button type="button" class="btn btn-primary">Copy Link</button>
             </div>
         </div>
+
         <div class="card mt-3">
             <div class="card-header">
                 Players
@@ -39,7 +46,8 @@ New Game
                 </li>
             </ul>
         </div>
-        <button type="button" class="btn btn-danger btn-block mt-3">Delete Game</a>
+
+        <a class="btn btn-danger btn-block mt-3" href="{{ $game->getDeleteUrl() }}">Delete Game</a>
     </div>
 </div>
 @endsection
