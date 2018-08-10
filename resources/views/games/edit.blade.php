@@ -6,7 +6,7 @@ New Game
 
 @section('content')
 <div class="row mt-3">
-    <form class="col-sm-8" method="POST" action="/games/asdf/update">
+    <form class="col col-sm-8" method="POST" action="/games/asdf/update">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="game_name">Name</label>
@@ -17,9 +17,10 @@ New Game
             <input type="number" class="form-control" id="game_points" aria-describedby="game_points_help" value="8" min="1" max="64" name="game_name" required>
             <small id="game_points_help" class="form-text text-muted">How many points are required to win?</small>
         </div>
+        @include('forms.errors')
         <button type="submit" class="btn btn-primary">Start Game</button>
     </form>
-    <div class="col-sm-4">
+    <div class="col col-sm-4">
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Invite</h5>
@@ -38,6 +39,7 @@ New Game
                 </li>
             </ul>
         </div>
+        <button type="button" class="btn btn-danger btn-block mt-3">Delete Game</a>
     </div>
 </div>
 @endsection

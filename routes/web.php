@@ -12,8 +12,9 @@
 */
 
 Route::get('/', 'AdminLoginController@index');
-Route::get('/games/', 'GameLobbyController@index');
 
-Route::patch('/games/{gameId}/update', 'GameController@updateGame');
-Route::get('/games/create', 'GameController@createGame');
+Route::get('/games/', 'GameController@list');
+Route::patch('/games/{gameId}/update', 'GameController@update');
+Route::get('/games/{gameId}/delete', 'GameController@delete');
+Route::get('/games/create', 'GameController@store');
 Route::get('/games/{gameId}', 'GameController@index');
