@@ -18,6 +18,7 @@ class CreateGamesTable extends Migration
             $table->string('name');
             $table->string('status')->default('draft');
             $table->string('public_id')->unique();
+            $table->integer('points_required')->default(8);
             $table->unsignedInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('players');
         });
