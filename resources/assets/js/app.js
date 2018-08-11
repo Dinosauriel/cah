@@ -17,6 +17,8 @@ Vue.component(
     require("./components/ExampleComponent.vue")
 );
 
+Vue.component("invite-link", require("./components/games/invitelink.vue"));
+
 const app = new Vue({
     el: "#vue-app"
 });
