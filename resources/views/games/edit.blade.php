@@ -6,7 +6,7 @@ New Game
 
 @section('content')
 <div class="row mt-3">
-
+    <example-component></example-component>
 
     <form class="col col-sm-8" method="POST" action="/games/asdf/update">
         {{ csrf_field() }}
