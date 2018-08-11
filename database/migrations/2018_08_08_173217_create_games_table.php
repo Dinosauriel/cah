@@ -22,6 +22,10 @@ class CreateGamesTable extends Migration
             $table->unsignedInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('players');
         });
+
+        Schema::table('players', function (Blueprint $table) {
+            $table->foreign('game_id')->references('id')->on('games');
+        });
     }
 
     /**

@@ -13,4 +13,12 @@ class Player extends Model
     {
         return $this->hasMany('App\Game', 'owner_id');
     }
+
+    /**
+     * @return: the game this player is playing
+     */
+    public function playingGame()
+    {
+        return $this->belongsTo('App\Game', 'game_id');
+    }
 }

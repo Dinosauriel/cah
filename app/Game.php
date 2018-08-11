@@ -23,6 +23,14 @@ class Game extends Model
     }
 
     /**
+     * @return: all players participating in this game 
+     */
+    public function players()
+    {
+        return $this->hasMany('App\Player');
+    }
+
+    /**
      * @return: the owner of this game
      */
     public function owner()
