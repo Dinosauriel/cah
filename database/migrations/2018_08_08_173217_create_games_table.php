@@ -35,6 +35,9 @@ class CreateGamesTable extends Migration
      */
     public function down()
     {
+		Schema::table('players', function (Blueprint $table) {
+            $table->dropForeign(['game_id']);
+        });
         Schema::dropIfExists('games');
     }
 }

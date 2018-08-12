@@ -13,6 +13,7 @@
 
 Route::get('/', 'AdminLoginController@index')->name('root');
 Route::post('/', 'AdminLoginController@login')->name('login');
+Route::get('/logout', 'AdminLoginController@logout')->name('logout');
 
 Route::get('/games/', 'GameController@list')->name('listGames');
 Route::get('/games/create', 'GameController@store')->name('storeGame');

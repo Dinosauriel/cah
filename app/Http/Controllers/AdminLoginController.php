@@ -43,4 +43,13 @@ class AdminLoginController extends Controller
 
 		return redirect()->route('listGames');
 	}
+
+	/**
+	 * logs out the current admin
+	 */
+	public function logout() {
+		auth()->logout();
+
+		return redirect()->route('root');
+	}
 }

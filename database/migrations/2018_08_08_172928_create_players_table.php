@@ -17,7 +17,8 @@ class CreatePlayersTable extends Migration
             $table->increments('id');
             $table->boolean('is_admin')->default(0);
             $table->string('username');
-            $table->unsignedInteger('game_id')->nullable();
+			$table->unsignedInteger('game_id')->nullable();
+			$table->rememberToken();
         });
     }
 
