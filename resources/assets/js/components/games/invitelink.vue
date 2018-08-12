@@ -9,14 +9,14 @@
 </template>
 <script>
 export default {
-  props: ["invitelink"],
-  methods: {
-    copyLink: function() {
-      console.log("copy");
-      var text = document.getElementById("invite-link");
-      text.select();
-      document.execCommand("copy");
-    }
-  }
+	props: ["invitelink"],
+	methods: {
+		copyLink: function() {
+			console.log("copy");
+			var text = document.getElementById("invite-link");
+			text.select();
+			document.execCommand("copy");
+		}
+	}
 };
 </script>

@@ -20,7 +20,5 @@ Vue.component(
 Vue.component("invite-link", require("./components/games/invitelink.vue"));
 
 const app = new Vue({
-    el: "#vue-app"
+	el: "#vue-app"
 });
-
-console.log("hi");
