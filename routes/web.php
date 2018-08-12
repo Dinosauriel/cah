@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'AdminLoginController@index')->name('root');
+Route::post('/login', 'AdminLoginController@login')->name('login');
 
 Route::get('/games/', 'GameController@list')->name('listGames');
 Route::get('/games/create', 'GameController@store')->name('storeGame');
