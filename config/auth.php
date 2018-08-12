@@ -99,4 +99,5 @@ return [
         ],
     ],
 
+	'cah_admin_password' => env('CAH_ADMIN_PASSWORD'),
 ];
