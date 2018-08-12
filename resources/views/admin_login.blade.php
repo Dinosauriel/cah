@@ -17,6 +17,7 @@ Admin Login
 						<label for="admin_password">Password</label>
 						<input type="password" class="form-control" id="admin_password" name="admin_password">
 					</div>
+					@include('forms.errors')
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 			</div>
