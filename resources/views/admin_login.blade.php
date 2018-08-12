@@ -15,7 +15,7 @@ Admin Login
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label for="admin_password">Password</label>
-						<input type="password" class="form-control" id="admin_password" name="admin_password" required>
+						<input type="password" class="form-control" id="password" name="password" required>
 					</div>
 					@include('forms.errors')
 					<button type="submit" class="btn btn-primary">Submit</button>

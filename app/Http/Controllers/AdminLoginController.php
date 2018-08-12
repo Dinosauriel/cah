@@ -22,7 +22,7 @@ class AdminLoginController extends Controller
 
 		//validate the form
 		$this->validate($request, [
-			'admin_password' => 'required'
+			'password' => 'required'
 		]);
 
 		//verify the password
