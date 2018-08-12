@@ -34,7 +34,7 @@ class AdminLoginController extends Controller
 
 		//create a new player
 		$player = Player::create([
-			'username' => 'admin',
+			'username' => static::getRandomUsername(),
 			'is_admin' => 1,
 		]);
 
@@ -51,5 +51,12 @@ class AdminLoginController extends Controller
 		auth()->logout();
 
 		return redirect()->route('root');
+	}
+
+	public static function getRandomUsername() {
+		$userFile = file(base_path() . '/resources/assets/usernames.json');
+		$users = json_decode($userFile[0]);
+
+		return $users[random_int(0, count($users) - 1)];
 	}
 }
