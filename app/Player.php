@@ -3,9 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+ use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Player extends Model
+class Player extends Authenticatable
 {
+	public $timestamps = false;
+	protected $fillable = [
+		'username',
+		'is_admin'
+	];
+
     /**
      * @return: all games in ownership of this user
      */
