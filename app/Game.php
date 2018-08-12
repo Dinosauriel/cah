@@ -8,6 +8,10 @@ class Game extends Model
 {
     public $timestamps = false;
 
+	protected $fillable = [
+		'public_id',
+		'name'
+	];
 
     public function scopePublicId($query, $publicId)
     {

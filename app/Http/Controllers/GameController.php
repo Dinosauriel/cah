@@ -8,6 +8,12 @@ use App\Game;
 
 class GameController extends Controller
 {
+	
+	public function __construct()
+	{
+		$this->middleware('auth')->except(['index']);
+	}
+
     public function index($gameId)
     { 
         $game = Game::publicId($gameId)->first();
@@ -30,14 +36,11 @@ class GameController extends Controller
     */
     public function store()
     {
-        $game = new \App\Game;
 
-        $newPublicId = static::getRandomBase64String(11);
-        $game->public_id = $newPublicId;
-        $game->name = 'New Game';
-        $game->owner_id = 1;
-
-        $game->save();
+		$game = auth()->user()->createGame(new Game([
+			'public_id' => static::getRandomBase64String(11),
+			'name' => 'New Game'
+		]));
 
         return redirect($game->getDraftUrl());
     }

@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Player extends Authenticatable
 {
@@ -27,5 +27,10 @@ class Player extends Authenticatable
     public function playingGame()
     {
         return $this->belongsTo('App\Game', 'game_id');
-    }
+	}
+	
+	public function createGame(Game $game)
+	{
+		return $this->games()->save($game);
+	}
 }
