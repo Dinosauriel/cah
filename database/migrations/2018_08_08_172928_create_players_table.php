@@ -18,8 +18,8 @@ class CreatePlayersTable extends Migration
 			$table->timestamps();
 			$table->boolean('is_admin')->default(0);
 			$table->boolean('is_temporary');
-			$table->string('username');
-			$table->string('password');
+			$table->string('username')->unique();
+			$table->string('password')->nullable();
 			$table->unsignedInteger('game_id')->nullable();
 			$table->rememberToken();
         });

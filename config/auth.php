@@ -98,6 +98,4 @@ return [
             'expire' => 60,
         ],
     ],
-
-	'cah_admin_password' => env('CAH_ADMIN_PASSWORD'),
 ];
