@@ -14,6 +14,10 @@ class Player extends Authenticatable
 		'password'
 	];
 
+	public function scopeUsername($query, $username) {
+		return $query->where('username', $username);
+	}
+
     /**
      * @return: all games in ownership of this user
      */
