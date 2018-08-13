@@ -12,13 +12,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('players')->insert([
-            'username' => 'player1'
+			'username' => 'player1',
+			'is_temporary' => 1
         ]);
         DB::table('players')->insert([
-            'username' => 'player2'
+			'username' => 'player2',
+			'is_temporary' => 1
         ]);
         DB::table('players')->insert([
-            'username' => 'player3'
+			'username' => 'player3',
+			'is_temporary' => 1
         ]);
 
         DB::table('cardsets')->insert([
