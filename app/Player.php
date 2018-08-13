@@ -14,8 +14,14 @@ class Player extends Authenticatable
 		'password'
 	];
 
-	public function scopeUsername($query, $username) {
+	public function scopeUsername($query, $username)
+	{
 		return $query->where('username', $username);
+	}
+
+	public function scopeOlderThan($query, $timestamp)
+	{
+		return $query->where('created_at', '<', date('Y-m-d G:i:s', $timestamp));
 	}
 
     /**
