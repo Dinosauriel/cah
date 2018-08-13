@@ -8,36 +8,39 @@ use App\Game;
 
 class GameController extends Controller
 {
-	
-	public function __construct()
-	{
-		$this->middleware('auth')->except(['index']);
-	}
-
-    public function index($gameId)
-    { 
-        $game = Game::publicId($gameId)->first();
-        return view('games.edit', [
-            'game' => $game,
-        ]);
-    }
-
-    public function list()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $games = Game::all();
+		$games = Game::all();
 
         return view('games.lobby', [
             'games' => $games,
         ]);
     }
 
-    /* 
-    Create a new Game with a new publicId from Scratch and Store it to the Database
-    */
-    public function store()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
+        //
+    }
 
-		$game = auth()->user()->createGame(new Game([
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $game = auth()->user()->createGame(new Game([
 			'public_id' => static::getRandomBase64String(11),
 			'name' => 'New Game'
 		]));
@@ -45,27 +48,59 @@ class GameController extends Controller
         return redirect($game->getDraftUrl());
     }
 
-    /*
-    Update an existing Game
-    */
-    public function update($gameId)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($gameId)
     {
-        $this->validate(request(), [
-            ''
-        ]);
 
-        dd(request()->all());
     }
 
-    public function delete($gameId)
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($gameId)
+    {
+		$game = Game::publicId($gameId)->first();
+		
+        return view('games.edit', [
+            'game' => $game,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($gameId)
     {
         $game = Game::publicId($gameId)->first();
         $game->delete();
 
         return redirect(Game::getListUrl());
-    }
-
-    /**
+	}
+	
+	/**
 	 * generates cryptographically random base64 string of desired length, suitable for URLs
 	 * @param $ofLength : the length of the desired string
 	 *
