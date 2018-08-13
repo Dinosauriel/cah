@@ -1,3 +1,6 @@
+//fetch the csrf Token from the meta tag
+window.csrfToken = $("meta[name='csrf-token']").attr("content");
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -12,11 +15,7 @@ window.Axios = require("axios");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component(
-    "example-component",
-    require("./components/ExampleComponent.vue")
-);
-
+Vue.component("login-card", require("./components/login-card.vue"));
 Vue.component("invite-link", require("./components/games/invitelink.vue"));
 
 const app = new Vue({
