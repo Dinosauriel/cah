@@ -7,10 +7,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Player extends Authenticatable
 {
-	public $timestamps = false;
+	public $timestamps = true;
+
 	protected $fillable = [
 		'username',
-		'is_admin'
+		'password'
 	];
 
     /**

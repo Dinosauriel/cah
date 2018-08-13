@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cardset extends Model
 {
+	public $timestamps = false;
+
     /* 
     Returns all Games that include this Cardset
     */

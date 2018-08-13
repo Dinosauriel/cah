@@ -14,7 +14,8 @@ class CreatePlayersTable extends Migration
     public function up()
     {
         Schema::create('players', function (Blueprint $table) {
-            $table->increments('id');
+			$table->increments('id');
+			$table->timestamps();
 			$table->boolean('is_admin')->default(0);
 			$table->boolean('is_temporary');
 			$table->string('username');
