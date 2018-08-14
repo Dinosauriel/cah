@@ -56,7 +56,7 @@ class GameController extends Controller
      */
     public function show($gameId)
     {
-
+		return $this->edit($gameId);
     }
 
     /**
