@@ -20,8 +20,8 @@
 
 `php artisan player:create -u username -p password -ta`
 | Option | Optional | Description |
-| -------------|-------:|-------------:|
-| `-u username` |_Required_| username of the new player |
-| `-p password` || password of the new player |
-| `-t` || this user is temporary (will automatically be deleted after some time) |
-| `-a` || this user is an administrator (can create games) |
+| --- | ---: | ---: |
+| `-u username` | _Required_ | username of the new player |
+| `-p password` | _Optional_ | password of the new player |
+| `-t` | _Optional_ | create a temporary user (will automatically be deleted after some time) |
+| `-a` | _Optional_ | create an administrator user (can create games) |
