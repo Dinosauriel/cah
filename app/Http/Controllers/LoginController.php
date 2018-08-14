@@ -37,24 +37,12 @@ class LoginController extends Controller
 
 		//validate the form
 		$this->validate($request, [
+			'username' => 'required',
 			'password' => 'required'
 		]);
 
 		//verify the password
-		$adminPassword = config('auth.cah_admin_password');
-		$isCorrectPassword = Hash::check($request->admin_password, $adminPassword);
-		if (!$isCorrectPassword) {
-			return redirect()->route('root');
-		}
-
-		//create a new player
-		$player = Player::create([
-			'username' => 'hi',
-			'is_admin' => 1,
-		]);
-
-		//log In player
-		auth()->login($player);
+		auth()->attempt(request(['username', 'password']));
 
 		return redirect()->route('listGames');
 	}
