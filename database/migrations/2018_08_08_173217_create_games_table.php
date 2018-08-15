@@ -22,10 +22,6 @@ class CreateGamesTable extends Migration
             $table->unsignedInteger('owner_id');
             $table->foreign('owner_id')->references('id')->on('players');
         });
-
-        Schema::table('players', function (Blueprint $table) {
-            $table->foreign('game_id')->references('id')->on('games');
-        });
     }
 
     /**
@@ -36,11 +32,6 @@ class CreateGamesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('cardset_game');
-        if (Schema::hasTable('players')) {
-            Schema::table('players', function (Blueprint $table) {
-                $table->dropForeign(['game_id']);
-            });
-        }
         Schema::dropIfExists('games');
     }
 }

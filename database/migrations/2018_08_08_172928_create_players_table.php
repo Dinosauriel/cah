@@ -20,7 +20,6 @@ class CreatePlayersTable extends Migration
 			$table->boolean('is_temporary');
 			$table->string('username')->unique();
 			$table->string('password')->nullable();
-			$table->unsignedInteger('game_id')->nullable();
 			$table->rememberToken();
         });
     }

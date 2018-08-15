@@ -35,9 +35,9 @@ class Player extends Authenticatable
     /**
      * @return: the game this player is playing
      */
-    public function playingGame()
+    public function playingGames()
     {
-        return $this->belongsTo('App\Game', 'game_id');
+        return $this->belongsToMany('App\Game');
 	}
 	
 	public function createGame(Game $game)
