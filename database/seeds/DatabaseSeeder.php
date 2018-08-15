@@ -43,8 +43,8 @@ class DatabaseSeeder extends Seeder
         ]);
         
         $this->call([
-            //cards_black_seeder::class,
-            //cards_white_seeder::class,
+            cards_black_seeder::class,
+            cards_white_seeder::class,
         ]);
     }
 }

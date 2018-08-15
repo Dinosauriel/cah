@@ -22,7 +22,6 @@ class CreateCardsetGameTable extends Migration
             $table->foreign('game_id')->references('id')->on('games');
             $table->unsignedInteger('cardset_id');
             $table->foreign('cardset_id')->references('id')->on('players');
-            $table->primary(['game_id', 'cardset_id']);
         });
     }
 
