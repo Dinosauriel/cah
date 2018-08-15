@@ -32,6 +32,7 @@ class CreatePlayersTable extends Migration
      */
     public function down()
     {
+		Schema::dropIfExists('cardset_game');
         Schema::dropIfExists('players');
     }
 }

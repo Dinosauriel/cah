@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 /* 
 Represents the many-to-many relation of Games To Cardsets
 */
-class CreateGamesCardsetsTable extends Migration
+class CreateCardsetGameTable extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateGamesCardsetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('games_cardsets', function (Blueprint $table) {
+        Schema::create('cardset_game', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('game_id');
             $table->foreign('game_id')->references('id')->on('games');
@@ -32,6 +32,6 @@ class CreateGamesCardsetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('games_cardsets');
+        Schema::dropIfExists('cardset_game');
     }
 }
