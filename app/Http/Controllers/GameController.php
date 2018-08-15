@@ -54,9 +54,9 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($gameId)
+    public function show(Game $game)
     {
-		return $this->edit($gameId);
+		return $this->edit($game);
     }
 
     /**
@@ -65,9 +65,9 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($gameId)
+    public function edit(Game $game)
     {
-		$game = Game::publicId($gameId)->first();
+		//$game = Game::publicId($gameId)->first();
 		
         return view('games.edit', [
             'game' => $game,
@@ -81,7 +81,7 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Game $game)
     {
         //
     }
@@ -92,9 +92,8 @@ class GameController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($gameId)
+    public function destroy(Game $game)
     {
-        $game = Game::publicId($gameId)->first();
         $game->delete();
 
         return redirect(Game::getListUrl());
