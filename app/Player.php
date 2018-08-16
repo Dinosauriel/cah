@@ -30,6 +30,10 @@ class Player extends Authenticatable
     public function games()
     {
         return $this->hasMany('App\Game', 'owner_id');
+	}
+	
+	public function gameRelations() {
+        return $this->hasMany('App\GamePlayerRelation');
     }
 
     /**

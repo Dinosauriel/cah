@@ -19,6 +19,8 @@ class CreateGamePlayerTable extends Migration
             $table->foreign('game_id')->references('id')->on('games');
             $table->unsignedInteger('player_id');
             $table->foreign('player_id')->references('id')->on('players');
+            $table->integer('points')->default(0);
+            $table->boolean('is_banned')->default(false);
         });
     }
 

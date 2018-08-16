@@ -44,6 +44,10 @@ class Game extends Model
         return $this->belongsToMany('App\Player');
     }
 
+    public function playerRelations() {
+        return $this->hasMany('App\GamePlayerRelation');
+    }
+
     /**
      * @return: the owner of this game
      */

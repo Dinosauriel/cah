@@ -46,5 +46,10 @@ class DatabaseSeeder extends Seeder
             cards_black_seeder::class,
             cards_white_seeder::class,
         ]);
+
+        DB::table('game_player')->insert([
+            'game_id' => 1,
+            'player_id' => 1
+        ]);
     }
 }
