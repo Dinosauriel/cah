@@ -13,9 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/player', function (Request $request) {
-    return json_encode($request);
-})->name('api_player');
+Route::get('/player', 'PlayerController@jsonIndex')->name('api_player');
 
 Route::post('/login', 'LoginController@login')->name('api_login');
 Route::post('/logout', 'LoginController@logout')->name('api_logout');
