@@ -17,6 +17,13 @@ services:
     build:
       context: ./
       dockerfile: node.dockerfile
+
+  # Composer (php package manager)
+  composer:
+    build:
+      context: ./
+      dockerfile: composer.dockerfile
+
   # The Database
   database:
     image: mysql:8.0.12
