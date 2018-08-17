@@ -25,7 +25,7 @@ New Game
 
     <div class="col col-sm-4">
 
-        <invite-link v-bind:invitelink="{{ json_encode($game->getDraftUrl()) }}"></invite-link>
+        <invite-link v-bind:invitelink="{{ json_encode($game->getRoute()) }}"></invite-link>
 
         <div class="card mt-3">
             <div class="card-header">

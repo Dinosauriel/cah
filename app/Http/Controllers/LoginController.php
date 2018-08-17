@@ -34,7 +34,6 @@ class LoginController extends Controller
 	 * @return: redirect to lobby
 	 */
 	public function login(Request $request) {
-
 		//validate the form
 		$this->validate($request, [
 			'username' => 'required',
@@ -48,11 +47,9 @@ class LoginController extends Controller
 	}
 
 	/**
-	 * logs out the current admin
+	 * logs out the current player
 	 */
 	public function logout() {
 		auth()->logout();
-
-		return redirect()->route('root');
 	}
 }

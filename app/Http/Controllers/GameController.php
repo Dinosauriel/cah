@@ -62,7 +62,11 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-		return $this->edit($game);
+        //$game = Game::publicId($gameId)->first();
+		
+        return view('games.edit', [
+            'game' => $game,
+        ]);
     }
 
     /**
@@ -73,11 +77,7 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-		//$game = Game::publicId($gameId)->first();
-		
-        return view('games.edit', [
-            'game' => $game,
-        ]);
+
     }
 
     /**

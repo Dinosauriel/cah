@@ -56,28 +56,28 @@ class Game extends Model
         return $this->belongsTo('App\Player');
     }
 
-    public function getDraftUrl()
+    public function getRoute()
     {
-        return route('viewGame', ['publicId' => $this->public_id]);
+        return route('viewGame', ['gameId' => $this->public_id]);
     }
 
     public function getUpdateUrl()
     {
-        return route('ajax_updateGame', ['publicId' => $this->public_id]);
+        //return route('ajax_updateGame', ['publicId' => $this->public_id]);
     }
 
     public function getDeleteUrl()
     {
-        return route('ajax_destroyGame', ['publicId' => $this->public_id]);
+        //return route('ajax_destroyGame', ['publicId' => $this->public_id]);
     }
 
     public static function getStoreUrl()
     {
-        return route('ajax_storeGame');
+        //return route('ajax_storeGame');
     }
 
     public static function getListUrl()
     {
-        return route('listGames');
+        //return route('listGames');
     }
 }

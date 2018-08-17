@@ -7,7 +7,7 @@ Admin Login
 @section('content')
 <div class="row justify-content-sm-center">
 	<div class="col col-sm-5 mt-5">
-		<login-card :action="{{ json_encode(route('ajax_login')) }}"></login-card>
+		<login-card :action="{{ json_encode(route('api_login')) }}"></login-card>
 	</div>
 </div>
 @endsection
