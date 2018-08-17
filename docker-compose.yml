@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+
+  # The Application
+  app:
+    build:
+      context: ./
+      dockerfile: app.dockerfile
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
+  # Node
+  node:
+    build:
+      context: ./
+      dockerfile: node.dockerfile
+  # The Database
+  database:
+    image: mysql:8.0.12
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=cah"
+      - "MYSQL_USER=cah"
+      - "MYSQL_PASSWORD=super_secret_password"
+      - "MYSQL_ROOT_PASSWORD=super_secret_root_password"
+    ports:
+        - "33061:3306"
+
+volumes:
+  dbdata:
