@@ -61,23 +61,23 @@ class Game extends Model
         return route('viewGame', ['gameId' => $this->public_id]);
     }
 
-    public function getUpdateUrl()
+    public function getUpdateRoute()
     {
-        //return route('ajax_updateGame', ['publicId' => $this->public_id]);
+        return route('api_updateGame', ['publicId' => $this->public_id]);
     }
 
-    public function getDeleteUrl()
+    public function getDeleteRoute()
     {
-        //return route('ajax_destroyGame', ['publicId' => $this->public_id]);
+        return route('api_destroyGame', ['publicId' => $this->public_id]);
     }
 
-    public static function getStoreUrl()
+    public static function getStoreRoute()
     {
-        //return route('ajax_storeGame');
+        return route('api_storeGame');
     }
 
-    public static function getListUrl()
+    public static function getListRoute()
     {
-        //return route('listGames');
+        return route('listGames');
     }
 }

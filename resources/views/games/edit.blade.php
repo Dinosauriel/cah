@@ -39,7 +39,7 @@ New Game
             </ul>
         </div>
 
-        <a class="btn btn-danger btn-block mt-3" href="{{ $game->getDeleteUrl() }}">Delete Game</a>
+        <a class="btn btn-danger btn-block mt-3" href="{{ $game->getDeleteRoute() }}">Delete Game</a>
     </div>
 </div>
 @endsection
