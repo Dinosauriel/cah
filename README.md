@@ -7,7 +7,7 @@
     - `composer -v`
     - `node -v`
     - `npm -v`
-    - `mysql -v`
+    - `mysql -V`
 4. Install laravel using `composer global require "laravel/installer"`. More on that [here](https://laravel.com/docs/installation).
 5. Install all the necessary node modules using `npm install`.
 6. Create a MySQL database and enter it's credentials in the `/.env` file. (`DB_CONNECTION` to `DB_PASSWORD`)
