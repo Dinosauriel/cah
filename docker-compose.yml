@@ -16,7 +16,6 @@ services:
       MYSQL_ROOT_PASSWORD: super_secret_root_password
     ports:
         - 33061:3306
-
   # The Application
   app:
     depends_on:
@@ -36,6 +35,16 @@ services:
     environment:
       - "DB_PORT=3306"
       - "DB_HOST=database"
+  
+  # composer
+  composer:
+    depends_on:
+      - app
+    restart: "no"
+    image: composer:1
+    command: install
+    volumes:
+      - .:/app
 
 volumes:
   dbdata:
