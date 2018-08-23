@@ -6,5 +6,5 @@ COPY ./httpd.conf /etc/apache2/sites-enabled/cah.conf
 
 #install php-mysql extension
 RUN apt-get update \
-	&& apt-get install -y mysql-client nodejs --no-install-recommends \
+	&& apt-get install -y mysql-client --no-install-recommends \
 	&& docker-php-ext-install pdo_mysql
