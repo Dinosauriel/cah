@@ -4,9 +4,9 @@
 2. Download and install Docker using your preferred method.
 3. Run the following commands _in order_.
 
-    - `docker-compose up --build composer`
-    - `docker-compose up`
     - `cp .env.example .env`
+    - `docker-compose up --build composer` (wait for the install to finish)
+    - `docker-compose up`
     - `docker-compose exec app php artisan key:generate`
 
 4. You can now run arbitrary commands in the app container thanks to the inerface provided by docker:
@@ -14,7 +14,7 @@
     - `docker-compose exec app {{your command here}}`
 
 4. Populate the database using `php artisan migrate:refresh --seed`.
-5. (Optional:) Navigate in your browser to: [http://127.0.0.1:8000]
+5. (Optional:) Navigate in your browser to: [http://127.0.0.1:8080]
 
 # Commands
 
