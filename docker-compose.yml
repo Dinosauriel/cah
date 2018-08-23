@@ -46,5 +46,19 @@ services:
     volumes:
       - .:/app
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=database
+      - PMA_USER=cah
+      - PMA_PASSWORD=super_secret_password
+    restart: always
+    ports:
+      - 8090:80
+    volumes:
+      - /sessions
+
 volumes:
   dbdata:
