@@ -18,7 +18,7 @@ Route::get('/player', 'PlayerController@jsonIndex')->name('api_player');
 Route::post('/login', 'LoginController@login')->name('api_login');
 Route::post('/logout', 'LoginController@logout')->name('api_logout');
 
-Route::get('/games/', 'GameController@jsonIndex')->name('api_listGames');
+Route::get('/games', 'GameController@jsonIndex')->name('api_listGames');
 //create a new game
 Route::post('/games', 'GameController@store')->name('api_storeGame');
 //update the game

@@ -15,5 +15,5 @@ Route::get('/', 'LoginController@showAdminLogin')->name('adminLogin');
 Route::get('/login', 'LoginController@showLogin')->name('login');
 
 //MARK: -- GAME RESOURCE
-Route::get('/games/', 'GameController@index')->name('listGames');
+Route::get('/games', 'GameController@index')->name('listGames');
 Route::get('/games/{game}', 'GameController@show')->name('viewGame');
