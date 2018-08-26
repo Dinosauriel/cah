@@ -38,13 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'players',
         ],
-
         'api' => [
             'driver' => 'token',
-            'provider' => 'users',
-        ],
+            'provider' => 'players'
+        ]
     ],
 
     /*
@@ -65,15 +64,10 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'players' => [
             'driver' => 'eloquent',
             'model' => App\Player::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

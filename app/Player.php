@@ -24,6 +24,10 @@ class Player extends Authenticatable
 		return $query->where('created_at', '<', date('Y-m-d G:i:s', $timestamp));
 	}
 
+	public function isAdmin() {
+		return $this->is_admin == true;
+	}
+
     /**
      * @return: all games in ownership of this user
      */

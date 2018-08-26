@@ -13,15 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/player', 'PlayerController@jsonIndex')->name('api_player');
+//retreive player info
+Route::get('/player', 'PlayerController@jsonIndex')->name('api_player')->middleware('auth:api');
 
+//login with the credentials
 Route::post('/login', 'LoginController@login')->name('api_login');
-Route::post('/logout', 'LoginController@logout')->name('api_logout');
+//log out
+Route::post('/logout', 'LoginController@logout')->name('api_logout')->middleware('auth:api');
 
-Route::get('/games', 'GameController@jsonIndex')->name('api_listGames');
+//receive a listing of the games on this server
+Route::get('/games', 'GameController@jsonIndex')->name('api_listGames')->middleware('auth:api')->middleware('can:list');
 //create a new game
-Route::post('/games', 'GameController@store')->name('api_storeGame');
+Route::post('/games', 'GameController@store')->name('api_storeGame')->middleware('auth:api')->middleware('can:create');
 //update the game
-Route::patch('/games/{gameId}', 'GameController@update')->name('api_updateGame');
+Route::patch('/games/{gameId}', 'GameController@update')->name('api_updateGame')->middleware('auth:api')->middleware('can:update,gameId');
 //delete the game
-Route::delete('/games/{gameId}', 'GameController@destroy')->name('api_destroyGame');
+Route::delete('/games/{gameId}', 'GameController@destroy')->name('api_destroyGame')->middleware('auth:api')->middleware('can:delete,gameId');
