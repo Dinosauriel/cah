@@ -19,7 +19,8 @@ class CreatePlayersTable extends Migration
 			$table->boolean('is_admin')->default(0);
 			$table->boolean('is_temporary');
 			$table->string('username')->unique();
-			$table->string('password')->nullable();
+            $table->string('password')->nullable();
+            $table->string('api_token', 128)->unique();
 			$table->rememberToken();
         });
     }

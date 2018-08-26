@@ -13,15 +13,18 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('players')->insert([
 			'username' => 'player1',
-			'is_temporary' => 1
+            'is_temporary' => 1,
+            'api_token' => 'fijaewirj'
         ]);
         DB::table('players')->insert([
 			'username' => 'player2',
-			'is_temporary' => 1
+            'is_temporary' => 1,
+            'api_token' => 'fjwioaer'
         ]);
         DB::table('players')->insert([
 			'username' => 'player3',
-			'is_temporary' => 1
+            'is_temporary' => 1,
+            'api_token' => 'fojwer'
         ]);
 
         DB::table('cardsets')->insert([
