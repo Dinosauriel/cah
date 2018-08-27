@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Game;
 
 class GameController extends Controller
@@ -66,7 +67,7 @@ class GameController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Game  $game
      * @return \Illuminate\Http\Response
      */
     public function show(Game $game)
@@ -79,7 +80,7 @@ class GameController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Game  $game
      * @return \Illuminate\Http\Response
      */
     public function edit(Game $game)
@@ -91,25 +92,46 @@ class GameController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param   Game  $game
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Game $game)
     {
-        //
+        //validate
+		$validator = Validator::make($request->all(), [
+			'content.points_required' => 'sometimes|integer|gt:0|lt:20',
+			'content.name' => 'sometimes|min:1|max:24'
+        ])->validate();
+        
+        if (!empty($request->input('content.name'))) {
+            $game->name = $request->input('content.name');
+        }
+
+        if (!empty($request->input('content.points_required'))) {
+            $game->points_required = $request->input('content.points_required');
+        }
+
+        $game->save();
+
+        return response()->json([
+            'message' => 'game successfully updated'
+        ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Game  $game
      * @return \Illuminate\Http\Response
      */
     public function destroy(Game $game)
     {
         $game->delete();
 
-        return redirect(Game::getListUrl());
+        return response()->json([
+            'message' => 'game deleted',
+            'redirect' => Game::getListRoute()
+        ]);
     }
 
     public static function generateNewPublicId()
@@ -123,7 +145,8 @@ class GameController extends Controller
 	 *
 	 * @return string of desired length
 	 */
-	public static function getRandomBase64String(int $ofLength): string {
+    public static function getRandomBase64String(int $ofLength): string
+    {
 		$characters = [
 			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
 			'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',

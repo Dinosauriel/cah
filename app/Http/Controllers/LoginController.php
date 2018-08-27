@@ -50,13 +50,7 @@ class LoginController extends Controller
 		$validator = Validator::make($request->all(), [
 			'username' => 'required',
 			'password' => 'required'
-		]);
-
-		if ($validator->fails()) {
-			return response()->json([
-				'message' => 'missing credentials'
-			], 400);
-		}
+		])->validate();
 
 		//verify the password
 		if (Auth::guard('web')->attempt($request->only(['username', 'password']))) {
