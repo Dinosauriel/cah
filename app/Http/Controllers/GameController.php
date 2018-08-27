@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Game;
 
 class GameController extends Controller
@@ -48,12 +48,17 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        $game = auth()->user()->createGame(new Game([
-			'public_id' => static::getRandomBase64String(11),
-			'name' => 'New Game'
-		]));
+        $game = new Game([
+			'name' => $request->user()->username . 's Game'
+        ]);
+        $game->public_id = static::generateNewPublicId();
 
-        return redirect($game->getDraftUrl());
+        $game = $request->user()->createGame($game);
+
+        return response()->json([
+            'redirect' => $game->getRoute(),
+            'content' => $game
+        ], 200);
     }
 
     /**
@@ -103,8 +108,13 @@ class GameController extends Controller
         $game->delete();
 
         return redirect(Game::getListUrl());
-	}
-	
+    }
+
+    public static function generateNewPublicId()
+    {
+        return static::getRandomBase64String(12);
+    }
+    
 	/**
 	 * generates cryptographically random base64 string of desired length, suitable for URLs
 	 * @param $ofLength : the length of the desired string

@@ -24,7 +24,7 @@ Route::post('/logout', 'LoginController@logout')->name('api_logout')->middleware
 //receive a listing of the games on this server
 Route::post('/games', 'GameController@jsonIndex')->name('api_listGames')->middleware('auth:api')->middleware('can:list,App\Game');
 //create a new game
-Route::post('/games/create', 'GameController@store')->name('api_storeGame')->middleware('auth:api')->middleware('can:create,App\Game');
+Route::post('/games/store', 'GameController@store')->name('api_storeGame')->middleware('auth:api')->middleware('can:store,App\Game');
 //update the game
 Route::patch('/games/{gameId}', 'GameController@update')->name('api_updateGame')->middleware('auth:api')->middleware('can:update,gameId');
 //delete the game
