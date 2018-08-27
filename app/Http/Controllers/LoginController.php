@@ -39,11 +39,18 @@ class LoginController extends Controller
     }
 
 	/**
-	 * checks the password and logs in the user
+	 * checks the password and logs in the user using the sessions provider
+	 * returns the cah_token for future ajax requests
 	 * 
 	 * @return: redirect to lobby
 	 */
 	public function login(Request $request) {
+		if (Auth::guard('web')->check()) {
+			return response()->json([
+				'message' => 'already logged in'
+			], 200);
+		}
+
 		//validate the form
 		$validator = Validator::make($request->all(), [
 			'username' => 'required',
@@ -57,7 +64,7 @@ class LoginController extends Controller
 		}
 
 		//verify the password
-		if (Auth::attempt($request->only(['username', 'password']))) {
+		if (Auth::guard('web')->attempt($request->only(['username', 'password']))) {
 			return response()->json([
 				'message' => 'success',
 				'player' => Auth::user()
@@ -73,8 +80,7 @@ class LoginController extends Controller
 	 * logs out the current player
 	 */
 	public function logout() {
-		Auth::guard('api')->logout();
-		Auth::logout();
+		Auth::guard('web')->logout();
 		return response()->json([
 			'message' => 'logout-success'
 		], 200);

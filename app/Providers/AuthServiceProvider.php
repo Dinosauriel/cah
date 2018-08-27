@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Player;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -26,6 +28,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Auth::viaRequest('cah-token', function ($request) {
+            return Player::where('api_token', $request->cah_token)->first();
+        });
     }
 }

@@ -41,8 +41,7 @@ return [
             'provider' => 'players',
         ],
         'api' => [
-            'driver' => 'token',
-            'provider' => 'players'
+            'driver' => 'cah-token',
         ]
     ],
 
