@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 //retreive player info
-Route::get('/player', 'PlayerController@jsonIndex')->name('api_player')->middleware('auth:api');
+Route::post('/player', 'PlayerController@jsonIndex')->name('api_player')->middleware('auth:api');
 
 //login with the credentials
 Route::post('/login', 'LoginController@login')->name('api_login');

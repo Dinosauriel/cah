@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlayerController extends Controller
 {
@@ -17,7 +18,7 @@ class PlayerController extends Controller
 
     public function jsonIndex(Request $request)
     {
-        return $request->player;
+        return response()->json(Auth::guard('api')->user(), 200);
     }
 
     /**
