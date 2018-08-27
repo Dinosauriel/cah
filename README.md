@@ -5,8 +5,8 @@
 3. Run the following commands _in order_.
 
     - `cp .env.example .env`
-    - `docker-compose up --build composer` (wait for the install to finish)
-    - `docker-compose up`
+    - `docker-compose up --build composer` Wait for the install to finish.
+    - `docker-compose up` This will start all the containers. To terminate, hit CTRL+C.
     - `docker-compose exec app php artisan key:generate`
 
 4. You can now run arbitrary commands in the app container thanks to the interface provided by docker:
