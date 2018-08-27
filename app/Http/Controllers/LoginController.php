@@ -62,7 +62,7 @@ class LoginController extends Controller
 		if (Auth::guard('web')->attempt($request->only(['username', 'password']))) {
 			return response()->json([
 				'message' => 'success',
-				'player' => Auth::guard('web')->user()
+				'content' => Auth::guard('web')->user()
 			], 202);
 		} else {
 			return response()->json([

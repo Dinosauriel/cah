@@ -26,7 +26,8 @@ class GameController extends Controller
     {
         $games = Game::all();
         return response()->json([
-            $games
+            'message' => 'listing successful',
+            'content' => $games
         ], 200);
     }
 
@@ -56,6 +57,7 @@ class GameController extends Controller
         $game = $request->user()->createGame($game);
 
         return response()->json([
+            'message' => 'game creation successful',
             'redirect' => $game->getRoute(),
             'content' => $game
         ], 200);

@@ -18,7 +18,10 @@ class PlayerController extends Controller
 
     public function jsonIndex(Request $request)
     {
-        return response()->json(Auth::guard('api')->user(), 200);
+        return response()->json([
+            'message' => 'listing successful',
+            'content' => Auth::guard('api')->user()
+        ], 200);
     }
 
     /**
