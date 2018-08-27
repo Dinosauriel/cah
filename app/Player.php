@@ -14,6 +14,10 @@ class Player extends Authenticatable
 		'password'
 	];
 
+	protected $hidden = [
+		'password'
+	];
+
 	public function scopeUsername($query, $username)
 	{
 		return $query->where('username', $username);

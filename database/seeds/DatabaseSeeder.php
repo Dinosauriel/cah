@@ -12,19 +12,21 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('players')->insert([
-			'username' => 'player1',
+            'username' => 'player1',
+            'password' => bcrypt('my-secret-password'),
+            'is_admin' => 1,
             'is_temporary' => 1,
-            'api_token' => 'fijaewirj'
+            'api_token' => str_random(64)
         ]);
         DB::table('players')->insert([
 			'username' => 'player2',
             'is_temporary' => 1,
-            'api_token' => 'fjwioaer'
+            'api_token' => str_random(64)
         ]);
         DB::table('players')->insert([
 			'username' => 'player3',
             'is_temporary' => 1,
-            'api_token' => 'fojwer'
+            'api_token' => str_random(64)
         ]);
 
         DB::table('cardsets')->insert([
