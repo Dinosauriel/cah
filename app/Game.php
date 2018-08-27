@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Player;
 use Illuminate\Database\Eloquent\Model;
 
 class Game extends Model
@@ -46,6 +47,11 @@ class Game extends Model
 
     public function playerRelations() {
         return $this->hasMany('App\GamePlayerRelation');
+    }
+
+    public function hasPlayer(Player $p)
+    {
+        return ($this->players()->where('player_id', $p->id)->count() > 0);
     }
 
     /**

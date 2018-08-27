@@ -29,3 +29,5 @@ Route::post('/games/store', 'GameController@store')->name('api_storeGame')->midd
 Route::patch('/games/{game}', 'GameController@update')->name('api_updateGame')->middleware('auth:api')->middleware('can:update,game');
 //delete the game
 Route::delete('/games/{game}', 'GameController@destroy')->name('api_destroyGame')->middleware('auth:api')->middleware('can:destroy,game');
+//poll all the events for this game
+Route::post('games/{game}/poll', 'EventController@poll')->name('api_pollGame')->middleware('auth:api')->middleware('can:poll,game');

@@ -51,4 +51,12 @@ class GamePolicy
     {
         return $g->owner()->id == $p->id;
     }
+
+    /**
+     * can this player receive events for this game
+     */
+    public function poll(Player $p, Game $g)
+    {
+        return $g->hasPlayer($p);
+    }
 }
