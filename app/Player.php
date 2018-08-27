@@ -56,4 +56,12 @@ class Player extends Authenticatable
 	{
 		return $this->games()->save($game);
 	}
+
+	public function assignNewApiToken() {
+		$this->api_token = static::generateNewApiToken();
+	}
+
+    protected static function generateNewApiToken() {
+        return str_random(120);
+    }
 }

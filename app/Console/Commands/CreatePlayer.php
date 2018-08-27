@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Player;
 
+
 class CreatePlayer extends Command
 {
     /**
@@ -57,7 +58,8 @@ class CreatePlayer extends Command
 		$player = new Player;
 		$player->username = $options['username'];
 		$player->is_temporary = $options['temporary'];
-		$player->is_admin = $options['admin'];
+        $player->is_admin = $options['admin'];
+        $player->assignNewApiToken();
 
 		if (!empty($options['password'])) {
 			$player->password = bcrypt($options['password']);
