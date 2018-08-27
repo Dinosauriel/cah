@@ -53,7 +53,7 @@ class Game extends Model
      */
     public function owner()
     {
-        return $this->belongsTo('App\Player');
+        return $this->belongsTo('App\Player')->first();
     }
 
     public function getRoute()

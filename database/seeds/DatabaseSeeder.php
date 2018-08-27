@@ -16,17 +16,17 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('my-secret-password'),
             'is_admin' => 1,
             'is_temporary' => 1,
-            'api_token' => str_random(64)
+            'api_token' => 'p1'
         ]);
         DB::table('players')->insert([
 			'username' => 'player2',
             'is_temporary' => 1,
-            'api_token' => str_random(64)
+            'api_token' => 'p2'
         ]);
         DB::table('players')->insert([
 			'username' => 'player3',
             'is_temporary' => 1,
-            'api_token' => str_random(64)
+            'api_token' => 'p3'
         ]);
 
         DB::table('cardsets')->insert([
@@ -34,14 +34,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('games')->insert([
-            'public_id' => 'jkl',
+            'public_id' => 'gameA',
             'status' => 'draft',
             'name' => 'Test-Game',
             'owner_id' => 1
         ]);
 
         DB::table('games')->insert([
-            'public_id' => 'asdf',
+            'public_id' => 'gameB',
             'status' => 'ingame',
             'name' => 'Test-In-Game',
             'owner_id' => 2

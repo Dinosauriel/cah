@@ -26,6 +26,6 @@ Route::post('/games', 'GameController@jsonIndex')->name('api_listGames')->middle
 //create a new game
 Route::post('/games/store', 'GameController@store')->name('api_storeGame')->middleware('auth:api')->middleware('can:store,App\Game');
 //update the game
-Route::patch('/games/{gameId}', 'GameController@update')->name('api_updateGame')->middleware('auth:api')->middleware('can:update,gameId');
+Route::patch('/games/{game}', 'GameController@update')->name('api_updateGame')->middleware('auth:api')->middleware('can:update,game');
 //delete the game
-Route::delete('/games/{gameId}', 'GameController@destroy')->name('api_destroyGame')->middleware('auth:api')->middleware('can:delete,gameId');
+Route::delete('/games/{game}', 'GameController@destroy')->name('api_destroyGame')->middleware('auth:api')->middleware('can:delete,game');
