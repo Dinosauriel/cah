@@ -6,14 +6,14 @@
 
     - `cp .env.example .env`
     - `docker-compose up --build composer` Wait for the install to finish.
-    - `docker-compose up` This will start all the containers. To terminate, hit CTRL+C.
+    - `docker-compose up` This will start all the containers, including the local server. To terminate, hit CTRL+C.
     - `docker-compose exec app php artisan key:generate`
 
 4. You can now run arbitrary commands in the app container thanks to the interface provided by docker:
 
     - `docker-compose exec app {{your command here}}`
 
-5. Populate the database using `php artisan migrate:refresh --seed`.
+5. Populate the database using `docker-compose exec app php artisan migrate:refresh --seed`.
 6. (Optional:) Navigate in your browser to: [http://127.0.0.1:8080]
 
 # Commands
