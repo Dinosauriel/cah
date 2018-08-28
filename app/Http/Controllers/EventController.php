@@ -12,19 +12,19 @@ class EventController extends Controller
     public function poll(Game $game, Request $request) 
     {
         $response = new StreamedResponse(function() use ($request) {
-            $i = 0;
+            ob_start();
+            //sleep time in ms
+            $sleepTime = 2000;
 
             while(true) {
-                echo json_encode([
+                echo "event: " . "joined" . "\n";
+                echo "data: " . json_encode([
                     'message' => 'hi',
                     'content' => 'hi'
-                ]);
-                //ob_flush();
+                ]) . "\n\n";
+                ob_flush();
                 flush();
-                usleep(200000);
-                if (++$i == 5) {
-                    break;
-                }
+                usleep($sleepTime * 1000);
             }
         });
         $response->headers->set('Content-Type', 'text/event-stream');
