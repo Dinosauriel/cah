@@ -2,9 +2,9 @@
 
 namespace App\Events\Game\InGame;
 
-use App\Events\CahEvent;
+use App\Events\Ingame\IngameEvent;
 
-class CzarPeriodEnded extends CahEvent
+class CzarPeriodEnded extends IngameEvent
 {
     public static $identifier = 'czar_period_ended';
 }

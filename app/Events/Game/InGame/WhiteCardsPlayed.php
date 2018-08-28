@@ -2,9 +2,9 @@
 
 namespace App\Events\Game\InGame;
 
-use App\Events\CahEvent;
+use App\Events\Ingame\IngameEvent;
 
-class WhiteCardsPlayed extends CahEvent
+class WhiteCardsPlayed extends IngameEvent
 {
     public static $identifier = 'white_cards_played';
 }

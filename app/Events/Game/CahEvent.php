@@ -7,7 +7,7 @@ use App\Player;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 
-class CahEvent
+abstract class CahEvent
 {
 	use SerializesModels, Dispatchable;
 	
@@ -34,5 +34,12 @@ class CahEvent
     {
 		$event = new CahEvent($game);
 		$event->player = $player;
+    }
+
+    /**
+     * returns the name of the queue where this event should be submitted 
+     */
+    public function queueName() {
+        return 'default';
     }
 }

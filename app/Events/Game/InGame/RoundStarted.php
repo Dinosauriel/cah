@@ -2,9 +2,9 @@
 
 namespace App\Events\Game\InGame;
 
-use App\Events\CahEvent;
+use App\Events\Ingame\IngameEvent;
 
-class RoundStarted extends CahEvent
+class RoundStarted extends IngameEvent
 {
     public static $identifier = 'round_started';
 }
