@@ -9,7 +9,18 @@ use App\Game;
 class EventController extends Controller
 {   
 
-    public function poll(Game $game, Request $request) 
+    /**
+     * receive general events regarding the lobby etc.
+     */
+    public function poll(Request $request)
+    {
+
+    }
+
+    /**
+     * receive specific events for this game
+     */
+    public function pollGame(Game $game, Request $request) 
     {
         $response = new StreamedResponse(function() use ($request) {
             ob_start();

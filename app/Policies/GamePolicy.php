@@ -55,8 +55,16 @@ class GamePolicy
     /**
      * can this player receive events for this game
      */
-    public function poll(Player $p, Game $g)
+    public function pollGame(Player $p, Game $g)
     {
         return $g->hasPlayer($p);
+    }
+
+    /**
+     * can this player receive general events regarding the lobby etc.
+     */
+    public function poll(Player $p)
+    {
+        return $p->isAdmin();
     }
 }
