@@ -2,6 +2,8 @@
 
 namespace App\Listeners;
 
+use Illuminate\Support\Facades\Redis;
+
 class EventSubscriber
 {
     /**

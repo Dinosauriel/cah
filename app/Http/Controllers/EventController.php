@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Redis;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Illuminate\Http\Request;
 use App\Game;
@@ -16,18 +17,26 @@ class EventController extends Controller
     {
         $response = new StreamedResponse(function() use ($request) {
             ob_start();
-            //sleep time in ms
-            $sleepTime = 2000;
 
+            $player = $request->user();
+            $queueIdentifier = $player->getQueueIdentifier();
+
+            //repeat until connection is aborted
             while(true) {
-                echo "event: " . "joined" . "\n";
-                echo "data: " . json_encode([
-                    'message' => 'hi',
-                    'content' => 'hi'
-                ]) . "\n\n";
-                ob_flush();
-                flush();
-                usleep($sleepTime * 1000);
+                //repeat for all events in queue
+                while (Redis::llen($queueIdentifier) > 0) {
+                    $eventJson = Redis::rpop($queueIdentifier);
+
+                    echo 'event: ' . 'joined' . "\n";
+                    echo 'data: ' . json_encode([
+                        'message' => 'event received',
+                        'content' => $eventJson
+                    ]) . "\n\n";
+                    ob_flush();
+                    flush();
+                }
+
+                sleep(2000);
             }
         });
         $response->headers->set('Content-Type', 'text/event-stream');
