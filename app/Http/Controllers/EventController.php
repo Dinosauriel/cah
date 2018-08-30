@@ -10,17 +10,9 @@ class EventController extends Controller
 {   
 
     /**
-     * receive general events regarding the lobby etc.
+     * receive events from the server for this specific player
      */
-    public function poll(Request $request)
-    {
-
-    }
-
-    /**
-     * receive specific events for this game
-     */
-    public function pollGame(Game $game, Request $request) 
+    public function poll(Request $request) 
     {
         $response = new StreamedResponse(function() use ($request) {
             ob_start();
