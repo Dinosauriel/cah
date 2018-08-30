@@ -20,19 +20,9 @@ abstract class CahEvent
      *
      * @return void
      */
-    public function __construct(Game $game)
+    public function __construct(Game $game, Player $player = null)
     {
+        $this->player = player;
         $this->game = $game;
 	}
-	
-	/**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public static function withPlayer(Game $game, Player $player)
-    {
-		$event = new CahEvent($game);
-		$event->player = $player;
-    }
 }
