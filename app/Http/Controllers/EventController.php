@@ -25,20 +25,19 @@ class EventController extends Controller
 
             //repeat until connection is aborted
             while(true) {
-                //repeat for all events in queue
-                while (Redis::llen($queueIdentifier) > 0) {
-                    $event = Redis::rpop($queueIdentifier);
 
-                    //echo 'event: ' . 'joined' . "\n";
-                    echo 'data: ' . json_encode([
-                        'message' => 'event received',
-                        'content' => $event
-                    ]) . "\n\n";
-                    ob_flush();
-                    flush();
-                }
+                //block until we an item is enqueued and then fetch it
+                $event = Redis::brpop($queueIdentifier, 0);
 
-                usleep(700 * 1000);
+                //echo 'event: ' . 'joined' . "\n";
+                echo 'data: ' . json_encode([
+                    'message' => 'event received',
+                    'content' => $event
+                ]) . "\n\n";
+                ob_flush();
+                flush();
+
+                //usleep(700 * 1000);
 
                 if (++$i > 4) {
                     break;
