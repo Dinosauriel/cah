@@ -35,11 +35,4 @@ abstract class CahEvent
 		$event = new CahEvent($game);
 		$event->player = $player;
     }
-
-    /**
-     * returns the name of the queue where this event should be submitted 
-     */
-    public function queueName() {
-        return 'default';
-    }
 }

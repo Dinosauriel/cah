@@ -45,7 +45,8 @@ class Game extends Model
         return $this->belongsToMany('App\Player');
     }
 
-    public function playerRelations() {
+    public function playerRelations()
+    {
         return $this->hasMany('App\GamePlayerRelation');
     }
 

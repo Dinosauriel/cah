@@ -28,7 +28,8 @@ class Player extends Authenticatable
 		return $query->where('created_at', '<', date('Y-m-d G:i:s', $timestamp));
 	}
 
-	public function isAdmin() {
+	public function isAdmin()
+	{
 		return $this->is_admin == true;
 	}
 
@@ -40,7 +41,8 @@ class Player extends Authenticatable
         return $this->hasMany('App\Game', 'owner_id');
 	}
 	
-	public function gameRelations() {
+	public function gameRelations()
+	{
         return $this->hasMany('App\GamePlayerRelation');
     }
 
@@ -57,11 +59,21 @@ class Player extends Authenticatable
 		return $this->games()->save($game);
 	}
 
-	public function assignNewApiToken() {
+	public function assignNewApiToken()
+	{
 		$this->api_token = static::generateNewApiToken();
 	}
 
-    protected static function generateNewApiToken() {
+	protected static function generateNewApiToken()
+	{
         return str_random(120);
-    }
+	}
+	
+	/**
+	 * @return: the identifier of the event queue that should be pushed to this client
+	 */
+	public function getQueueIdentifier()
+	{
+		return 'player_queue_' . $this->id;
+	}
 }
