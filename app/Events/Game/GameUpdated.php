@@ -7,4 +7,9 @@ use App\Events\CahEvent;
 class GameUpdated extends CahEvent
 {
     public static $identifier = 'game_updated';
+
+    protected function evaluateTargetPlayers()
+    {
+        return array_unique(array_merge(Game::Admins()->get(), $this->game->players()->get()), SORT_REGULAR);
+    }
 }

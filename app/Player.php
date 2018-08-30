@@ -28,6 +28,11 @@ class Player extends Authenticatable
 		return $query->where('created_at', '<', date('Y-m-d G:i:s', $timestamp));
 	}
 
+	public function scopeAdmins($query)
+	{
+		return $query->where('is_admin', true);
+	}
+
 	public function isAdmin()
 	{
 		return $this->is_admin == true;

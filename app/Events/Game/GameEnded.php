@@ -7,4 +7,9 @@ use App\Events\CahEvent;
 class GameEnded extends CahEvent
 {
     public static $identifier = 'game_ended';
+
+    protected function evaluateTargetPlayers()
+    {
+        return array_unique(array_merge(Game::Admins()->get(), $this->game->players()->get()), SORT_REGULAR);
+    }
 }

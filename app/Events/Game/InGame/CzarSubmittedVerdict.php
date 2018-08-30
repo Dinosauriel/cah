@@ -7,4 +7,9 @@ use App\Events\Ingame\IngameEvent;
 class CzarSubmittedVerdict extends IngameEvent
 {
     public static $identifier = 'czar_submitted_verdict';
+
+    protected function evaluateTargetPlayers()
+    {
+        return $this->game->players()->get();
+    }
 }
