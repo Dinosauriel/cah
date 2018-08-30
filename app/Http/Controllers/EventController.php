@@ -29,7 +29,7 @@ class EventController extends Controller
                 while (Redis::llen($queueIdentifier) > 0) {
                     $event = Redis::rpop($queueIdentifier);
 
-                    echo 'event: ' . 'joined' . "\n";
+                    //echo 'event: ' . 'joined' . "\n";
                     echo 'data: ' . json_encode([
                         'message' => 'event received',
                         'content' => $event
