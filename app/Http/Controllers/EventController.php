@@ -21,22 +21,28 @@ class EventController extends Controller
             $player = $request->user();
             $queueIdentifier = $player->getQueueIdentifier();
 
+            $i = 0;
+
             //repeat until connection is aborted
             while(true) {
                 //repeat for all events in queue
                 while (Redis::llen($queueIdentifier) > 0) {
-                    $eventJson = Redis::rpop($queueIdentifier);
+                    $event = Redis::rpop($queueIdentifier);
 
                     echo 'event: ' . 'joined' . "\n";
                     echo 'data: ' . json_encode([
                         'message' => 'event received',
-                        'content' => $eventJson
+                        'content' => $event
                     ]) . "\n\n";
                     ob_flush();
                     flush();
                 }
 
-                sleep(2000);
+                usleep(700 * 1000);
+
+                if (++$i > 4) {
+                    break;
+                }
             }
         });
         $response->headers->set('Content-Type', 'text/event-stream');

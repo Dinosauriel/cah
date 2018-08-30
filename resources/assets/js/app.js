@@ -27,7 +27,7 @@ const app = new Vue({
 	},
     methods: {
         setupStream() {
-            var es = new EventSource('/api/games/gameA/poll?cah_token=p1');
+            var es = new EventSource('/api/poll?cah_token=p1');
 
 			es.addEventListener('message', event => {
 				//console.log(event);

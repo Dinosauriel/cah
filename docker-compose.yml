@@ -46,6 +46,12 @@ services:
     volumes:
       - .:/app
 
+  redis:
+    image: redis:5.0-rc4
+    restart: always
+    ports:
+      - "6379:6379"
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
