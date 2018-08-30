@@ -17,6 +17,31 @@ window.Vue = require("vue");
 Vue.component("login-card", require("./components/login-card.vue"));
 Vue.component("invite-link", require("./components/games/invitelink.vue"));
 
+const store = new Vuex.Store({
+    state: {
+        //the game currently participating in
+        game: {
+            name: '',
+            pointsRequired: 0,
+
+        },
+        //player
+        player: {
+            name: ''
+        },
+        //list of games
+        gameList: {
+
+        }
+    },
+    mutations: {
+        increment (state) {
+            state.count++
+        }
+    }
+})
+  
+
 const app = new Vue({
 	el: "#vue-app",
 	data: {
