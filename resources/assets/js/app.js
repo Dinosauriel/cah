@@ -11,6 +11,7 @@ window.Vuex = require("vuex");
 Vue.use(Vuex);
 
 window.Axios = require("axios");
+window.Api = require("./api/api.js");
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -22,59 +23,20 @@ Vue.component("login-card", require("./components/login-card.vue"));
 Vue.component("invite-link", require("./components/games/invitelink.vue"));
 Vue.component("game-list", require("./components/lobby/game-list.vue"));
 Vue.component("game-list-cell", require("./components/lobby/game-list-cell.vue"));
-
-const store = new Vuex.Store({
-    state: {
-        //the game currently participating in
-        game: {
-            name: '',
-            pointsRequired: 0,
-
-        },
-        //player
-        player: {
-            username: '',
-            is_admin: false,
-        },
-        //list of games
-        gameList: {
-
-        }
-    },
-    mutations: {
-        increment (state) {
-            state.count++
-        }
-    }
-});
   
+require("./store.js");
+
 
 const app = new Vue({
     el: "#vue-app",
     //inject store into root component
     store,
-	data: {
-        stockData: null
-    },
-    created() {
-        this.setupStream();
-	},
-    methods: {
-        setupStream() {
-            var es = new EventSource('/api/poll?cah_token=p1');
-
-			es.addEventListener('message', event => {
-				//console.log(event);
-                let data = JSON.parse(event.data);
-                this.stockData = data.stockData;
-			}, false);
-			
-			es.addEventListener('error', event => {
-                if (event.readyState == EventSource.CLOSED) {
-                    console.log('Event was closed');
-                    console.log(EventSource);
-                }
-            }, false);
+	data: function() {
+        return {
+            stockData: null
         }
-    }
+    },
+    mounted: function() {
+
+	},
 });

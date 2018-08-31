@@ -4,28 +4,26 @@
 	</div>
 </template>
 <script>
+import { mapState } from 'vuex'
+
 export default {
 	mounted: function() {
-        this.downloadGames();
+
 	},
 	data: function () {
 		return {
-			games: [
-				
-			]
+
 		}
 	},
 	methods: {
-		downloadGames: function() {
-			Axios.post('/api/games', {
-				cah_token: 'p1'
-			})
-			.then(response => {
-				console.log(response.data.content);
-				this.games = response.data.content;
-			})
+		update: function() {
+			this.$store.downloadGameLists();
 		}
-	}
+	},
+	computed: mapState({
+		// arrow functions can make the code very succinct!
+		games: state => state.games,
+	})
 }
 </script>
 

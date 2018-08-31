@@ -10,7 +10,9 @@
 </template>
 <script>
 export default {
-	props: ["game"],
+	props: {
+		game: object
+	},
 	data: function() {
 		return {
 

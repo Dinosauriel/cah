@@ -209,8 +209,9 @@ module.exports = __webpack_require__(14);
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
 //fetch the csrf Token from the meta tag
 window.csrfToken = $("meta[name='csrf-token']").attr("content");
 
@@ -224,6 +225,7 @@ window.Vuex = __webpack_require__(19);
 Vue.use(Vuex);
 
 window.Axios = __webpack_require__(33);
+window.Api = __webpack_require__(53);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -236,60 +238,18 @@ Vue.component("invite-link", __webpack_require__(11));
 Vue.component("game-list", __webpack_require__(20));
 Vue.component("game-list-cell", __webpack_require__(23));
 
-var store = new Vuex.Store({
-    state: {
-        //the game currently participating in
-        game: {
-            name: '',
-            pointsRequired: 0
-
-        },
-        //player
-        player: {
-            username: '',
-            is_admin: false
-        },
-        //list of games
-        gameList: {}
-    },
-    mutations: {
-        increment: function increment(state) {
-            state.count++;
-        }
-    }
-});
+__webpack_require__(52);
 
 var app = new Vue({
-    el: "#vue-app",
-    //inject store into root component
-    store: store,
-    data: {
-        stockData: null
-    },
-    created: function created() {
-        this.setupStream();
-    },
-
-    methods: {
-        setupStream: function setupStream() {
-            var _this = this;
-
-            var es = new EventSource('/api/poll?cah_token=p1');
-
-            es.addEventListener('message', function (event) {
-                //console.log(event);
-                var data = JSON.parse(event.data);
-                _this.stockData = data.stockData;
-            }, false);
-
-            es.addEventListener('error', function (event) {
-                if (event.readyState == EventSource.CLOSED) {
-                    console.log('Event was closed');
-                    console.log(EventSource);
-                }
-            }, false);
-        }
-    }
+  el: "#vue-app",
+  //inject store into root component
+  store: store,
+  data: function data() {
+    return {
+      stockData: null
+    };
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -13027,33 +12987,31 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(19);
 //
 //
 //
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	mounted: function mounted() {
-		this.downloadGames();
-	},
+	mounted: function mounted() {},
 	data: function data() {
-		return {
-			games: []
-		};
+		return {};
 	},
 	methods: {
-		downloadGames: function downloadGames() {
-			var _this = this;
-
-			Axios.post('/api/games', {
-				cah_token: 'p1'
-			}).then(function (response) {
-				console.log(response.data.content);
-				_this.games = response.data.content;
-			});
+		update: function update() {
+			this.$store.downloadGameLists();
 		}
-	}
+	},
+	computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
+		// arrow functions can make the code very succinct!
+		games: function games(state) {
+			return state.games;
+		}
+	})
 });
 
 /***/ }),
@@ -13149,7 +13107,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-	props: ["game"],
+	props: {
+		game: object
+	},
 	data: function data() {
 		return {};
 	},
@@ -14768,6 +14728,85 @@ module.exports = function spread(callback) {
   };
 };
 
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+
+
+var store = new Vuex.Store({
+    state: {
+        //the game currently participating in
+        game: {
+            name: string,
+            pointsRequired: integer
+
+        },
+        //player
+        player: {
+            username: string,
+            is_admin: boolean
+        },
+        //list of games
+        gameList: {}
+    },
+    mutations: {
+        setGameList: function setGameList(state, gameList) {
+            state.gameList = gameList;
+        },
+        addGameToList: function addGameToList(state, game) {
+            state.gameList.push(game);
+        }
+    },
+    methods: {
+        setupEventStream: function setupEventStream() {},
+        downloadGameLists: function downloadGameLists() {}
+    }
+});
+
+/***/ }),
+/* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+var api = {
+	properties: {
+		token: 'p1'
+	},
+	calls: {
+		eventPoll: function eventPoll(responseHandler, errorHandler) {
+			var es = new EventSource('/api/poll?cah_token=' + api.properties.token);
+
+			es.addEventListener('message', function (event) {
+				var data = JSON.parse(event.data);
+				responseHandler(data);
+			}, false);
+
+			es.addEventListener('error', function (event) {
+				if (event.readyState == EventSource.CLOSED) {
+					console.log('Event was closed');
+					console.log(EventSource);
+				}
+				errorHandler(event);
+			}, false);
+		},
+
+		getGameList: function getGameList(responseHandler, errorHandler) {
+			var _this = this;
+
+			Axios.post('/api/games', {
+				cah_token: api.properties.token
+			}).then(function (response) {
+				_this.setGameList(response.data.content);
+			});
+		}
+	}
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (api);
 
 /***/ })
 /******/ ]);
