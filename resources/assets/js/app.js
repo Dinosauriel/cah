@@ -7,6 +7,10 @@ window.csrfToken = $("meta[name='csrf-token']").attr("content");
  * building robust, powerful web applications using Vue and Laravel.
  */
 window.Vue = require("vue");
+window.Vuex = require("vuex");
+Vue.use(Vuex);
+
+window.Axios = require("axios");
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,6 +20,8 @@ window.Vue = require("vue");
 
 Vue.component("login-card", require("./components/login-card.vue"));
 Vue.component("invite-link", require("./components/games/invitelink.vue"));
+Vue.component("game-list", require("./components/lobby/game-list.vue"));
+Vue.component("game-list-cell", require("./components/lobby/game-list-cell.vue"));
 
 const store = new Vuex.Store({
     state: {
@@ -27,7 +33,8 @@ const store = new Vuex.Store({
         },
         //player
         player: {
-            name: ''
+            username: '',
+            is_admin: false,
         },
         //list of games
         gameList: {
@@ -39,11 +46,13 @@ const store = new Vuex.Store({
             state.count++
         }
     }
-})
+});
   
 
 const app = new Vue({
-	el: "#vue-app",
+    el: "#vue-app",
+    //inject store into root component
+    store,
 	data: {
         stockData: null
     },
@@ -59,10 +68,6 @@ const app = new Vue({
                 let data = JSON.parse(event.data);
                 this.stockData = data.stockData;
 			}, false);
-			
-			es.addEventListener('joined', event => {
-				console.log('event received!: ' + event);
-			});
 			
 			es.addEventListener('error', event => {
                 if (event.readyState == EventSource.CLOSED) {

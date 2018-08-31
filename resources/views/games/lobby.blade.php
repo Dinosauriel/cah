@@ -3,9 +3,7 @@
 
 
 @section('content')
-    @foreach ($games as $game)
-        @include('games.listgame')
-    @endforeach
+    <game-list></game-list>
     <div class="row justify-content-end">
         <div class="col col-sm-3">
             <div class="card mt-4">
