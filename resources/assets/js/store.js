@@ -38,8 +38,14 @@ export default new Vuex.Store({
                 console.log("error");
             });
         },
-        downloadGameList: function() {
+        downloadGameList: function(context) {
+            Api.calls.getGameList(
+            function(games) {
+                context.commit('setGameList', games);
+            },
+            function() {
 
+            });
 		}
     }
 });

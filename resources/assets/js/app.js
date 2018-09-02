@@ -40,7 +40,7 @@ const app = new Vue({
         }
     },
     mounted: function() {
-        this.$store.dispatch('setupEventStream');
-        this.$store.dispatch('downloadGameList');
+        //this.$store.dispatch('setupEventStream');
+        //this.$store.dispatch('downloadGameList');
 	},
 });

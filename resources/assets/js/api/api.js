@@ -27,7 +27,7 @@ const api = {
 				cah_token: api.properties.token
 			})
 			.then(response => {
-				responseHandler();
+				responseHandler(response.data.content);
 			})
 		}
 	}
