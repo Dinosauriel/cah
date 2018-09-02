@@ -1,10 +1,11 @@
+import Axios from "axios";
 
-const api =  {
+const api = {
 	properties: {
 		token: 'p1'
 	},
 	calls: {
-		eventPoll: function(responseHandler, errorHandler) {
+		pollForEvents: function(responseHandler, errorHandler) {
 			var es = new EventSource('/api/poll?cah_token=' + api.properties.token);
 
 			es.addEventListener('message', event => {
@@ -26,7 +27,7 @@ const api =  {
 				cah_token: api.properties.token
 			})
 			.then(response => {
-				this.setGameList(response.data.content);
+				responseHandler();
 			})
 		}
 	}

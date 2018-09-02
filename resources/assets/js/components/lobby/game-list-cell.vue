@@ -11,7 +11,7 @@
 <script>
 export default {
 	props: {
-		game: object
+		game: Object
 	},
 	data: function() {
 		return {

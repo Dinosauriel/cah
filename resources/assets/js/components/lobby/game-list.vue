@@ -8,7 +8,7 @@ import { mapState } from 'vuex'
 
 export default {
 	mounted: function() {
-
+		console.log(this.$store);
 	},
 	data: function () {
 		return {
@@ -20,10 +20,11 @@ export default {
 			this.$store.downloadGameLists();
 		}
 	},
-	computed: mapState({
-		// arrow functions can make the code very succinct!
-		games: state => state.games,
-	})
+	computed: {
+		games() {
+			return this.$store.state.games;
+		}
+	}
 }
 </script>
 

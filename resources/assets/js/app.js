@@ -8,10 +8,8 @@ window.csrfToken = $("meta[name='csrf-token']").attr("content");
  */
 window.Vue = require("vue");
 window.Vuex = require("vuex");
-Vue.use(Vuex);
 
 window.Axios = require("axios");
-window.Api = require("./api/api.js");
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -19,24 +17,30 @@ window.Api = require("./api/api.js");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component("login-card", require("./components/login-card.vue"));
-Vue.component("invite-link", require("./components/games/invitelink.vue"));
-Vue.component("game-list", require("./components/lobby/game-list.vue"));
-Vue.component("game-list-cell", require("./components/lobby/game-list-cell.vue"));
-  
-require("./store.js");
+const VueLoginCard = Vue.component("login-card", require("./components/login-card.vue"));
+const VueInviteLink = Vue.component("invite-link", require("./components/games/invitelink.vue"));
+const VueGameList = Vue.component("game-list", require("./components/lobby/game-list.vue"));
+const VueGameListCell = Vue.component("game-list-cell", require("./components/lobby/game-list-cell.vue"));
 
+import store from "./store.js";
 
 const app = new Vue({
     el: "#vue-app",
     //inject store into root component
     store,
+    components: {
+        VueLoginCard,
+        VueInviteLink,
+        VueGameList,
+        VueGameListCell
+    },
 	data: function() {
         return {
             stockData: null
         }
     },
     mounted: function() {
-
+        this.$store.dispatch('setupEventStream');
+        this.$store.dispatch('downloadGameList');
 	},
 });

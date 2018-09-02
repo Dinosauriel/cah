@@ -1,22 +1,24 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+Vue.use(Vuex);
 
+import Api from "./api/api.js";
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
     state: {
+        test: 1,
         //the game currently participating in
         game: {
-            name: string,
-            pointsRequired: integer,
-
+            name: "",
+            pointsRequired: 0,
         },
         //player
         player: {
-            username: string,
-            is_admin: boolean,
+            username: "",
+            is_admin: false,
         },
         //list of games
-        gameList: {
-			
-        }
+        gameList: []
     },
     mutations: {
         setGameList(state, gameList) {
@@ -26,11 +28,17 @@ const store = new Vuex.Store({
 			state.gameList.push(game);
 		}
 	},
-	methods: {
+	actions: {
         setupEventStream: function() {
-
+            Api.calls.pollForEvents(
+            function() {
+                console.log("event");
+            },
+            function() {
+                console.log("error");
+            });
         },
-        downloadGameLists: function() {
+        downloadGameList: function() {
 
 		}
     }
