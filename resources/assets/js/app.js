@@ -1,15 +1,12 @@
-//fetch the csrf Token from the meta tag
-window.csrfToken = $("meta[name='csrf-token']").attr("content");
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+require('./bootstrap');
+
 window.Vue = require("vue");
 window.Vuex = require("vuex");
-
-window.Axios = require("axios");
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
