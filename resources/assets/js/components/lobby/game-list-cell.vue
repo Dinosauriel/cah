@@ -9,6 +9,8 @@
 	</div>
 </template>
 <script>
+import Api from '../../api/api.js';
+
 export default {
 	props: {
 		game: Object
@@ -20,10 +22,10 @@ export default {
 	},
 	methods: {
 		joinGame: function() {
-
+			location.href = this.game.join_route;
 		},
 		deleteGame: function() {
-
+			Api.calls.deleteGame(this.game.delete_route);
 		}
 	}
 }

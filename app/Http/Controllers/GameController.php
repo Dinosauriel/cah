@@ -126,6 +126,9 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
+        //remove all players
+        $game->playerRelations()->delete();
+
         $game->delete();
 
         return response()->json([

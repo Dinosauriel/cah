@@ -29,6 +29,14 @@ const api = {
 			.then(response => {
 				responseHandler(response.data.content);
 			})
+		},
+
+		deleteGame: function(gameRoute) {
+			Axios.delete(gameRoute, {
+				data: {
+					cah_token: api.properties.token
+				}
+			})
 		}
 	}
 };

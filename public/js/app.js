@@ -14665,6 +14665,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_api_js__ = __webpack_require__(48);
 //
 //
 //
@@ -14676,6 +14677,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
 	props: {
 		game: Object
@@ -14684,8 +14687,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		return {};
 	},
 	methods: {
-		joinGame: function joinGame() {},
-		deleteGame: function deleteGame() {}
+		joinGame: function joinGame() {
+			location.href = this.game.join_route;
+		},
+		deleteGame: function deleteGame() {
+			__WEBPACK_IMPORTED_MODULE_0__api_api_js__["a" /* default */].calls.deleteGame(this.game.delete_route);
+		}
 	}
 });
 
@@ -14820,6 +14827,14 @@ var api = {
 				cah_token: api.properties.token
 			}).then(function (response) {
 				responseHandler(response.data.content);
+			});
+		},
+
+		deleteGame: function deleteGame(gameRoute) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete(gameRoute, {
+				data: {
+					cah_token: api.properties.token
+				}
 			});
 		}
 	}

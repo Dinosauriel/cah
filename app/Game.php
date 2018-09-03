@@ -13,6 +13,31 @@ class Game extends Model
 		'name',
 		'points_required'
     ];
+
+    protected $appends = [
+        'join_route',
+        'delete_route'
+    ];
+
+    /**
+     * join url attribute
+     *
+     * @return string
+     */
+    public function getJoinRouteAttribute()
+    {
+        return $this->getRoute();
+    }
+
+    /**
+     * delete url attribute
+     *
+     * @return string
+     */
+    public function getDeleteRouteAttribute()
+    {
+        return $this->getDeleteRoute();
+    }
     
     /**
      * Get the route key for the model.
