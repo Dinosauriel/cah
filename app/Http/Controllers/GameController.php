@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Events\Game\GameDeleted;
 use App\Game;
 
 class GameController extends Controller
@@ -131,6 +132,7 @@ class GameController extends Controller
 
         $game->delete();
 
+        event(new GameDeleted($game));
         return response()->json([
             'message' => 'game deleted',
             'redirect' => Game::getListRoute()

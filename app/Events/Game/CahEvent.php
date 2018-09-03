@@ -4,10 +4,11 @@ namespace App\Events\Game;
 
 use App\Game;
 use App\Player;
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 
-abstract class CahEvent
+abstract class CahEvent implements Jsonable
 {
 	use SerializesModels, Dispatchable;
     
@@ -29,9 +30,23 @@ abstract class CahEvent
      */
     public function __construct(Game $game, Player $player = null)
     {
-        $this->player = player;
+        $this->player = $player;
         $this->game = $game;
-        $this->evaluateTargetPlayers();
+        $this->targetPlayers = $this->evaluateTargetPlayers();
+    }
+
+    public function toJson($options = 0)
+    {
+        $data = [
+            'event' => static::$identifier,
+            'game' => $this->game,
+        ];
+
+        if (!empty($this->player)) {
+            $data['player'] = $this->player;
+        }
+
+        return json_encode($data);
     }
     
     protected abstract function evaluateTargetPlayers();

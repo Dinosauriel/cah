@@ -2,7 +2,7 @@
 
 namespace App\Events\Game\InGame;
 
-use App\Events\Ingame\IngameEvent;
+use App\Events\Game\Ingame\IngameEvent;
 
 class RoundStarted extends IngameEvent
 {

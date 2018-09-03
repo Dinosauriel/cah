@@ -2,7 +2,7 @@
 
 namespace App\Events\Game\InGame;
 
-use App\Events\CahEvent;
+use App\Events\Game\CahEvent;
 
 /**
  * any event that only ingame players receive

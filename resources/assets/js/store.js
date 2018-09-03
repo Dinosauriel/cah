@@ -31,10 +31,11 @@ export default new Vuex.Store({
 	actions: {
         setupEventStream: function() {
             Api.calls.pollForEvents(
-            function() {
-                console.log("event");
+            function(data) {
+                console.log("data received: ");
+                console.log(data);
             },
-            function() {
+            function(event) {
                 console.log("error");
             });
         },

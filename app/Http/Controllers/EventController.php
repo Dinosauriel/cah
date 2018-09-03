@@ -27,21 +27,27 @@ class EventController extends Controller
             while(true) {
 
                 //block until we an item is enqueued and then fetch it
-                $event = Redis::brpop($queueIdentifier, 0);
+                $t = Redis::rpop($queueIdentifier);
+                if (empty($t)) {
+                    usleep(700 * 1000);
+                    continue;
+                }
+                //\Illuminate\Support\Facades\Log::debug('popped item:' . $t);
+                $length = Redis::llen($queueIdentifier);
 
-                //echo 'event: ' . 'joined' . "\n";
                 echo 'data: ' . json_encode([
                     'message' => 'event received',
-                    'content' => $event
+                    'content' => $length
                 ]) . "\n\n";
                 ob_flush();
                 flush();
 
-                //usleep(700 * 1000);
+                usleep(700 * 1000);
 
-                if (++$i > 4) {
-                    break;
-                }
+                // if ($i == 1) {
+                //     break;
+                // }
+                // ++$i;
             }
         });
         $response->headers->set('Content-Type', 'text/event-stream');

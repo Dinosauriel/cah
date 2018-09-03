@@ -19,11 +19,11 @@ class EventSubscriber
     /**
      * enqueue the event to the redis queue for push to client
      */
-    private function enqueue($event)
+    public function enqueue($event)
     {
-        $players = $event->$targetPlayers;
+        $players = $event->targetPlayers;
         foreach ($players as $p) {
-            Redis::lpush($p->getQueueIdentifier(), $event);
+            Redis::lpush($p->getQueueIdentifier(), $event->toJson());
         }
     }
 

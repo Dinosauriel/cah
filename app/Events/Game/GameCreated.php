@@ -2,7 +2,7 @@
 
 namespace App\Events\Game;
 
-use App\Events\CahEvent;
+use App\Events\Game\CahEvent;
 
 class GameCreated extends CahEvent
 {

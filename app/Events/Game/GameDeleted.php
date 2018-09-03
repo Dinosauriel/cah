@@ -2,7 +2,7 @@
 
 namespace App\Events\Game;
 
-use App\Events\CahEvent;
+use App\Events\Game\CahEvent;
 
 class GameDeleted extends CahEvent
 {
@@ -10,6 +10,6 @@ class GameDeleted extends CahEvent
 
     protected function evaluateTargetPlayers()
     {
-        return Game::Admins()->get();
+        return \App\Player::Admins()->get();
     }
 }
