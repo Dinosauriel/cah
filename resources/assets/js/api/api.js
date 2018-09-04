@@ -21,7 +21,6 @@ const api = {
 				errorHandler(event);
             }, false);
 		},
-
 		getGameList: function(responseHandler, errorHandler) {
 			Axios.post('/api/games', {
 				cah_token: api.properties.token
@@ -30,7 +29,6 @@ const api = {
 				responseHandler(response.data.content);
 			})
 		},
-
 		deleteGame: function(gameRoute) {
 			Axios.delete(gameRoute, {
 				data: {
@@ -38,9 +36,16 @@ const api = {
 				}
 			})
 		},
-
 		getCardsets: function(responseHandler, errorHandler) {
 			Axios.post('/api/cardsets', {
+				cah_token: api.properties.token
+			})
+			.then(response => {
+				responseHandler(response.data.content);
+			})
+		},
+		getPlayer: function(responseHandler, errorHandler) {
+			Axios.post('/api/player', {
 				cah_token: api.properties.token
 			})
 			.then(response => {

@@ -31,6 +31,9 @@ export default new Vuex.Store({
         },
         setCardsets(state, cardsets) {
             state.cardsets = cardsets;
+        },
+        setPlayer(state, player) {
+            state.player = player;
         }
 	},
 	actions: {
@@ -57,6 +60,15 @@ export default new Vuex.Store({
             Api.calls.getCardsets(
                 function(cardsets) {
                     context.commit('setCardsets', cardsets);
+                },
+                function() {
+    
+                });
+        },
+        downloadPlayer: function(context) {
+            Api.calls.getPlayer(
+                function(player) {
+                    context.commit('setPlayer', player);
                 },
                 function() {
     

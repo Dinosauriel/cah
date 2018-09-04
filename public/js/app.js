@@ -25931,7 +25931,6 @@ var api = {
 				errorHandler(event);
 			}, false);
 		},
-
 		getGameList: function getGameList(responseHandler, errorHandler) {
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/games', {
 				cah_token: api.properties.token
@@ -25939,7 +25938,6 @@ var api = {
 				responseHandler(response.data.content);
 			});
 		},
-
 		deleteGame: function deleteGame(gameRoute) {
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete(gameRoute, {
 				data: {
@@ -25947,9 +25945,15 @@ var api = {
 				}
 			});
 		},
-
 		getCardsets: function getCardsets(responseHandler, errorHandler) {
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/cardsets', {
+				cah_token: api.properties.token
+			}).then(function (response) {
+				responseHandler(response.data.content);
+			});
+		},
+		getPlayer: function getPlayer(responseHandler, errorHandler) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/player', {
 				cah_token: api.properties.token
 			}).then(function (response) {
 				responseHandler(response.data.content);
@@ -25991,6 +25995,7 @@ window.Vuex = __webpack_require__(4);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+var VueNavBar = Vue.component("navbar", __webpack_require__(63));
 var VueLoginCard = Vue.component("login-card", __webpack_require__(42));
 var VueInviteLink = Vue.component("invite-link", __webpack_require__(45));
 var VueCardSelection = Vue.component("cardset-selection", __webpack_require__(48));
@@ -26004,6 +26009,7 @@ var app = new Vue({
     //inject store into root component
     store: __WEBPACK_IMPORTED_MODULE_0__store_js__["a" /* default */],
     components: {
+        VueNavBar: VueNavBar,
         VueLoginCard: VueLoginCard,
         VueInviteLink: VueInviteLink,
         VueGameList: VueGameList,
@@ -26017,6 +26023,7 @@ var app = new Vue({
     },
     mounted: function mounted() {
         this.$store.dispatch('setupEventStream');
+        this.$store.dispatch('downloadPlayer');
     }
 });
 
@@ -49035,6 +49042,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         },
         setCardsets: function setCardsets(state, cardsets) {
             state.cardsets = cardsets;
+        },
+        setPlayer: function setPlayer(state, player) {
+            state.player = player;
         }
     },
     actions: {
@@ -49055,6 +49065,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
             __WEBPACK_IMPORTED_MODULE_2__api_api_js__["a" /* default */].calls.getCardsets(function (cardsets) {
                 context.commit('setCardsets', cardsets);
             }, function () {});
+        },
+        downloadPlayer: function downloadPlayer(context) {
+            __WEBPACK_IMPORTED_MODULE_2__api_api_js__["a" /* default */].calls.getPlayer(function (player) {
+                context.commit('setPlayer', player);
+            }, function () {});
         }
     }
 }));
@@ -49064,6 +49079,107 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(64)
+/* template */
+var __vue_template__ = __webpack_require__(65)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/navbar.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-23c04ce7", Component.options)
+  } else {
+    hotAPI.reload("data-v-23c04ce7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
+		username: function username(state) {
+			return state.player.username;
+		}
+	})
+});
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("nav", { staticClass: "navbar navbar-dark bg-dark" }, [
+    _c("span", { staticClass: "navbar-brand" }, [
+      _vm._v("Cards Against Humanity")
+    ]),
+    _vm._v(" "),
+    _c("span", { staticClass: "navbar-text" }, [_vm._v(_vm._s(_vm.username))])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-23c04ce7", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

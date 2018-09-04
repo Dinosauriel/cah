@@ -20,7 +20,7 @@ class PlayerController extends Controller
     {
         return response()->json([
             'message' => 'listing successful',
-            'content' => Auth::guard('api')->user()
+            'content' => $request->user()
         ], 200);
     }
 

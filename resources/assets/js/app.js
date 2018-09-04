@@ -14,6 +14,7 @@ window.Vuex = require("vuex");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const VueNavBar = Vue.component("navbar", require("./components/navbar.vue"));
 const VueLoginCard = Vue.component("login-card", require("./components/login-card.vue"));
 const VueInviteLink = Vue.component("invite-link", require("./components/games/invitelink.vue"));
 const VueCardSelection = Vue.component("cardset-selection", require("./components/games/cardsetselection.vue"));
@@ -27,6 +28,7 @@ const app = new Vue({
     //inject store into root component
     store,
     components: {
+        VueNavBar,
         VueLoginCard,
         VueInviteLink,
         VueGameList,
@@ -40,5 +42,6 @@ const app = new Vue({
     },
     mounted: function() {
         this.$store.dispatch('setupEventStream');
+        this.$store.dispatch('downloadPlayer');
 	},
 });
