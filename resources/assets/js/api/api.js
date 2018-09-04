@@ -36,6 +36,14 @@ const api = {
 				}
 			})
 		},
+		getGame: function(gameRoute, responseHandler, errorHandler) {
+			Axios.post(gameRoute, {
+				cah_token: api.properties.token
+			})
+			.then(response => {
+				responseHandler(response.data.content);
+			})
+		},
 		getCardsets: function(responseHandler, errorHandler) {
 			Axios.post('/api/cardsets', {
 				cah_token: api.properties.token

@@ -6,7 +6,6 @@ import Api from "./api/api.js";
 
 export default new Vuex.Store({
     state: {
-        test: 1,
         //the game currently participating in
         game: {
             name: "",
@@ -29,6 +28,9 @@ export default new Vuex.Store({
 		addGameToList(state, game) {
 			state.gameList.push(game);
         },
+        setGame(state, game) {
+            state.game = game;
+        },
         setCardsets(state, cardsets) {
             state.cardsets = cardsets;
         },
@@ -39,13 +41,13 @@ export default new Vuex.Store({
 	actions: {
         setupEventStream: function() {
             Api.calls.pollForEvents(
-            function(data) {
-                console.log("data received: ");
-                console.log(data);
-            },
-            function(event) {
-                console.log("error");
-            });
+                function(data) {
+                    console.log("data received: ");
+                    console.log(data);
+                },
+                function(event) {
+                    console.log("error");
+                });
         },
         downloadGameList: function(context) {
             Api.calls.getGameList(
@@ -69,6 +71,16 @@ export default new Vuex.Store({
             Api.calls.getPlayer(
                 function(player) {
                     context.commit('setPlayer', player);
+                },
+                function() {
+    
+                });
+        },
+        downloadGame: function(context) {
+            Api.calls.getGame(
+                '/api/games/gameA',
+                function(game) {
+                    context.commit('setGame', game);
                 },
                 function() {
     

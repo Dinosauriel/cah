@@ -79,6 +79,17 @@ class GameController extends Controller
     }
 
     /**
+     * receive a json version of the game
+     */
+    public function jsonShow(Game $game)
+    {
+        return response()->json([
+            'message' => 'listing successful',
+            'content' => $game
+        ], 200);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  Game  $game

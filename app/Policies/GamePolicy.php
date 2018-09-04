@@ -37,6 +37,14 @@ class GamePolicy
     }
 
     /**
+     * can this player receive info about this game
+     */
+    public function read(Player $p, Game $g)
+    {
+        return $g->hasPlayer($p);
+    }
+
+    /**
      * can this player delete the specified game
      */
     public function destroy(Player $p, Game $g)

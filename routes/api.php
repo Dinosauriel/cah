@@ -29,6 +29,8 @@ Route::get('/poll', 'EventController@poll')->name('api_poll')->middleware('auth:
 Route::post('/games', 'GameController@jsonIndex')->name('api_listGames')->middleware('auth:api')->middleware('can:list,App\Game');
 //create a new game
 Route::post('/games/store', 'GameController@store')->name('api_storeGame')->middleware('auth:api')->middleware('can:store,App\Game');
+//get information for a game
+Route::post('/games/{game}', 'GameController@jsonShow')->name('api_showGame')->middleware('auth:api')->middleware('can:read,game');
 //update the game
 Route::patch('/games/{game}', 'GameController@update')->name('api_updateGame')->middleware('auth:api')->middleware('can:update,game');
 //delete the game

@@ -25945,6 +25945,13 @@ var api = {
 				}
 			});
 		},
+		getGame: function getGame(gameRoute, responseHandler, errorHandler) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(gameRoute, {
+				cah_token: api.properties.token
+			}).then(function (response) {
+				responseHandler(response.data.content);
+			});
+		},
 		getCardsets: function getCardsets(responseHandler, errorHandler) {
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/cardsets', {
 				cah_token: api.properties.token
@@ -26024,6 +26031,7 @@ var app = new Vue({
     mounted: function mounted() {
         this.$store.dispatch('setupEventStream');
         this.$store.dispatch('downloadPlayer');
+        this.$store.dispatch('downloadGame');
     }
 });
 
@@ -49017,7 +49025,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["default"].Store({
     state: {
-        test: 1,
         //the game currently participating in
         game: {
             name: "",
@@ -49039,6 +49046,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         },
         addGameToList: function addGameToList(state, game) {
             state.gameList.push(game);
+        },
+        setGame: function setGame(state, game) {
+            state.game = game;
         },
         setCardsets: function setCardsets(state, cardsets) {
             state.cardsets = cardsets;
@@ -49069,6 +49079,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         downloadPlayer: function downloadPlayer(context) {
             __WEBPACK_IMPORTED_MODULE_2__api_api_js__["a" /* default */].calls.getPlayer(function (player) {
                 context.commit('setPlayer', player);
+            }, function () {});
+        },
+        downloadGame: function downloadGame(context) {
+            __WEBPACK_IMPORTED_MODULE_2__api_api_js__["a" /* default */].calls.getGame('/api/games/gameA', function (game) {
+                context.commit('setGame', game);
             }, function () {});
         }
     }
