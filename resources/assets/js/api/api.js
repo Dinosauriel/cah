@@ -37,6 +37,15 @@ const api = {
 					cah_token: api.properties.token
 				}
 			})
+		},
+
+		getCardsets: function(responseHandler, errorHandler) {
+			Axios.post('/api/cardsets', {
+				cah_token: api.properties.token
+			})
+			.then(response => {
+				responseHandler(response.data.content);
+			})
 		}
 	}
 };

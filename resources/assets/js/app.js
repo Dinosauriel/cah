@@ -16,6 +16,7 @@ window.Vuex = require("vuex");
 
 const VueLoginCard = Vue.component("login-card", require("./components/login-card.vue"));
 const VueInviteLink = Vue.component("invite-link", require("./components/games/invitelink.vue"));
+const VueCardSelection = Vue.component("cardset-selection", require("./components/games/cardsetselection.vue"));
 const VueGameList = Vue.component("game-list", require("./components/lobby/game-list.vue"));
 const VueGameListCell = Vue.component("game-list-cell", require("./components/lobby/game-list-cell.vue"));
 
@@ -29,7 +30,8 @@ const app = new Vue({
         VueLoginCard,
         VueInviteLink,
         VueGameList,
-        VueGameListCell
+        VueGameListCell,
+        VueCardSelection
     },
 	data: function() {
         return {

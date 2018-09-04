@@ -18,7 +18,9 @@ export default new Vuex.Store({
             is_admin: false,
         },
         //list of games
-        gameList: []
+        gameList: [],
+        //all available cardsets
+        cardsets: []
     },
     mutations: {
         setGameList(state, gameList) {
@@ -26,7 +28,10 @@ export default new Vuex.Store({
 		},
 		addGameToList(state, game) {
 			state.gameList.push(game);
-		}
+        },
+        setCardsets(state, cardsets) {
+            state.cardsets = cardsets;
+        }
 	},
 	actions: {
         setupEventStream: function() {
@@ -41,12 +46,21 @@ export default new Vuex.Store({
         },
         downloadGameList: function(context) {
             Api.calls.getGameList(
-            function(games) {
-                context.commit('setGameList', games);
-            },
-            function() {
+                function(games) {
+                    context.commit('setGameList', games);
+                },
+                function() {
 
-            });
-		}
+                });
+        },
+        downloadCardsets: function(context) {
+            Api.calls.getCardsets(
+                function(cardsets) {
+                    context.commit('setCardsets', cardsets);
+                },
+                function() {
+    
+                });
+        }
     }
 });

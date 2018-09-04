@@ -25946,6 +25946,14 @@ var api = {
 					cah_token: api.properties.token
 				}
 			});
+		},
+
+		getCardsets: function getCardsets(responseHandler, errorHandler) {
+			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/cardsets', {
+				cah_token: api.properties.token
+			}).then(function (response) {
+				responseHandler(response.data.content);
+			});
 		}
 	}
 };
@@ -25957,7 +25965,7 @@ var api = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(17);
-module.exports = __webpack_require__(55);
+module.exports = __webpack_require__(58);
 
 
 /***/ }),
@@ -25966,7 +25974,7 @@ module.exports = __webpack_require__(55);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_js__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_js__ = __webpack_require__(57);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -25985,8 +25993,9 @@ window.Vuex = __webpack_require__(4);
 
 var VueLoginCard = Vue.component("login-card", __webpack_require__(42));
 var VueInviteLink = Vue.component("invite-link", __webpack_require__(45));
-var VueGameList = Vue.component("game-list", __webpack_require__(48));
-var VueGameListCell = Vue.component("game-list-cell", __webpack_require__(51));
+var VueCardSelection = Vue.component("cardset-selection", __webpack_require__(48));
+var VueGameList = Vue.component("game-list", __webpack_require__(51));
+var VueGameListCell = Vue.component("game-list-cell", __webpack_require__(54));
 
 
 
@@ -25998,7 +26007,8 @@ var app = new Vue({
         VueLoginCard: VueLoginCard,
         VueInviteLink: VueInviteLink,
         VueGameList: VueGameList,
-        VueGameListCell: VueGameListCell
+        VueGameListCell: VueGameListCell,
+        VueCardSelection: VueCardSelection
     },
     data: function data() {
         return {
@@ -48640,6 +48650,142 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
+Component.options.__file = "resources/assets/js/components/games/cardsetselection.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-60f37242", Component.options)
+  } else {
+    hotAPI.reload("data-v-60f37242", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	mounted: function mounted() {
+		this.update();
+	},
+	methods: {
+		update: function update() {
+			this.$store.dispatch('downloadCardsets');
+		}
+	},
+	computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
+		cardsets: function cardsets(state) {
+			return state.cardsets;
+		}
+	})
+});
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card form-group" }, [
+    _c(
+      "div",
+      { staticClass: "card-body" },
+      [
+        _c("h5", { staticClass: "card-title" }, [_vm._v("Cardsets")]),
+        _vm._v(" "),
+        _vm._l(_vm.cardsets, function(cardset) {
+          return _c(
+            "div",
+            { key: cardset.id, staticClass: "form-check form-check-inline" },
+            [
+              _c("input", {
+                staticClass: "form-check-input",
+                attrs: { type: "checkbox", id: "cardset_" + cardset.id },
+                domProps: { value: "cardset_" + cardset.id }
+              }),
+              _vm._v(" "),
+              _c(
+                "label",
+                {
+                  staticClass: "form-check-label",
+                  attrs: { for: "cardset_" + cardset.id }
+                },
+                [_vm._v(_vm._s(cardset.name))]
+              )
+            ]
+          )
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-60f37242", module.exports)
+  }
+}
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(52)
+/* template */
+var __vue_template__ = __webpack_require__(53)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 Component.options.__file = "resources/assets/js/components/lobby/game-list.vue"
 
 /* hot reload */
@@ -48662,7 +48808,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 49 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48696,7 +48842,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 50 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48724,15 +48870,15 @@ if (false) {
 }
 
 /***/ }),
-/* 51 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(52)
+var __vue_script__ = __webpack_require__(55)
 /* template */
-var __vue_template__ = __webpack_require__(53)
+var __vue_template__ = __webpack_require__(56)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48771,7 +48917,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 52 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48808,7 +48954,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 53 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -48848,7 +48994,7 @@ if (false) {
 }
 
 /***/ }),
-/* 54 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48876,7 +49022,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
             is_admin: false
         },
         //list of games
-        gameList: []
+        gameList: [],
+        //all available cardsets
+        cardsets: []
     },
     mutations: {
         setGameList: function setGameList(state, gameList) {
@@ -48884,6 +49032,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         },
         addGameToList: function addGameToList(state, game) {
             state.gameList.push(game);
+        },
+        setCardsets: function setCardsets(state, cardsets) {
+            state.cardsets = cardsets;
         }
     },
     actions: {
@@ -48899,12 +49050,17 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
             __WEBPACK_IMPORTED_MODULE_2__api_api_js__["a" /* default */].calls.getGameList(function (games) {
                 context.commit('setGameList', games);
             }, function () {});
+        },
+        downloadCardsets: function downloadCardsets(context) {
+            __WEBPACK_IMPORTED_MODULE_2__api_api_js__["a" /* default */].calls.getCardsets(function (cardsets) {
+                context.commit('setCardsets', cardsets);
+            }, function () {});
         }
     }
 }));
 
 /***/ }),
-/* 55 */
+/* 58 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

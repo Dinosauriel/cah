@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 
 //retreive player info
 Route::post('/player', 'PlayerController@jsonIndex')->name('api_player')->middleware('auth:api');
+//all available cardsets
+Route::post('/cardsets', 'CardController@jsonIndex')->name('api_cardsets')->middleware('auth:api');
 
 //login with the credentials
 Route::post('/login', 'LoginController@login')->name('api_login');
