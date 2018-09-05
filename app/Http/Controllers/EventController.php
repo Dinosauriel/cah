@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-use App\Game;
+//events
+use App\Events\Game\GameCreated;
+use App\Events\Game\GameDeleted;
+use App\Events\Game\GameEnded;
+use App\Events\Game\GameStarted;
+use App\Events\Game\GameUpdated;
+use App\Events\Game\PlayerJoined;
+use App\Events\Game\PlayerLeft;
+//ingame events
+use App\Events\Game\Ingame\CzarPeriodEnded;
+use App\Events\Game\Ingame\CzarPeriodStarted;
+use App\Events\Game\Ingame\CzarSubmittedVerdict;
+use App\Events\Game\Ingame\RoundStarted;
+use App\Events\Game\Ingame\WhiteCardsPlayed;
 
 class EventController extends Controller implements MessageComponentInterface
 {   
@@ -17,8 +29,13 @@ class EventController extends Controller implements MessageComponentInterface
      * @param  ConnectionInterface $conn The socket/connection that just connected to your application
      * @throws \Exception
      */
-    function onOpen(ConnectionInterface $conn){
-        $this->connections[$conn->resourceId] = compact('conn') + ['user_id' => null];
+    function onOpen(ConnectionInterface $conn)
+    {
+        $this->connections[$conn->resourceId] = [
+            'conn' => $conn,
+            'connection_id' => null,
+            'player' => null,
+        ];
     }
    
     /**
@@ -27,16 +44,10 @@ class EventController extends Controller implements MessageComponentInterface
      * @param  ConnectionInterface $conn The socket/connection that is closing/closed
      * @throws \Exception
      */
-    function onClose(ConnectionInterface $conn){
+    function onClose(ConnectionInterface $conn)
+    {
         $disconnectedId = $conn->resourceId;
         unset($this->connections[$disconnectedId]);
-        foreach($this->connections as &$connection) {
-            $connection['conn']->send(json_encode([
-                'offline_user' => $disconnectedId,
-                'from_user_id' => 'server control',
-                'from_resource_id' => null
-            ]));
-        }
     }
    
     /**
@@ -46,8 +57,9 @@ class EventController extends Controller implements MessageComponentInterface
      * @param  \Exception $e
      * @throws \Exception
      */
-    function onError(ConnectionInterface $conn, \Exception $e){
-        $userId = $this->connections[$conn->resourceId]['user_id'];
+    function onError(ConnectionInterface $conn, \Exception $e)
+    {
+        $userId = $this->connections[$conn->resourceId]['connection_id'];
         echo "An error has occurred with user $userId: {$e->getMessage()}\n";
         unset($this->connections[$conn->resourceId]);
         $conn->close();
@@ -59,71 +71,31 @@ class EventController extends Controller implements MessageComponentInterface
      * @param  string $msg The message received
      * @throws \Exception
      */
-    function onMessage(ConnectionInterface $conn, $msg){
-        if(is_null($this->connections[$conn->resourceId]['user_id'])){
-            $this->connections[$conn->resourceId]['user_id'] = $msg;
-            $onlineUsers = [];
-            foreach($this->connections as $resourceId => &$connection){
-                $connection['conn']->send(json_encode([$conn->resourceId => $msg]));
-                if($conn->resourceId != $resourceId) {
-                    $onlineUsers[$resourceId] = $connection['user_id'];
+    function onMessage(ConnectionInterface $conn, $msg)
+    {
+        $connectionId = $conn->resourceId;
+        $messageData = json_decode($msg);
+
+        if (is_null($this->connections[$connectionId]['player'])) {
+            //this connection is not yet associated with a user
+            //we need to authenticate
+
+            //attempt to auth user
+            if (!empty($messageData['cah_token'])) {
+                if (Auth::guard('api')->attempt(['cah_token' => $messageData['cah_token']])) {
+                    $this->connections[$connectionId]['player'] = Auth::user();
+                    $conn->send($this->encodeMessage('successfully authenticated'));
+                    return;
                 }
             }
-            $conn->send(json_encode(['online_users' => $onlineUsers]));
-        } else {
-            $fromUserId = $this->connections[$conn->resourceId]['user_id'];
-            $msg = json_decode($msg, true);
-            $this->connections[$msg['to']]['conn']->send(json_encode([
-                'msg' => $msg['content'],
-                'from_user_id' => $fromUserId,
-                'from_resource_id' => $conn->resourceId
-            ]));
+            //not authenticated
+            $conn->send($this->encodeMessage('not authenticated'));
+            return;
         }
     }
 
-    /**
-     * receive events from the server for this specific player
-     */
-    public function poll(Request $request) 
+    private function encodeMessage($message, $data = null)
     {
-        $response = new StreamedResponse(function() use ($request) {
-            ob_start();
-
-            $player = $request->user();
-            $queueIdentifier = $player->getQueueIdentifier();
-
-            $i = 0;
-
-            //repeat until connection is aborted
-            while(true) {
-
-                //block until we an item is enqueued and then fetch it
-                $t = Redis::rpop($queueIdentifier);
-                if (empty($t)) {
-                    usleep(700 * 1000);
-                    continue;
-                }
-                //\Illuminate\Support\Facades\Log::debug('popped item:' . $t);
-                $length = Redis::llen($queueIdentifier);
-
-                echo 'data: ' . json_encode([
-                    'message' => 'event received',
-                    'content' => $length
-                ]) . "\n\n";
-                ob_flush();
-                flush();
-
-                usleep(700 * 1000);
-
-                // if ($i == 1) {
-                //     break;
-                // }
-                // ++$i;
-            }
-        });
-        $response->headers->set('Content-Type', 'text/event-stream');
-        $response->headers->set('X-Accel-Buffering', 'no');
-        $response->headers->set('Cache-Control', 'no-cache');
-        return $response;
-    } 
+        return json_encode(compact('message', 'data'));
+    }
 }
