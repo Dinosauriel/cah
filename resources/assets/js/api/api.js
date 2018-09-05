@@ -21,6 +21,19 @@ const api = {
 				errorHandler(event);
             }, false);
 		},
+		setupWebSocket: function(responseHandler, errorHandler) {
+			var socket = new WebSocket('ws://127.0.0.1:8100');
+
+			socket.onopen = function (event) {
+				console.log("onopen");
+				socket.send("Here's some text that the server is urgently awaiting!"); 
+			};
+
+			socket.onmessage = function (event) {
+				console.log("onmessage");
+				console.log(event.data);
+			  }
+		},
 		getGameList: function(responseHandler, errorHandler) {
 			Axios.post('/api/games', {
 				cah_token: api.properties.token

@@ -49,6 +49,16 @@ export default new Vuex.Store({
                     console.log("error");
                 });
         },
+        setupWebSocket: function() {
+            Api.calls.setupWebSocket(
+                function(event) {
+
+                },
+                function(event) {
+                    
+                }
+            );
+        },
         downloadGameList: function(context) {
             Api.calls.getGameList(
                 function(games) {

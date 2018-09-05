@@ -23,8 +23,6 @@ Route::post('/login', 'LoginController@login')->name('api_login');
 //log out
 Route::post('/logout', 'LoginController@logout')->name('api_logout')->middleware('auth:api');
 
-//poll general events
-Route::get('/poll', 'EventController@poll')->name('api_poll')->middleware('auth:api');
 //receive a listing of the games on this server
 Route::post('/games', 'GameController@jsonIndex')->name('api_listGames')->middleware('auth:api')->middleware('can:list,App\Game');
 //create a new game

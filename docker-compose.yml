@@ -28,6 +28,7 @@ services:
     # map port 8080 to the apache 80
     ports:
       - 8080:80
+      - 8100:8100
     # map this source folder to /var/www
     # => all changes to the files will become visible in the dev server
     volumes:

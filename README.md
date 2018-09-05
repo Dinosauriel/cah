@@ -28,3 +28,9 @@
 | `-p password` | _Optional_ |                                              password of the new player |
 | `-t`          | _Optional_ | create a temporary user (will automatically be deleted after some time) |
 | `-a`          | _Optional_ |                         create an administrator user (can create games) |
+
+## Start the websocket server:
+
+`php artisan websocket:start`
+
+> The websocket server is required for playing!
