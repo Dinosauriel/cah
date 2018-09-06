@@ -22,6 +22,9 @@ use App\Events\Game\Ingame\WhiteCardsPlayed;
 
 class EventController extends Controller implements MessageComponentInterface
 {   
+    const RESPONSE_CODE_NOT_AUTHENTICATED = 10;
+    const RESPONSE_CODE_SUCCESS = 11;
+
     private $connections = [];
     
     /**
@@ -60,7 +63,7 @@ class EventController extends Controller implements MessageComponentInterface
     function onError(ConnectionInterface $conn, \Exception $e)
     {
         $userId = $this->connections[$conn->resourceId]['connection_id'];
-        echo "An error has occurred with user $userId: {$e->getMessage()}\n";
+        echo 'An error has occurred with user ' . $userId . ': ' . $e->getMessage() . "\n";
         unset($this->connections[$conn->resourceId]);
         $conn->close();
     }
@@ -74,36 +77,40 @@ class EventController extends Controller implements MessageComponentInterface
     function onMessage(ConnectionInterface $conn, $msg)
     {
         $connectionId = $conn->resourceId;
-        $messageData = json_decode($msg, true);
+        $messageData = json_decode($msg);
 
         if (is_null($this->connections[$connectionId]['player'])) {
             //this connection is not yet associated with a user
             //we need to authenticate
-            $this->authenticatePlayer($connectionId, $messageData);
+            $this->authenticatePlayer($conn, $messageData->cah_token);
             return;
         }
+
+        $player = $this->connections[$connectionId]['player'];
+
+
     }
 
 
     //MARK: Custom Methods
-    private function encodeMessage($message, $data = null)
+    private function encodeMessage($code, $message, $data = null)
     {
-        return json_encode(compact('message', 'data'));
+        return json_encode(compact('code', 'message', 'data'));
     }
 
-    private function authenticatePlayer($connectionId, $messageData)
+    private function authenticatePlayer($conn, $authToken)
     {
         //attempt to auth user
-        if (!empty($messageData['cah_token'])) {
-            $player = Player::validateCahToken($messageData['cah_token']);
+        if (!empty($authToken)) {
+            $player = Player::validateCahToken($authToken);
             if (!is_null($player)) {
-                $this->connections[$connectionId]['player'] = $player;
-                $conn->send($this->encodeMessage('successfully authenticated'));
+                $this->connections[$conn->resourceId]['player'] = $player;
+                $conn->send($this->encodeMessage(static::RESPONSE_CODE_SUCCESS, 'successfully authenticated'));
                 return;
             }
         }
         //not authenticated
-        $conn->send($this->encodeMessage('not authenticated'));
+        $conn->send($this->encodeMessage(static::RESPONSE_CODE_NOT_AUTHENTICATED, 'not authenticated'));
         return;
     }
 }
