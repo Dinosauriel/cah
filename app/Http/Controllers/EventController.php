@@ -79,24 +79,31 @@ class EventController extends Controller implements MessageComponentInterface
         if (is_null($this->connections[$connectionId]['player'])) {
             //this connection is not yet associated with a user
             //we need to authenticate
-
-            //attempt to auth user
-            if (!empty($messageData['cah_token'])) {
-                $player = Player::validateCahToken($messageData['cah_token']);
-                if (!is_null($player)) {
-                    $this->connections[$connectionId]['player'] = $player;
-                    $conn->send($this->encodeMessage('successfully authenticated'));
-                    return;
-                }
-            }
-            //not authenticated
-            $conn->send($this->encodeMessage('not authenticated'));
+            $this->authenticatePlayer($connectionId, $messageData);
             return;
         }
     }
 
+
+    //MARK: Custom Methods
     private function encodeMessage($message, $data = null)
     {
         return json_encode(compact('message', 'data'));
+    }
+
+    private function authenticatePlayer($connectionId, $messageData)
+    {
+        //attempt to auth user
+        if (!empty($messageData['cah_token'])) {
+            $player = Player::validateCahToken($messageData['cah_token']);
+            if (!is_null($player)) {
+                $this->connections[$connectionId]['player'] = $player;
+                $conn->send($this->encodeMessage('successfully authenticated'));
+                return;
+            }
+        }
+        //not authenticated
+        $conn->send($this->encodeMessage('not authenticated'));
+        return;
     }
 }
