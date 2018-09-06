@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
+use App\Player;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 //events
@@ -74,7 +74,7 @@ class EventController extends Controller implements MessageComponentInterface
     function onMessage(ConnectionInterface $conn, $msg)
     {
         $connectionId = $conn->resourceId;
-        $messageData = json_decode($msg);
+        $messageData = json_decode($msg, true);
 
         if (is_null($this->connections[$connectionId]['player'])) {
             //this connection is not yet associated with a user
@@ -82,8 +82,9 @@ class EventController extends Controller implements MessageComponentInterface
 
             //attempt to auth user
             if (!empty($messageData['cah_token'])) {
-                if (Auth::guard('api')->attempt(['cah_token' => $messageData['cah_token']])) {
-                    $this->connections[$connectionId]['player'] = Auth::user();
+                $player = Player::validateCahToken($messageData['cah_token']);
+                if (!is_null($player)) {
+                    $this->connections[$connectionId]['player'] = $player;
                     $conn->send($this->encodeMessage('successfully authenticated'));
                     return;
                 }

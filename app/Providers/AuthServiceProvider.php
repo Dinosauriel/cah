@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Auth::viaRequest('cah-token', function ($request) {
-            return Player::where('api_token', $request->cah_token)->first();
+            return Player::validateCahToken($request->cah_token);
         });
     }
 }

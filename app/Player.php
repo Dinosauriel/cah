@@ -18,6 +18,21 @@ class Player extends Authenticatable
 		'password'
 	];
 
+	/**
+	 * checks for any player using token.
+	 * 
+	 * @return: player if valid, null else
+	 */
+	public static function validateCahToken($token)
+	{
+		return Player::CahToken($token)->first();
+	}
+
+	public function scopeCahToken($query, $token)
+	{
+		return $query->where('api_token', $token);
+	}
+
 	public function scopeUsername($query, $username)
 	{
 		return $query->where('username', $username);
@@ -72,13 +87,5 @@ class Player extends Authenticatable
 	protected static function generateNewApiToken()
 	{
         return str_random(120);
-	}
-	
-	/**
-	 * @return: the identifier of the event queue that should be pushed to this client
-	 */
-	public function getQueueIdentifier()
-	{
-		return 'player_queue_' . $this->id;
 	}
 }

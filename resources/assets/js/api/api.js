@@ -26,7 +26,10 @@ const api = {
 
 			socket.onopen = function (event) {
 				console.log("onopen");
-				socket.send("Here's some text that the server is urgently awaiting!"); 
+				console.log(JSON.stringify({cah_token: api.properties.token}));
+				socket.send(JSON.stringify({
+					cah_token: api.properties.token
+				})); 
 			};
 
 			socket.onmessage = function (event) {
