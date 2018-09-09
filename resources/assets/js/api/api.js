@@ -5,37 +5,27 @@ const api = {
 		token: 'p1'
 	},
 	calls: {
-		pollForEvents: function(responseHandler, errorHandler) {
-			var es = new EventSource('/api/poll?cah_token=' + api.properties.token);
-
-			es.addEventListener('message', event => {
-                let data = JSON.parse(event.data);
-                responseHandler(data);
-			}, false);
-			
-			es.addEventListener('error', event => {
-                if (event.readyState == EventSource.CLOSED) {
-                    console.log('Event was closed');
-                    console.log(EventSource);
-				}
-				errorHandler(event);
-            }, false);
-		},
 		setupWebSocket: function(responseHandler, errorHandler) {
 			var socket = new WebSocket('ws://127.0.0.1:8100');
 
 			socket.onopen = function (event) {
 				console.log("onopen");
-				console.log(JSON.stringify({cah_token: api.properties.token}));
 				socket.send(JSON.stringify({
-					cah_token: api.properties.token
+					call: 'org.cah.authenticate',
+					parameters: {
+						token: api.properties.token
+					},
+				}));
+
+				socket.send(JSON.stringify({
+					call: 'org.cah.player.info',
 				})); 
 			};
 
 			socket.onmessage = function (event) {
 				console.log("onmessage");
 				console.log(event.data);
-			  }
+			}
 		},
 		getGameList: function(responseHandler, errorHandler) {
 			Axios.post('/api/games', {

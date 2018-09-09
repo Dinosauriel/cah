@@ -25915,30 +25915,20 @@ var api = {
 		token: 'p1'
 	},
 	calls: {
-		pollForEvents: function pollForEvents(responseHandler, errorHandler) {
-			var es = new EventSource('/api/poll?cah_token=' + api.properties.token);
-
-			es.addEventListener('message', function (event) {
-				var data = JSON.parse(event.data);
-				responseHandler(data);
-			}, false);
-
-			es.addEventListener('error', function (event) {
-				if (event.readyState == EventSource.CLOSED) {
-					console.log('Event was closed');
-					console.log(EventSource);
-				}
-				errorHandler(event);
-			}, false);
-		},
 		setupWebSocket: function setupWebSocket(responseHandler, errorHandler) {
 			var socket = new WebSocket('ws://127.0.0.1:8100');
 
 			socket.onopen = function (event) {
 				console.log("onopen");
-				console.log(JSON.stringify({ cah_token: api.properties.token }));
 				socket.send(JSON.stringify({
-					cah_token: api.properties.token
+					call: 'org.cah.authenticate',
+					parameters: {
+						token: api.properties.token
+					}
+				}));
+
+				socket.send(JSON.stringify({
+					call: 'org.cah.player.info'
 				}));
 			};
 
@@ -26045,7 +26035,6 @@ var app = new Vue({
         };
     },
     mounted: function mounted() {
-        //this.$store.dispatch('setupEventStream');
         this.$store.dispatch('downloadPlayer');
         this.$store.dispatch('downloadGame');
         this.$store.dispatch('setupWebSocket');

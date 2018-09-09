@@ -41,7 +41,6 @@ const app = new Vue({
         }
     },
     mounted: function() {
-        //this.$store.dispatch('setupEventStream');
         this.$store.dispatch('downloadPlayer');
         this.$store.dispatch('downloadGame');
         this.$store.dispatch('setupWebSocket');

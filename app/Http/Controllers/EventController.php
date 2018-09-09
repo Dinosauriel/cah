@@ -29,7 +29,8 @@ class EventController extends Controller implements MessageComponentInterface
     const RESPONSE_CODE_UNKNOWN_CALL = 12;
 
     //MARK: - CALLS
-    const CALL_PLAYER_AUTHENTICATE = 'authenticate';
+    const CALL_AUTHENTICATE = 'org.cah.authenticate';
+    const CALL_PLAYER_INFO = 'org.cah.player.info';
 
     private $connections = [];
     
@@ -83,28 +84,48 @@ class EventController extends Controller implements MessageComponentInterface
     function onMessage(ConnectionInterface $conn, $msg)
     {
         $connectionId = $conn->resourceId;
-        $messageData = json_decode($msg);
+        $messageData = json_decode($msg, true);
+
         $call = $messageData['call'];
+        \Illuminate\Support\Facades\Log::debug($messageData);
+
+        //an array of objects
+        $parameters = null;
+        if (!empty($messageData['parameters'])) {
+            $parameters = $messageData['parameters'];
+        }
 
         $isAuthenticated = !is_null($this->connections[$connectionId]['player']);
 
         if (!$isAuthenticated) {
-            if ($call != static::CALL_PLAYER_AUTHENTICATE) {
+            if ($call != static::CALL_AUTHENTICATE) {
                 $conn->send($this->encodeMessage(static::RESPONSE_CODE_NOT_AUTHENTICATED, 'not authenticated, please send authentication call'));
                 return;
             }
-
             //this connection is not yet associated with a user
             //we need to authenticate
-            $this->authenticatePlayer($conn, $messageData->cah_token);
+            $this->authenticatePlayer($conn, $parameters['token']);
             return;
         }
 
         $player = $this->connections[$connectionId]['player'];
+        $this->onCall($conn, $call, $player, $parameters);
+    }
 
-        switch ($call) {
-            case static::CALL_PLAYER_AUTHENTICATE:
+    /**
+     * @param conn: the websocket connection
+     * @param name: the identifier of this api call
+     * @param player: the player who executes the call
+     * @param parameters: parameters of the method
+     */
+    private function onCall($conn, $name, $player, $parameters)
+    {
+        switch ($name) {
+            case static::CALL_AUTHENTICATE:
                 $conn->send($this->encodeMessage(static::RESPONSE_CODE_ALREADY_AUTHENTICATED, 'already authenticated'));
+                break;
+            case static::CALL_PLAYER_INFO:
+                $conn->send($this->encodeMessage(static::RESPONSE_CODE_SUCCESS, 'successfull', $player));
                 break;
             default:
                 $conn->send($this->encodeMessage(static::RESPONSE_CODE_UNKNOWN_CALL, 'unknown call'));
@@ -114,6 +135,11 @@ class EventController extends Controller implements MessageComponentInterface
 
 
     //MARK: Custom Methods
+    /**
+     * @param code: code for identifying the response
+     * @param message: human readable message for debugging only
+     * @param data: payload of the event
+     */
     private function encodeMessage($code, $message, $data = null)
     {
         return json_encode(compact('code', 'message', 'data'));
