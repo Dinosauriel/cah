@@ -22,8 +22,14 @@ use App\Events\Game\Ingame\WhiteCardsPlayed;
 
 class EventController extends Controller implements MessageComponentInterface
 {   
+    //MARK: - RESPONSE CODES
+    const RESPONSE_CODE_ALREADY_AUTHENTICATED = 9;
     const RESPONSE_CODE_NOT_AUTHENTICATED = 10;
     const RESPONSE_CODE_SUCCESS = 11;
+    const RESPONSE_CODE_UNKNOWN_CALL = 12;
+
+    //MARK: - CALLS
+    const CALL_PLAYER_AUTHENTICATE = 'authenticate';
 
     private $connections = [];
     
@@ -78,8 +84,16 @@ class EventController extends Controller implements MessageComponentInterface
     {
         $connectionId = $conn->resourceId;
         $messageData = json_decode($msg);
+        $call = $messageData['call'];
 
-        if (is_null($this->connections[$connectionId]['player'])) {
+        $isAuthenticated = !is_null($this->connections[$connectionId]['player']);
+
+        if (!$isAuthenticated) {
+            if ($call != static::CALL_PLAYER_AUTHENTICATE) {
+                $conn->send($this->encodeMessage(static::RESPONSE_CODE_NOT_AUTHENTICATED, 'not authenticated, please send authentication call'));
+                return;
+            }
+
             //this connection is not yet associated with a user
             //we need to authenticate
             $this->authenticatePlayer($conn, $messageData->cah_token);
@@ -88,7 +102,14 @@ class EventController extends Controller implements MessageComponentInterface
 
         $player = $this->connections[$connectionId]['player'];
 
-
+        switch ($call) {
+            case static::CALL_PLAYER_AUTHENTICATE:
+                $conn->send($this->encodeMessage(static::RESPONSE_CODE_ALREADY_AUTHENTICATED, 'already authenticated'));
+                break;
+            default:
+                $conn->send($this->encodeMessage(static::RESPONSE_CODE_UNKNOWN_CALL, 'unknown call'));
+                break;
+        }
     }
 
 

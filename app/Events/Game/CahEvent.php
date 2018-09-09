@@ -48,6 +48,19 @@ abstract class CahEvent implements Jsonable
 
         return json_encode($data);
     }
+
+    /**
+     * send the event to the websocket for broadcasting to the players
+     */
+    public function broadcast()
+    {
+        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+        socket_connect($socket, '127.0.0.1', 8100);
+
+        $json = $this->toJson();
+        socket_send($socket, $json, strlen($json), 0);
+        socket_close($socket);
+    }
     
     protected abstract function evaluateTargetPlayers();
 }
