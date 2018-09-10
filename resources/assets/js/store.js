@@ -39,16 +39,6 @@ export default new Vuex.Store({
         }
 	},
 	actions: {
-        setupEventStream: function() {
-            Api.calls.pollForEvents(
-                function(data) {
-                    console.log("data received: ");
-                    console.log(data);
-                },
-                function(event) {
-                    console.log("error");
-                });
-        },
         setupWebSocket: function() {
             Api.calls.setupWebSocket(
                 function(event) {

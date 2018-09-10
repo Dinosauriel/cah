@@ -86,8 +86,9 @@ class EventController extends Controller implements MessageComponentInterface
         $connectionId = $conn->resourceId;
         $messageData = json_decode($msg, true);
 
-        $call = $messageData['call'];
-        \Illuminate\Support\Facades\Log::debug($messageData);
+        $callName = $messageData['call'];
+        $callId = $messageData['id'];
+        //\Illuminate\Support\Facades\Log::debug($messageData);
 
         //an array of objects
         $parameters = null;
@@ -98,18 +99,18 @@ class EventController extends Controller implements MessageComponentInterface
         $isAuthenticated = !is_null($this->connections[$connectionId]['player']);
 
         if (!$isAuthenticated) {
-            if ($call != static::CALL_AUTHENTICATE) {
-                $conn->send($this->encodeMessage(static::RESPONSE_CODE_NOT_AUTHENTICATED, 'not authenticated, please send authentication call'));
+            if ($callName != static::CALL_AUTHENTICATE) {
+                $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_NOT_AUTHENTICATED, 'not authenticated, please send authentication call'));
                 return;
             }
             //this connection is not yet associated with a user
             //we need to authenticate
-            $this->authenticatePlayer($conn, $parameters['token']);
+            $this->authenticatePlayer($conn, $callId, $parameters['token']);
             return;
         }
 
         $player = $this->connections[$connectionId]['player'];
-        $this->onCall($conn, $call, $player, $parameters);
+        $this->onCall($conn, $callId, $callName, $player, $parameters);
     }
 
     /**
@@ -118,17 +119,17 @@ class EventController extends Controller implements MessageComponentInterface
      * @param player: the player who executes the call
      * @param parameters: parameters of the method
      */
-    private function onCall($conn, $name, $player, $parameters)
+    private function onCall($conn, $callId, $name, $player, $parameters)
     {
         switch ($name) {
             case static::CALL_AUTHENTICATE:
-                $conn->send($this->encodeMessage(static::RESPONSE_CODE_ALREADY_AUTHENTICATED, 'already authenticated'));
+                $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_ALREADY_AUTHENTICATED, 'already authenticated'));
                 break;
             case static::CALL_PLAYER_INFO:
-                $conn->send($this->encodeMessage(static::RESPONSE_CODE_SUCCESS, 'successfull', $player));
+                $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'successfull', $player));
                 break;
             default:
-                $conn->send($this->encodeMessage(static::RESPONSE_CODE_UNKNOWN_CALL, 'unknown call'));
+                $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_UNKNOWN_CALL, 'unknown call'));
                 break;
         }
     }
@@ -140,24 +141,24 @@ class EventController extends Controller implements MessageComponentInterface
      * @param message: human readable message for debugging only
      * @param data: payload of the event
      */
-    private function encodeMessage($code, $message, $data = null)
+    private function encodeMessage($id, $code, $message, $data = null)
     {
-        return json_encode(compact('code', 'message', 'data'));
+        return json_encode(compact('id', 'code', 'message', 'data'));
     }
 
-    private function authenticatePlayer($conn, $authToken)
+    private function authenticatePlayer($conn, $callId, $authToken)
     {
         //attempt to auth user
         if (!empty($authToken)) {
             $player = Player::validateCahToken($authToken);
             if (!is_null($player)) {
                 $this->connections[$conn->resourceId]['player'] = $player;
-                $conn->send($this->encodeMessage(static::RESPONSE_CODE_SUCCESS, 'successfully authenticated'));
+                $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'successfully authenticated'));
                 return;
             }
         }
         //not authenticated
-        $conn->send($this->encodeMessage(static::RESPONSE_CODE_NOT_AUTHENTICATED, 'not authenticated'));
+        $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_NOT_AUTHENTICATED, 'not authenticated'));
         return;
     }
 }

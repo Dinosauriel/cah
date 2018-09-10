@@ -21,7 +21,8 @@ const VueCardSelection = Vue.component("cardset-selection", require("./component
 const VueGameList = Vue.component("game-list", require("./components/lobby/game-list.vue"));
 const VueGameListCell = Vue.component("game-list-cell", require("./components/lobby/game-list-cell.vue"));
 
-import store from "./store.js";
+import store from './store.js';
+import api from './api/api.js';
 
 const app = new Vue({
     el: "#vue-app",
@@ -41,8 +42,10 @@ const app = new Vue({
         }
     },
     mounted: function() {
-        this.$store.dispatch('downloadPlayer');
-        this.$store.dispatch('downloadGame');
-        this.$store.dispatch('setupWebSocket');
+        api.methods.setupWebSocket()
+        .then(function() {
+            api.calls.getPlayer();
+        });
+        //this.$store.dispatch('setupWebSocket');
 	},
 });

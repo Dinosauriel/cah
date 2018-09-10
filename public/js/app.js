@@ -25914,29 +25914,58 @@ var api = {
 	properties: {
 		token: 'p1'
 	},
-	calls: {
-		setupWebSocket: function setupWebSocket(responseHandler, errorHandler) {
-			var socket = new WebSocket('ws://127.0.0.1:8100');
+	requests: [],
+	methods: {
+		setupWebSocket: function setupWebSocket() {
+			var promise = new Promise(function (resolve, reject) {
+				api.socket = new WebSocket('ws://127.0.0.1:8100');
 
-			socket.onopen = function (event) {
-				console.log("onopen");
-				socket.send(JSON.stringify({
-					call: 'org.cah.authenticate',
-					parameters: {
+				api.socket.onopen = function (event) {
+					console.log('onopen');
+					//authenticate
+					api.methods.callMethod('org.cah.authenticate', {
 						token: api.properties.token
-					}
-				}));
+					}).then(function (data) {
+						console.log('authenticated!');
+						console.log(data);
+						resolve();
+					});
+				};
 
-				socket.send(JSON.stringify({
-					call: 'org.cah.player.info'
-				}));
-			};
+				api.socket.onmessage = function (event) {
+					console.log('onmessage');
+					var data = JSON.parse(event.data);
+					var responseId = data.id;
+					api.requests[responseId](data);
+				};
+			});
 
-			socket.onmessage = function (event) {
-				console.log("onmessage");
-				console.log(event.data);
-			};
+			return promise;
 		},
+		callMethod: function callMethod(name, parameters) {
+			var promise = new Promise(function (resolve, reject) {
+				//remember this request
+				var requestId = api.methods.getNextRequestId();
+				api.requests[requestId] = resolve;
+
+				//send the request
+				api.socket.send(JSON.stringify({
+					call: name,
+					id: requestId,
+					parameters: parameters
+				}));
+			});
+			return promise;
+		},
+		getNextRequestId: function getNextRequestId() {
+			var i = 0;
+			while (api.requests[i]) {
+				++i;
+			}
+			return i;
+		}
+	},
+	calls: {
 		getGameList: function getGameList(responseHandler, errorHandler) {
 			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/games', {
 				cah_token: api.properties.token
@@ -25966,10 +25995,9 @@ var api = {
 			});
 		},
 		getPlayer: function getPlayer(responseHandler, errorHandler) {
-			__WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/api/player', {
-				cah_token: api.properties.token
-			}).then(function (response) {
-				responseHandler(response.data.content);
+			api.methods.callMethod('org.cah.player.info', null).then(function (data) {
+				console.log('got player!');
+				console.log(data);
 			});
 		}
 	}
@@ -25992,6 +26020,7 @@ module.exports = __webpack_require__(61);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_js__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__api_api_js__ = __webpack_require__(15);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -26017,6 +26046,7 @@ var VueGameListCell = Vue.component("game-list-cell", __webpack_require__(57));
 
 
 
+
 var app = new Vue({
     el: "#vue-app",
     //inject store into root component
@@ -26035,9 +26065,10 @@ var app = new Vue({
         };
     },
     mounted: function mounted() {
-        this.$store.dispatch('downloadPlayer');
-        this.$store.dispatch('downloadGame');
-        this.$store.dispatch('setupWebSocket');
+        __WEBPACK_IMPORTED_MODULE_1__api_api_js__["a" /* default */].methods.setupWebSocket().then(function () {
+            __WEBPACK_IMPORTED_MODULE_1__api_api_js__["a" /* default */].calls.getPlayer();
+        });
+        //this.$store.dispatch('setupWebSocket');
     }
 });
 
@@ -49161,14 +49192,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         }
     },
     actions: {
-        setupEventStream: function setupEventStream() {
-            __WEBPACK_IMPORTED_MODULE_2__api_api_js__["a" /* default */].calls.pollForEvents(function (data) {
-                console.log("data received: ");
-                console.log(data);
-            }, function (event) {
-                console.log("error");
-            });
-        },
         setupWebSocket: function setupWebSocket() {
             __WEBPACK_IMPORTED_MODULE_2__api_api_js__["a" /* default */].calls.setupWebSocket(function (event) {}, function (event) {});
         },
