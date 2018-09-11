@@ -10129,7 +10129,7 @@
 		},
 		{
 			"name": "PAX Prime 2015 Food Pack A (Mango)",
-			"acronym": "pax15",
+			"acronym": "pax15a",
 			"white": [
 				{
 					"text": "A sobering quantity of chili cheese fries."
@@ -10850,7 +10850,7 @@
 		},
 		{
 			"name": "PAX East 2013 Promo Pack A",
-			"acronym": "paxe13",
+			"acronym": "paxe13a",
 			"white": [
 				{
 					"text": "An immediately regrettable $9 hot dog from the Boston Convention Center."
@@ -11578,7 +11578,7 @@
 		},
 		{
 			"name": "PAX East 2013 Promo Pack B",
-			"acronym": "paxe13",
+			"acronym": "paxe13b",
 			"white": [
 				{
 					"text": "Getting inside the Horadric Cube with a hot babe and pressing the transmute button."
@@ -11621,7 +11621,7 @@
 		},
 		{
 			"name": "PAX East 2014 - Panel Cards",
-			"acronym": "paxe14",
+			"acronym": "paxe14p",
 			"white": [
 				{
 					"text": "A floor that is literally made of lava."
@@ -11664,7 +11664,7 @@
 		},
 		{
 			"name": "PAX Prime 2015 Food Pack C (Cherry)",
-			"acronym": "pax15",
+			"acronym": "pax15c",
 			"white": [
 				{
 					"text": "A Mexican child trapped inside of a burrito."
@@ -12289,7 +12289,7 @@
 		},
 		{
 			"name": "PAX Prime 2014 - Panel Cards",
-			"acronym": "pax14",
+			"acronym": "pax14p",
 			"white": [
 				{
 					"text": "A neck beard that is 10% cheese."
@@ -12582,7 +12582,7 @@
 		},
 		{
 			"name": "PAX Prime 2014 Custom Printed Cards",
-			"acronym": "pax14",
+			"acronym": "pax14c",
 			"white": [
 				{
 					"text": "Go Fuck Yourself."
@@ -24301,7 +24301,7 @@
 		},
 		{
 			"name": "Geeks vs Harsh Reality",
-			"acronym": "geek",
+			"acronym": "geekh",
 			"white": [
 				{
 					"text": "\u201cBoffo\u201d LARPers who argue over the reality of historic combat while swinging floppy foam swords."

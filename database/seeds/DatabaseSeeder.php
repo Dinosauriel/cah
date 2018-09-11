@@ -18,19 +18,17 @@ class DatabaseSeeder extends Seeder
             'is_temporary' => 1,
             'api_token' => 'p1'
         ]);
+
         DB::table('players')->insert([
 			'username' => 'player2',
             'is_temporary' => 1,
             'api_token' => 'p2'
         ]);
+
         DB::table('players')->insert([
 			'username' => 'player3',
             'is_temporary' => 1,
             'api_token' => 'p3'
-        ]);
-
-        DB::table('cardsets')->insert([
-            'name' => 'test-cards'
         ]);
 
         DB::table('games')->insert([
@@ -48,8 +46,6 @@ class DatabaseSeeder extends Seeder
         ]);
         
         $this->call([
-            cards_black_seeder::class,
-            cards_white_seeder::class,
             CardsSeeder::class
         ]);
 

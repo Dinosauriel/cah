@@ -2,6 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Cardset;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Console\Command;
 
 class UpdateCards extends Command
@@ -37,6 +40,16 @@ class UpdateCards extends Command
      */
     public function handle()
     {
+        //delete all old items
+        Schema::disableForeignKeyConstraints();
+
+        DB::table('cards_white')->truncate();
+        DB::table('cards_black')->truncate();
+        DB::table('cardsets')->truncate();
+
+        Schema::enableForeignKeyConstraints();
+
+        //add new items
         $sourceDirectory = 'resources/cards/';
         $files = glob($sourceDirectory . '*.json');
 

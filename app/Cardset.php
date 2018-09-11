@@ -8,6 +8,11 @@ class Cardset extends Model
 {
 	public $timestamps = false;
 
+    public $fillable = [
+        'name',
+        'acronym'
+    ];
+
     /* 
     Returns all Games that include this Cardset
     */

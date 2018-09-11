@@ -1,6 +1,6 @@
 <?php
 
-use App\Cardset;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Database\Seeder;
 
 class CardsSeeder extends Seeder
@@ -12,6 +12,6 @@ class CardsSeeder extends Seeder
      */
     public function run()
     {
-        
+        Artisan::call('cards:update');
     }
 }
