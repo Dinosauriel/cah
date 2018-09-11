@@ -16,6 +16,7 @@ class CreateCardsetsTable extends Migration
         Schema::create('cardsets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('acronym')->default('ACR');
         });
     }
 

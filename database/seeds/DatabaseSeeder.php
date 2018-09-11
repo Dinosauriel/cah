@@ -50,6 +50,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             cards_black_seeder::class,
             cards_white_seeder::class,
+            CardsSeeder::class
         ]);
 
         DB::table('game_player')->insert([
