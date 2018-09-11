@@ -9,7 +9,7 @@
 	</div>
 </template>
 <script>
-import Api from '../../api/api.js';
+import Api from '../../api.js';
 
 export default {
 	props: {

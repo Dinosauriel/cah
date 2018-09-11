@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Player;
+use App\Cardset;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 //events
@@ -23,14 +24,15 @@ use App\Events\Game\Ingame\WhiteCardsPlayed;
 class EventController extends Controller implements MessageComponentInterface
 {   
     //MARK: - RESPONSE CODES
-    const RESPONSE_CODE_ALREADY_AUTHENTICATED = 9;
+    const RESPONSE_CODE_ALREADY_AUTHENTICATED = 1;
     const RESPONSE_CODE_NOT_AUTHENTICATED = 10;
-    const RESPONSE_CODE_SUCCESS = 11;
+    const RESPONSE_CODE_SUCCESS = 0;
     const RESPONSE_CODE_UNKNOWN_CALL = 12;
 
     //MARK: - CALLS
     const CALL_AUTHENTICATE = 'org.cah.authenticate';
     const CALL_PLAYER_INFO = 'org.cah.player.info';
+    const CALL_CARDSETS_LIST = 'org.cah.cardset.list';
 
     private $connections = [];
     
@@ -127,6 +129,9 @@ class EventController extends Controller implements MessageComponentInterface
                 break;
             case static::CALL_PLAYER_INFO:
                 $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'successfull', $player));
+                break;
+            case static::CALL_CARDSETS_LIST:
+                $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'sucessfull', Cardset::all()));
                 break;
             default:
                 $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_UNKNOWN_CALL, 'unknown call'));

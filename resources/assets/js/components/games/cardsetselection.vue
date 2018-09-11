@@ -13,13 +13,7 @@
 import { mapState } from 'vuex'
 
 export default {
-	mounted: function() {
-		this.update();
-	},
 	methods: {
-		update: function() {
-			this.$store.dispatch('downloadCardsets');
-		}
 	},
 	computed: mapState({
 		cardsets: state => state.cardsets

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex);
 
-import Api from "./api/api.js";
+import api from "./api.js";
 
 export default new Vuex.Store({
     state: {
@@ -39,52 +39,17 @@ export default new Vuex.Store({
         }
 	},
 	actions: {
-        setupWebSocket: function() {
-            Api.calls.setupWebSocket(
-                function(event) {
-
-                },
-                function(event) {
-                    
-                }
-            );
+        updatePlayer(context) {
+            api.methods.callMethod('org.cah.player.info', null)
+			.then(function(response) {
+				context.commit('setPlayer', response.data);
+			});
         },
-        downloadGameList: function(context) {
-            Api.calls.getGameList(
-                function(games) {
-                    context.commit('setGameList', games);
-                },
-                function() {
-
-                });
-        },
-        downloadCardsets: function(context) {
-            Api.calls.getCardsets(
-                function(cardsets) {
-                    context.commit('setCardsets', cardsets);
-                },
-                function() {
-    
-                });
-        },
-        downloadPlayer: function(context) {
-            Api.calls.getPlayer(
-                function(player) {
-                    context.commit('setPlayer', player);
-                },
-                function() {
-    
-                });
-        },
-        downloadGame: function(context) {
-            Api.calls.getGame(
-                '/api/games/gameA',
-                function(game) {
-                    context.commit('setGame', game);
-                },
-                function() {
-    
-                });
+        updateCardsets(context) {
+            api.methods.callMethod('org.cah.cardset.list', null)
+			.then(function(response) {
+                context.commit('setCardsets', response.data);
+			});
         }
     }
 });

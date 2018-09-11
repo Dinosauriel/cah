@@ -22,7 +22,7 @@ const VueGameList = Vue.component("game-list", require("./components/lobby/game-
 const VueGameListCell = Vue.component("game-list-cell", require("./components/lobby/game-list-cell.vue"));
 
 import store from './store.js';
-import api from './api/api.js';
+import api from './api.js';
 
 const app = new Vue({
     el: "#vue-app",
@@ -41,11 +41,11 @@ const app = new Vue({
             stockData: null
         }
     },
-    mounted: function() {
+    created: function() {
         api.methods.setupWebSocket()
         .then(function() {
-            api.calls.getPlayer();
+            store.dispatch('updatePlayer');
+            store.dispatch('updateCardsets');
         });
-        //this.$store.dispatch('setupWebSocket');
 	},
 });
