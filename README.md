@@ -35,7 +35,7 @@
 
 > The websocket server is required for playing!
 
-## Import Cardsets from JSON
+## Import Cardsets from JSON:
 
 `php artisan cards:update`
 
