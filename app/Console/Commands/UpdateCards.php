@@ -60,6 +60,10 @@ class UpdateCards extends Command
 
             foreach ($cards['cardsets'] as $cs) {
 
+                if (!$cs['enabled']) {
+                    continue;
+                }
+
                 $databaseSet = new Cardset([
                     'name' => $cs['name'],
                     'acronym' => $cs['acronym']
