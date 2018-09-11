@@ -40,21 +40,21 @@
 `php artisan cards:update`
 
 > Deletes all cards and cardsets from the database and re-imports them from `resources/cards/*.json`.
-> 
+>
 > If you would like to import your custom cardset you can do so by adding your own .json file and running this command. Use the following as reference for your json-file.
 
-> :exclamation: the acronym property needs to be unique
+> :exclamation: the acronym property needs to be unique. it is a unique identifier that should represent the cardset name
+>
+> :exclamation: only enabled cardsets will be imported
 
 ```json
 {
     "cardsets": [
-        //list all your cardsets
         {
-            "name": "Your Cardset Name", //display name for your cardset.
-            "acronym": "ycn", //shorthand identifier for your cardset. Must be unique among all cardsets
-            "enabled": true, //only enabled cardsets will be imported
+            "name": "Your Cardset Name",
+            "acronym": "ycn",
+            "enabled": true,
             "white": [
-                //list all white cards in this set
                 {
                     "text": "RESPONSE A"
                 },
@@ -63,11 +63,10 @@
                 }
             ],
             "black": [
-                //list all black cards in this set
                 {
-                    "text": "Question {{}} A", //use double curly braces as placeholder
-                    "number_to_draw": 1, //how many cards should be drawn for this question?
-                    "number_to_play": 1 //how many cards should be played for this question
+                    "text": "Question {{}} A",
+                    "number_to_draw": 1,
+                    "number_to_play": 1
                 },
             ]
         },
