@@ -17,11 +17,7 @@ class GameController extends Controller
      */
     public function index()
     {
-		$games = Game::all();
-
-        return view('games.lobby', [
-            'games' => $games,
-        ]);
+        return view('games.lobby');
     }
 
     public function jsonIndex()

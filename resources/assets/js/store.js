@@ -50,6 +50,12 @@ export default new Vuex.Store({
 			.then(function(response) {
                 context.commit('setCardsets', response.data);
 			});
+        },
+        updateGameList(context) {
+            api.methods.callMethod('org.cah.game.list', null)
+            .then(function(response) {
+                context.commit('setGameList', response.data);
+            });
         }
     }
 });

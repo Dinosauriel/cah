@@ -7,8 +7,8 @@
 import { mapState } from 'vuex'
 
 export default {
-	mounted: function() {
-		this.update();
+	created: function() {
+		document.addEventListener('websocketDidSetup', this.update);
 	},
 	data: function () {
 		return {
@@ -17,7 +17,7 @@ export default {
 	},
 	methods: {
 		update: function() {
-			this.$store.dispatch('downloadGameList');
+			this.$store.dispatch('updateGameList');
 		}
 	},
 	computed: mapState({

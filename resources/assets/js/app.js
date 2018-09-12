@@ -44,6 +44,7 @@ const app = new Vue({
     created: function() {
         api.methods.setupWebSocket()
         .then(function() {
+            document.dispatchEvent(new Event('websocketDidSetup'));
             store.dispatch('updatePlayer');
             store.dispatch('updateCardsets');
         });
