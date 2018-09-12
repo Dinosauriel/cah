@@ -72,8 +72,14 @@ class GameController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Game $game)
-    {		
-        return view('games.edit', [
+    {	
+        if ($game->status == 'draft') {
+            return view('games.edit', [
+                'game' => $game,
+            ]);
+        }
+
+        return view('games.play', [
             'game' => $game,
         ]);
     }
