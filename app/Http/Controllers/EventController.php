@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Player;
 use App\Cardset;
 use App\Game;
+
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 //events
@@ -38,6 +39,7 @@ class EventController extends Controller implements MessageComponentInterface
     const CALL_PLAYER_INFO = 'org.cah.player.info';
     const CALL_CARDSETS_LIST = 'org.cah.cardset.list';
     const CALL_GAME_LIST = 'org.cah.game.list';
+    const CALL_GAME_DELETE = 'org.cah.game.delete';
 
     private $connections = [];
     
@@ -95,7 +97,7 @@ class EventController extends Controller implements MessageComponentInterface
 
         $callName = $messageData['call'];
         $callId = $messageData['id'];
-        //\Illuminate\Support\Facades\Log::debug($messageData);
+        \Illuminate\Support\Facades\Log::debug($messageData);
 
         //an array of objects
         $parameters = null;
@@ -140,10 +142,16 @@ class EventController extends Controller implements MessageComponentInterface
                 break;
             case static::CALL_GAME_LIST:
                 if ($player->can('list', Game::class)) {
-                    $conn->send($this->encodeMessage($callId, static::CALL_GAME_LIST, 'successfull', Game::all()));
+                    $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'successfull', Game::all()));
                 } else {
                     $this->sendNotAuthorizedResponse($conn, $callId);
                 }
+                break;
+            case static::CALL_GAME_DELETE:
+                \Illuminate\Support\Facades\Log::debug($parameters);
+                $game = Game::publicId($parameters['gameId'])->first();
+                GameController::deleteGame($game);
+                $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'successfull'));
                 break;
             default:
                 $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_UNKNOWN_CALL, 'unknown call'));

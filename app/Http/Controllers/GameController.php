@@ -20,15 +20,6 @@ class GameController extends Controller
         return view('games.lobby');
     }
 
-    public function jsonIndex()
-    {
-        $games = Game::all();
-        return response()->json([
-            'message' => 'listing successful',
-            'content' => $games
-        ], 200);
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -81,17 +72,6 @@ class GameController extends Controller
     }
 
     /**
-     * receive a json version of the game
-     */
-    public function jsonShow(Game $game)
-    {
-        return response()->json([
-            'message' => 'listing successful',
-            'content' => $game
-        ], 200);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  Game  $game
@@ -133,23 +113,18 @@ class GameController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified game from storage.
      *
      * @param  Game  $game
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Game $game)
+    public static function deleteGame(Game $game)
     {
         //remove all players
         $game->playerRelations()->delete();
 
         $game->delete();
 
-        event(new GameDeleted($game));
-        return response()->json([
-            'message' => 'game deleted',
-            'redirect' => Game::getListRoute()
-        ]);
+        //event(new GameDeleted($game));
     }
 
     public static function generateNewPublicId()

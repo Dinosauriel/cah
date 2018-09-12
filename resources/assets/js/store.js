@@ -31,6 +31,15 @@ export default new Vuex.Store({
         setGame(state, game) {
             state.game = game;
         },
+        deleteGame(state, gameId) {
+            for (var i = 0; i < state.gameList.length; ++i) {
+                if (state.gameList[i].public_id == gameId) {
+                    //delete item
+                    state.gameList.splice(i, 1);
+                }
+            }
+
+        },
         setCardsets(state, cardsets) {
             state.cardsets = cardsets;
         },
@@ -55,6 +64,12 @@ export default new Vuex.Store({
             api.methods.callMethod('org.cah.game.list', null)
             .then(function(response) {
                 context.commit('setGameList', response.data);
+            });
+        },
+        deleteGame(context, gameId) {
+            api.methods.callMethod('org.cah.game.delete', {gameId: gameId})
+            .then(function(response) {
+                context.commit('deleteGame', gameId);
             });
         }
     }

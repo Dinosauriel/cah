@@ -49060,7 +49060,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			location.href = this.game.join_route;
 		},
 		deleteGame: function deleteGame() {
-			__WEBPACK_IMPORTED_MODULE_0__api_js__["a" /* default */].calls.deleteGame(this.game.delete_route);
+			this.$store.dispatch('deleteGame', this.game.public_id);
 		}
 	}
 });
@@ -49147,6 +49147,14 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         setGame: function setGame(state, game) {
             state.game = game;
         },
+        deleteGame: function deleteGame(state, gameId) {
+            for (var i = 0; i < state.gameList.length; ++i) {
+                if (state.gameList[i].public_id == gameId) {
+                    //delete item
+                    state.gameList.splice(i, 1);
+                }
+            }
+        },
         setCardsets: function setCardsets(state, cardsets) {
             state.cardsets = cardsets;
         },
@@ -49168,6 +49176,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         updateGameList: function updateGameList(context) {
             __WEBPACK_IMPORTED_MODULE_2__api_js__["a" /* default */].methods.callMethod('org.cah.game.list', null).then(function (response) {
                 context.commit('setGameList', response.data);
+            });
+        },
+        deleteGame: function deleteGame(context, gameId) {
+            __WEBPACK_IMPORTED_MODULE_2__api_js__["a" /* default */].methods.callMethod('org.cah.game.delete', { gameId: gameId }).then(function (response) {
+                context.commit('deleteGame', gameId);
             });
         }
     }

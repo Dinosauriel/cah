@@ -9,7 +9,7 @@
 	</div>
 </template>
 <script>
-import Api from '../../api.js';
+import api from '../../api.js';
 
 export default {
 	props: {
@@ -25,7 +25,7 @@ export default {
 			location.href = this.game.join_route;
 		},
 		deleteGame: function() {
-			Api.calls.deleteGame(this.game.delete_route);
+			this.$store.dispatch('deleteGame', this.game.public_id);
 		}
 	}
 }
