@@ -161,8 +161,8 @@ class EventController extends Controller implements MessageComponentInterface
                 }
                 break;
             case static::CALL_GAME_DELETE:
+                $game = Game::publicId($parameters['gameId'])->first();
                 if ($player->can('destroy', $game)) {
-                    $game = Game::publicId($parameters['gameId'])->first();
                     GameController::deleteGame($game);
                     $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'successfull'));
                 } else {
