@@ -49,7 +49,7 @@ class GamePolicy
      */
     public function destroy(Player $p, Game $g)
     {
-        return $g->owner()->id == $p->id || $p->isAdmin();
+        return $g->owner->id == $p->id || $p->isAdmin();
     }
 
     /**
@@ -57,6 +57,6 @@ class GamePolicy
      */
     public function update(Player $p, Game $g)
     {
-        return $g->owner()->id == $p->id;
+        return $g->owner->id == $p->id;
     }
 }

@@ -49114,7 +49114,7 @@ var render = function() {
       _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.game.name))]),
       _vm._v(" "),
       _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-        _vm._v(_vm._s(_vm.game.name))
+        _vm._v(_vm._s(_vm.game.owner_username))
       ]),
       _vm._v(" "),
       _c(

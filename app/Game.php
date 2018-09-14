@@ -16,7 +16,12 @@ class Game extends Model
 
     protected $appends = [
         'join_route',
-        'delete_route'
+        'delete_route',
+        'owner_username'
+    ];
+
+    protected $hidden = [
+        'cah_token'
     ];
 
     /**
@@ -37,6 +42,11 @@ class Game extends Model
     public function getDeleteRouteAttribute()
     {
         return $this->getDeleteRoute();
+    }
+
+    public function getOwnerUsernameAttribute()
+    {
+        return $this->owner->username;
     }
     
     /**
@@ -85,7 +95,7 @@ class Game extends Model
      */
     public function owner()
     {
-        return $this->belongsTo('App\Player')->first();
+        return $this->belongsTo('App\Player');
     }
 
     public function getRoute()
