@@ -10471,3 +10471,18 @@ a.text-dark:focus {
   }
 }
 
+.game-list-cell {
+  -webkit-transition: all, 0.3s;
+  transition: all, 0.3s;
+}
+
+.slide-list-enter-active,
+.slide-list-leave-active {
+  position: absolute;
+}
+
+.slide-list-enter,
+.slide-list-leave-to {
+  opacity: 0;
+}
+

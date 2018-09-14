@@ -48962,7 +48962,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "transition-group",
+    { attrs: { name: "slide-list", tag: "div" } },
     _vm._l(_vm.games, function(game) {
       return _c("game-list-cell", {
         key: game.public_id,
@@ -49073,7 +49074,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card mt-3 mb-3" }, [
+  return _c("div", { staticClass: "card mt-3 mb-3 game-list-cell" }, [
     _c("div", { staticClass: "card-body" }, [
       _c("h5", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.game.name))]),
       _vm._v(" "),
@@ -49089,7 +49090,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "btn btn-primary", on: { click: _vm.deleteGame } },
+        { staticClass: "btn btn-danger", on: { click: _vm.deleteGame } },
         [_vm._v("Delete")]
       )
     ])
@@ -49147,14 +49148,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         setGame: function setGame(state, game) {
             state.game = game;
         },
-        deleteGame: function deleteGame(state, gameId) {
-            for (var i = 0; i < state.gameList.length; ++i) {
-                if (state.gameList[i].public_id == gameId) {
-                    //delete item
-                    state.gameList.splice(i, 1);
-                }
-            }
-        },
         setCardsets: function setCardsets(state, cardsets) {
             state.cardsets = cardsets;
         },
@@ -49180,7 +49173,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         },
         deleteGame: function deleteGame(context, gameId) {
             __WEBPACK_IMPORTED_MODULE_2__api_js__["a" /* default */].methods.callMethod('org.cah.game.delete', { gameId: gameId }).then(function (response) {
-                context.commit('deleteGame', gameId);
+                context.dispatch('updateGameList');
             });
         }
     }

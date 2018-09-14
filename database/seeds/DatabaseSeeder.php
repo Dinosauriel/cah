@@ -44,6 +44,27 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test-In-Game',
             'owner_id' => 2
         ]);
+
+        DB::table('games')->insert([
+            'public_id' => 'gameC',
+            'status' => 'ingame',
+            'name' => 'Test-In-Game',
+            'owner_id' => 1
+        ]);
+
+        DB::table('games')->insert([
+            'public_id' => 'gameD',
+            'status' => 'ingame',
+            'name' => 'Test-In-Game',
+            'owner_id' => 1
+        ]);
+
+        DB::table('games')->insert([
+            'public_id' => 'gameE',
+            'status' => 'ingame',
+            'name' => 'Test-In-Game',
+            'owner_id' => 1
+        ]);
         
         $this->call([
             CardsSeeder::class

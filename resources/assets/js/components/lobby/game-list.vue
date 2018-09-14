@@ -1,7 +1,7 @@
 <template>
-	<div>
+	<transition-group name="slide-list" tag="div">
 		<game-list-cell v-for="game in games" v-bind:game="game" v-bind:key="game.public_id"></game-list-cell>
-	</div>
+	</transition-group>
 </template>
 <script>
 import { mapState } from 'vuex'
