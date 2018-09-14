@@ -41,7 +41,7 @@ class GamePolicy
      */
     public function read(Player $p, Game $g)
     {
-        return $g->hasPlayer($p);
+        return $g->hasPlayer($p) || $p->isAdmin();
     }
 
     /**

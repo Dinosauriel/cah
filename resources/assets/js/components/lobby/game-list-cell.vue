@@ -22,7 +22,7 @@ export default {
 	},
 	methods: {
 		joinGame: function() {
-			location.href = this.game.join_route;
+			this.$store.dispatch('joinGame', this.game.public_id);
 		},
 		deleteGame: function() {
 			this.$store.dispatch('deleteGame', this.game.public_id);

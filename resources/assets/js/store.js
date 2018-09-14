@@ -7,15 +7,9 @@ import api from "./api.js";
 export default new Vuex.Store({
     state: {
         //the game currently participating in
-        game: {
-            name: "",
-            pointsRequired: 0,
-        },
+        game: {},
         //player
-        player: {
-            username: "",
-            is_admin: false,
-        },
+        player: {},
         //list of games
         gameList: [],
         //all available cardsets
@@ -30,6 +24,9 @@ export default new Vuex.Store({
         },
         setPlayer(state, player) {
             state.player = player;
+        },
+        setCurrentGame(state, game) {
+            state.game = game;
         }
 	},
 	actions: {
@@ -62,6 +59,12 @@ export default new Vuex.Store({
             .then(function(response) {
                 context.dispatch('updateGameList');
             });
-        }
+        },
+        joinGame(context, gameId) {
+            api.methods.callMethod('org.cah.game.join', {gameId: gameId})
+            .then(function(response) {
+                context.commit('setCurrentGame', response.data);
+            })
+        },
     }
 });

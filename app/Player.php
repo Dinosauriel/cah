@@ -73,6 +73,31 @@ class Player extends Authenticatable
     {
         return $this->belongsToMany('App\Game');
 	}
+
+	/**
+	 * @return: is the player playing in this game
+	 */
+	public function isPlayingGame(Game $game)
+	{
+		foreach ($this->playingGames()->get() as $g) {
+			if ($g->id === $game->id) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 */
+	public function joinGame(Game $game)
+	{
+		if ($this->isPlayingGame($game)) {
+			return false;
+		}
+		$this->playingGames()->attach($game->id);
+		return true;
+	}
 	
 	public function createGame(Game $game)
 	{

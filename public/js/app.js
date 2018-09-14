@@ -49093,7 +49093,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	methods: {
 		joinGame: function joinGame() {
-			location.href = this.game.join_route;
+			this.$store.dispatch('joinGame', this.game.public_id);
 		},
 		deleteGame: function deleteGame() {
 			this.$store.dispatch('deleteGame', this.game.public_id);
@@ -49159,15 +49159,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["default"].Store({
     state: {
         //the game currently participating in
-        game: {
-            name: "",
-            pointsRequired: 0
-        },
+        game: {},
         //player
-        player: {
-            username: "",
-            is_admin: false
-        },
+        player: {},
         //list of games
         gameList: [],
         //all available cardsets
@@ -49182,6 +49176,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         },
         setPlayer: function setPlayer(state, player) {
             state.player = player;
+        },
+        setCurrentGame: function setCurrentGame(state, game) {
+            state.game = game;
         }
     },
     actions: {
@@ -49208,6 +49205,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         createGame: function createGame(context) {
             __WEBPACK_IMPORTED_MODULE_2__api_js__["a" /* default */].methods.callMethod('org.cah.game.create').then(function (response) {
                 context.dispatch('updateGameList');
+            });
+        },
+        joinGame: function joinGame(context, gameId) {
+            __WEBPACK_IMPORTED_MODULE_2__api_js__["a" /* default */].methods.callMethod('org.cah.game.join', { gameId: gameId }).then(function (response) {
+                context.commit('setCurrentGame', response.data);
             });
         }
     }
