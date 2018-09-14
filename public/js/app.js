@@ -48931,6 +48931,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -48944,6 +48951,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		update: function update() {
 			this.$store.dispatch('updateGameList');
+		},
+		createGame: function createGame() {
+			this.$store.dispatch('createGame');
 		}
 	},
 	computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
@@ -48964,12 +48974,37 @@ var render = function() {
   return _c(
     "transition-group",
     { attrs: { name: "slide-list", tag: "div" } },
-    _vm._l(_vm.games, function(game) {
-      return _c("game-list-cell", {
-        key: game.public_id,
-        attrs: { game: game }
-      })
-    })
+    [
+      _vm._l(_vm.games, function(game) {
+        return _c("game-list-cell", {
+          key: game.public_id,
+          attrs: { game: game }
+        })
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          key: "new-game",
+          staticClass: "row justify-content-end game-list-cell"
+        },
+        [
+          _c("div", { staticClass: "col col-sm-3" }, [
+            _c("div", { staticClass: "card mt-4" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-success btn-block",
+                  on: { click: _vm.createGame }
+                },
+                [_vm._v("Create New Game")]
+              )
+            ])
+          ])
+        ]
+      )
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -49142,12 +49177,6 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         setGameList: function setGameList(state, gameList) {
             state.gameList = gameList;
         },
-        addGameToList: function addGameToList(state, game) {
-            state.gameList.push(game);
-        },
-        setGame: function setGame(state, game) {
-            state.game = game;
-        },
         setCardsets: function setCardsets(state, cardsets) {
             state.cardsets = cardsets;
         },
@@ -49173,6 +49202,11 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
         },
         deleteGame: function deleteGame(context, gameId) {
             __WEBPACK_IMPORTED_MODULE_2__api_js__["a" /* default */].methods.callMethod('org.cah.game.delete', { gameId: gameId }).then(function (response) {
+                context.dispatch('updateGameList');
+            });
+        },
+        createGame: function createGame(context) {
+            __WEBPACK_IMPORTED_MODULE_2__api_js__["a" /* default */].methods.callMethod('org.cah.game.create').then(function (response) {
                 context.dispatch('updateGameList');
             });
         }

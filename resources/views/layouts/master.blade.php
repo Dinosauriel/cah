@@ -12,7 +12,7 @@
 	<body>
 		<div id="vue-app">			
 			@include('layouts.header')
-			<div class="container">
+			<div class="container mb-5">
 				@yield('content')
 			</div>
 			@include('layouts.footer')

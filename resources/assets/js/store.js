@@ -25,12 +25,6 @@ export default new Vuex.Store({
         setGameList(state, gameList) {
             state.gameList = gameList;
 		},
-		addGameToList(state, game) {
-			state.gameList.push(game);
-        },
-        setGame(state, game) {
-            state.game = game;
-        },
         setCardsets(state, cardsets) {
             state.cardsets = cardsets;
         },
@@ -59,6 +53,12 @@ export default new Vuex.Store({
         },
         deleteGame(context, gameId) {
             api.methods.callMethod('org.cah.game.delete', {gameId: gameId})
+            .then(function(response) {
+                context.dispatch('updateGameList');
+            });
+        },
+        createGame(context) {
+            api.methods.callMethod('org.cah.game.create')
             .then(function(response) {
                 context.dispatch('updateGameList');
             });

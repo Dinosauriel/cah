@@ -31,28 +31,6 @@ class GameController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $game = new Game([
-			'name' => $request->user()->username . 's Game'
-        ]);
-        $game->public_id = static::generateNewPublicId();
-
-        $game = $request->user()->createGame($game);
-
-        return response()->json([
-            'message' => 'game creation successful',
-            'redirect' => $game->getRoute(),
-            'content' => $game
-        ], 200);
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  Game  $game

@@ -40,6 +40,7 @@ class EventController extends Controller implements MessageComponentInterface
     const CALL_CARDSETS_LIST = 'org.cah.cardset.list';
     const CALL_GAME_LIST = 'org.cah.game.list';
     const CALL_GAME_DELETE = 'org.cah.game.delete';
+    const CALL_GAME_CREATE = 'org.cah.game.create';
 
     private $connections = [];
     
@@ -148,9 +149,16 @@ class EventController extends Controller implements MessageComponentInterface
                 }
                 break;
             case static::CALL_GAME_DELETE:
-                \Illuminate\Support\Facades\Log::debug($parameters);
                 $game = Game::publicId($parameters['gameId'])->first();
                 GameController::deleteGame($game);
+                $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'successfull'));
+                break;
+            case static::CALL_GAME_CREATE:
+                $game = new Game([
+                    'name' => $player->username . 's Game'
+                ]);
+                $game->public_id = GameController::generateNewPublicId();
+                $game = $player->createGame($game);
                 $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'successfull'));
                 break;
             default:
