@@ -1,10 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 Vue.use(Vuex);
+
+import VuexPersistence from 'vuex-persist';
 
 import api from "./api.js";
 
+const vuexLocal = new VuexPersistence({
+    storage: window.localStorage
+})
+
 export default new Vuex.Store({
+    plugins: [vuexLocal.plugin],
     state: {
         //the game currently participating in
         game: {},
