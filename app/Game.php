@@ -16,7 +16,6 @@ class Game extends Model
 
     protected $appends = [
         'join_route',
-        'delete_route',
         'owner_username'
     ];
 
@@ -32,16 +31,6 @@ class Game extends Model
     public function getJoinRouteAttribute()
     {
         return $this->getRoute();
-    }
-
-    /**
-     * delete url attribute
-     *
-     * @return string
-     */
-    public function getDeleteRouteAttribute()
-    {
-        return $this->getDeleteRoute();
     }
 
     public function getOwnerUsernameAttribute()
@@ -100,26 +89,6 @@ class Game extends Model
 
     public function getRoute()
     {
-        return route('viewGame', ['gameId' => $this->public_id]);
-    }
-
-    public function getUpdateRoute()
-    {
-        return route('api_updateGame', ['publicId' => $this->public_id]);
-    }
-
-    public function getDeleteRoute()
-    {
-        return route('api_destroyGame', ['publicId' => $this->public_id]);
-    }
-
-    public static function getStoreRoute()
-    {
-        return route('api_storeGame');
-    }
-
-    public static function getListRoute()
-    {
-        return route('listGames');
+        return route('viewGame', ['gameId' => $this->public_id], false);
     }
 }
