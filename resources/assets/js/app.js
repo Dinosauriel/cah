@@ -20,6 +20,7 @@ const VueInviteLink = Vue.component("invite-link", require("./components/games/i
 const VueCardSelection = Vue.component("cardset-selection", require("./components/games/cardsetselection.vue"));
 const VueGameList = Vue.component("game-list", require("./components/lobby/game-list.vue"));
 const VueGameListCell = Vue.component("game-list-cell", require("./components/lobby/game-list-cell.vue"));
+const VueEditGame = Vue.component("edit-game", require("./components/games/editgame.vue"));
 
 import store from './store.js';
 import api from './api.js';

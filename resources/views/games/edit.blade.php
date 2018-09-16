@@ -5,44 +5,7 @@ New Game
 @endsection
 
 @section('content')
-<div class="row mt-3">
-    <div class="col col-sm-8">
-        <form method="POST" action="/games/asdf/update">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <label for="game_name">Name</label>
-                <input type="text" class="form-control" id="game_name" name="game_name"  value="{{ $game->name }}" required>
-            </div>
-            <div class="form-group">
-                <label for="game_points">Points</label>
-                <input type="number" class="form-control" id="game_points" aria-describedby="game_points_help" value="{{ $game->points_required }}" min="1" max="64" name="game_name" required>
-                <small id="game_points_help" class="form-text text-muted">How many points are required to win?</small>
-            </div>
-            <cardset-selection></cardset-selection>
-            @include('forms.errors')
-            <button type="submit" class="btn btn-primary">Start Game</button>
-        </form>
-    </div>
-
-    <div class="col col-sm-4">
-
-        <invite-link v-bind:invitelink="{{ json_encode($game->getRoute(true)) }}"></invite-link>
-
-        <div class="card mt-3">
-            <div class="card-header">
-                Players
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    Cras justo odio
-                    <button type="button" class="btn btn-primary btn-sm float-right">Kick</button>
-                </li>
-            </ul>
-        </div>
-
-        <a class="btn btn-danger btn-block mt-3" href="">Delete Game</a>
-    </div>
-</div>
+<edit-game></edit-game>
 @endsection
 @section('scripts')
 

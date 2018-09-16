@@ -26039,6 +26039,7 @@ var VueInviteLink = Vue.component("invite-link", __webpack_require__(48));
 var VueCardSelection = Vue.component("cardset-selection", __webpack_require__(51));
 var VueGameList = Vue.component("game-list", __webpack_require__(54));
 var VueGameListCell = Vue.component("game-list-cell", __webpack_require__(57));
+var VueEditGame = Vue.component("edit-game", __webpack_require__(69));
 
 
 
@@ -51702,6 +51703,243 @@ module.exports = CircularJSON;
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(70)
+/* template */
+var __vue_template__ = __webpack_require__(71)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/games/editgame.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-954ddd3e", Component.options)
+  } else {
+    hotAPI.reload("data-v-954ddd3e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	methods: function methods() {},
+	computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
+		game: function game(state) {
+			return state.game;
+		}
+	})
+});
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "edit-game" }, [
+    _c("div", { staticClass: "row mt-3" }, [
+      _c("div", { staticClass: "col col-sm-8" }, [
+        _c(
+          "form",
+          { attrs: { method: "POST", action: "" } },
+          [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "game_name" } }, [_vm._v("Name")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  id: "game_name",
+                  name: "game_name",
+                  required: ""
+                },
+                domProps: { value: _vm.game.name }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "game_points" } }, [
+                _vm._v("Points")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "number",
+                  id: "game_points",
+                  "aria-describedby": "game_points_help",
+                  min: "1",
+                  max: "64",
+                  name: "game_name",
+                  required: ""
+                },
+                domProps: { value: _vm.game.points_required }
+              }),
+              _vm._v(" "),
+              _c(
+                "small",
+                {
+                  staticClass: "form-text text-muted",
+                  attrs: { id: "game_points_help" }
+                },
+                [_vm._v("How many points are required to win?")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("cardset-selection"),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("Start Game")]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "col col-sm-4" },
+        [
+          _c("invite-link", { attrs: { invitelink: _vm.game.route } }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-danger btn-block mt-3",
+              attrs: { href: "" }
+            },
+            [_vm._v("Delete Game")]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card mt-3" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _vm._v("\n\t\t\t\t\tPlayers\n\t\t\t\t")
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "list-group list-group-flush" }, [
+        _c("li", { staticClass: "list-group-item" }, [
+          _vm._v("\n\t\t\t\t\t\tCras justo odio\n\t\t\t\t\t\t"),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-sm float-right",
+              attrs: { type: "button" }
+            },
+            [_vm._v("Kick")]
+          )
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-954ddd3e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
