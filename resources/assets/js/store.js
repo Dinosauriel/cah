@@ -13,6 +13,7 @@ const vuexLocal = new VuexPersistence({
 export default new Vuex.Store({
     plugins: [vuexLocal.plugin],
     state: {
+        websocketConnectionIsActive: false,
         //the game currently participating in
         game: {},
         //player
@@ -23,6 +24,9 @@ export default new Vuex.Store({
         cardsets: []
     },
     mutations: {
+        setWebsocketConnection(state, value) {
+            state.websocketConnectionIsActive = value;
+        },
         setGameList(state, gameList) {
             state.gameList = gameList;
 		},

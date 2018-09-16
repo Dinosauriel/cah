@@ -1,4 +1,5 @@
 
+import store from './store.js';
 
 const api = {
 	properties: {
@@ -19,9 +20,14 @@ const api = {
 					.then(function(data) {
 						console.log('authenticated!');
 						resolve();
+						store.commit('setWebsocketConnection', true);
 					});
 				};
-		
+
+				api.socket.onclose = function (event) {
+					store.commit('setWebsocketConnection', false);
+				};
+
 				api.socket.onmessage = function (event) {
 					//resolve the call
 					var data = JSON.parse(event.data);

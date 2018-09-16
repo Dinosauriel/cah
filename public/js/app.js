@@ -1564,6 +1564,8 @@ module.exports = defaults;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_js__ = __webpack_require__(60);
+
 
 
 var api = {
@@ -1584,7 +1586,12 @@ var api = {
 					}).then(function (data) {
 						console.log('authenticated!');
 						resolve();
+						__WEBPACK_IMPORTED_MODULE_0__store_js__["a" /* default */].commit('setWebsocketConnection', true);
 					});
+				};
+
+				api.socket.onclose = function (event) {
+					__WEBPACK_IMPORTED_MODULE_0__store_js__["a" /* default */].commit('setWebsocketConnection', false);
 				};
 
 				api.socket.onmessage = function (event) {
@@ -48404,6 +48411,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	computed: Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
 		username: function username(state) {
 			return state.player.username;
+		},
+		isConnected: function isConnected(state) {
+			return state.websocketConnectionIsActive;
 		}
 	})
 });
@@ -48421,7 +48431,14 @@ var render = function() {
       _vm._v("Cards Against Humanity")
     ]),
     _vm._v(" "),
-    _c("span", { staticClass: "navbar-text" }, [_vm._v(_vm._s(_vm.username))])
+    _c("span", { staticClass: "navbar-text" }, [
+      !_vm.isConnected
+        ? _c("span", { staticClass: "badge badge-danger mr-3" }, [
+            _vm._v("Disconnected")
+          ])
+        : _vm._e(),
+      _vm._v(_vm._s(_vm.username))
+    ])
   ])
 }
 var staticRenderFns = []
@@ -49165,6 +49182,7 @@ var vuexLocal = new __WEBPACK_IMPORTED_MODULE_2_vuex_persist___default.a({
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["default"].Store({
     plugins: [vuexLocal.plugin],
     state: {
+        websocketConnectionIsActive: false,
         //the game currently participating in
         game: {},
         //player
@@ -49175,6 +49193,9 @@ var vuexLocal = new __WEBPACK_IMPORTED_MODULE_2_vuex_persist___default.a({
         cardsets: []
     },
     mutations: {
+        setWebsocketConnection: function setWebsocketConnection(state, value) {
+            state.websocketConnectionIsActive = value;
+        },
         setGameList: function setGameList(state, gameList) {
             state.gameList = gameList;
         },
