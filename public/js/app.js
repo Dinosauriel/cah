@@ -1588,8 +1588,6 @@ var api = {
 				};
 
 				api.socket.onmessage = function (event) {
-					console.log('onmessage');
-
 					//resolve the call
 					var data = JSON.parse(event.data);
 					console.log(data);
@@ -48973,7 +48971,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "transition-group",
-    { attrs: { name: "slide-list", tag: "div" } },
+    { staticClass: "game-list", attrs: { name: "slide-list", tag: "div" } },
     [
       _vm._l(_vm.games, function(game) {
         return _c("game-list-cell", {

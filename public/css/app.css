@@ -10471,6 +10471,10 @@ a.text-dark:focus {
   }
 }
 
+.game-list {
+  position: relative;
+}
+
 .game-list-cell {
   -webkit-transition: all, 0.3s;
   transition: all, 0.3s;
@@ -10478,6 +10482,7 @@ a.text-dark:focus {
 
 .slide-list-leave-active {
   position: absolute;
+  width: 100%;
 }
 
 .slide-list-enter,

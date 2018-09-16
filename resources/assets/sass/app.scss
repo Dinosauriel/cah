@@ -4,13 +4,18 @@
 @import '~bootstrap/scss/bootstrap';
 
 
-//game list
+//MARK: - Game List
+.game-list {
+	position: relative;
+}
+
 .game-list-cell {
 	transition: all, 0.3s;
 }
 
 .slide-list-leave-active {
 	position: absolute;
+	width: 100%;
 }
 
 .slide-list-enter, .slide-list-leave-to {

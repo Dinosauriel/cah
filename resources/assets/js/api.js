@@ -23,8 +23,6 @@ const api = {
 				};
 		
 				api.socket.onmessage = function (event) {
-					console.log('onmessage');
-
 					//resolve the call
 					var data = JSON.parse(event.data);
 					console.log(data);
