@@ -49238,6 +49238,7 @@ var vuexLocal = new __WEBPACK_IMPORTED_MODULE_2_vuex_persist___default.a({
         joinGame: function joinGame(context, gameId) {
             __WEBPACK_IMPORTED_MODULE_3__api_js__["a" /* default */].methods.callMethod('org.cah.game.join', { gameId: gameId }).then(function (response) {
                 context.commit('setCurrentGame', response.data);
+                location.href = response.data.relative_route;
             });
         }
     }

@@ -15,7 +15,8 @@ class Game extends Model
     ];
 
     protected $appends = [
-        'join_route',
+        'route',
+        'relative_route',
         'owner_username'
     ];
 
@@ -28,7 +29,12 @@ class Game extends Model
      *
      * @return string
      */
-    public function getJoinRouteAttribute()
+    public function getRouteAttribute() 
+    {
+        return $this->getRoute(true);
+    }
+
+    public function getRelativeRouteAttribute()
     {
         return $this->getRoute();
     }
@@ -87,8 +93,8 @@ class Game extends Model
         return $this->belongsTo('App\Player');
     }
 
-    public function getRoute()
+    public function getRoute($isAbsolute = false)
     {
-        return route('viewGame', ['gameId' => $this->public_id], false);
+        return route('viewGame', ['gameId' => $this->public_id], $isAbsolute);
     }
 }

@@ -26,7 +26,7 @@ New Game
 
     <div class="col col-sm-4">
 
-        <invite-link v-bind:invitelink="{{ json_encode($game->getRoute()) }}"></invite-link>
+        <invite-link v-bind:invitelink="{{ json_encode($game->getRoute(true)) }}"></invite-link>
 
         <div class="card mt-3">
             <div class="card-header">
@@ -40,7 +40,7 @@ New Game
             </ul>
         </div>
 
-        <a class="btn btn-danger btn-block mt-3" href="{{ $game->getDeleteRoute() }}">Delete Game</a>
+        <a class="btn btn-danger btn-block mt-3" href="">Delete Game</a>
     </div>
 </div>
 @endsection
