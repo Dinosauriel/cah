@@ -15,7 +15,8 @@ class Player extends Authenticatable
 	];
 
 	protected $hidden = [
-		'password'
+		'password',
+		'cah_token'
 	];
 
 	/**

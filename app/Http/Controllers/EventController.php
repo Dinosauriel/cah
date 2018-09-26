@@ -153,6 +153,14 @@ class EventController extends Controller implements MessageComponentInterface
                     $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'already joined', $game));
                 }
                 break;
+            case static::CALL_GAME_GET:
+                $game = Game::with('players')->publicId($parameters['gameId'])->first();
+                if ($player->can('read', $game)) {
+                    $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'successfull', $game));
+                } else {
+                    $this->sendNotAuthorizedResponse($conn, $callId);
+                }
+                break;
             case static::CALL_GAME_LIST:
                 if ($player->can('list', Game::class)) {
                     $conn->send($this->encodeMessage($callId, static::RESPONSE_CODE_SUCCESS, 'successfull', Game::all()));

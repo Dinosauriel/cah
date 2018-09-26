@@ -74,9 +74,14 @@ export default new Vuex.Store({
         joinGame(context, gameId) {
             api.methods.callMethod('org.cah.game.join', {gameId: gameId})
             .then(function(response) {
-                context.commit('setCurrentGame', response.data);
                 location.href = response.data.relative_route;
             })
         },
+        updateCurrentGame(context, gameId) {
+            api.methods.callMethod('org.cah.game.get', {gameId: gameId})
+            .then(function(response) {
+                context.commit('setCurrentGame', response.data);
+            })
+        }
     }
 });

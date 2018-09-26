@@ -41,8 +41,13 @@
 import { mapState } from 'vuex';
 
 export default {
-	methods: function() {
-
+	created: function() {
+		document.addEventListener('websocketDidSetup', this.updateGame);
+	},
+	methods: {
+		updateGame: function() {
+			this.$store.dispatch('updateCurrentGame', game.public_id);
+		}
 	},
 	computed: mapState({
 		game: state => state.game

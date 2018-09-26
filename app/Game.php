@@ -20,10 +20,6 @@ class Game extends Model
         'owner_username'
     ];
 
-    protected $hidden = [
-        'cah_token'
-    ];
-
     /**
      * join url attribute
      *
