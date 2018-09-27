@@ -14,7 +14,8 @@
     - `docker-compose exec app {{your command here}}`
 
 5. Populate the database using `docker-compose exec app php artisan migrate:refresh --seed`.
-6. (Optional:) Navigate in your browser to: [http://127.0.0.1:8080]
+6. (Optional:) Navigate your browser to: [http://127.0.0.1:8080]
+7. (Optional:) Navigate your browser to: [http://127.0.0.1:8090] for database access. The credentials are stored in your `.env` file that you copied earlier.
 
 # Commands
 
