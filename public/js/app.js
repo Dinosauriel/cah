@@ -26146,7 +26146,8 @@ var app = new Vue({
         VueInviteLink: VueInviteLink,
         VueGameList: VueGameList,
         VueGameListCell: VueGameListCell,
-        VueCardSelection: VueCardSelection
+        VueCardSelection: VueCardSelection,
+        VueEditGame: VueEditGame
     },
     data: function data() {
         return {

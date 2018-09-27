@@ -35,7 +35,8 @@ const app = new Vue({
         VueInviteLink,
         VueGameList,
         VueGameListCell,
-        VueCardSelection
+        VueCardSelection,
+        VueEditGame
     },
 	data: function() {
         return {
