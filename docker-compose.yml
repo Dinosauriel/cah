@@ -8,7 +8,7 @@ services:
     # this makes the database persistent
     volumes:
       - dbdata:/var/lib/mysql
-    restart: always
+    restart: unless-stopped
     environment:
       MYSQL_DATABASE: cah
       MYSQL_USER: cah
@@ -24,7 +24,7 @@ services:
       context: ./
       dockerfile: app.dockerfile
     working_dir: /var/www/html
-    restart: always
+    restart: unless-stopped
     # map port 8080 to the apache 80
     ports:
       - 8080:80
@@ -49,7 +49,7 @@ services:
 
   redis:
     image: redis:5.0-rc4
-    restart: always
+    restart: unless-stopped
     ports:
       - "6379:6379"
 
@@ -61,7 +61,7 @@ services:
       - PMA_HOST=database
       - PMA_USER=cah
       - PMA_PASSWORD=super_secret_password
-    restart: always
+    restart: unless-stopped
     ports:
       - 8090:80
     volumes:
