@@ -19,6 +19,8 @@
 
 # Commands
 
+> :exclamation: Remember that you will need to __prefix__ these commands with `docker-compose exec app {{your command here}}` in order to run them inside Docker.
+
 ## Create a new player:
 
 `php artisan player:create -u username -p password -ta`
@@ -29,6 +31,12 @@
 | `-p password` | _Optional_ |                                              password of the new player |
 | `-t`          | _Optional_ | create a temporary user (will automatically be deleted after some time) |
 | `-a`          | _Optional_ |                         create an administrator user (can create games) |
+
+## Start webpack bundling service:
+
+`npm run watch`
+
+> When editing _javascript_ or _sass_ files during development, __you will need__ to enable the npm watching service. This will detect when you edit a .js or .scss file in the assets directory and automatically bundle all the source files into one output file.
 
 ## Start the websocket server:
 
