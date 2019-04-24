@@ -63,6 +63,8 @@
             "name": "Your Cardset Name",
             "acronym": "ycn",
             "enabled": true,
+            "language": "en",
+            "color": "424242", //optional, 6 digit hexcode for theme color
             "white": [
                 {
                     "text": "RESPONSE A"
