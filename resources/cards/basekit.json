@@ -3795,7 +3795,7 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "Introducing the amazing superhero\/sidekick duo! It's {{}} and {{}}!",
+					"text": "Introducing the amazing superhero/sidekick duo! It's {{}} and {{}}!",
 					"number_to_draw": 1,
 					"number_to_play": 2
 				},
@@ -4350,7 +4350,7 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "What's the next superhero\/sidekick duo?",
+					"text": "What's the next superhero/sidekick duo?",
 					"number_to_draw": 1,
 					"number_to_play": 2
 				},
@@ -4455,7 +4455,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Canadian Conversion Kit",
@@ -4565,7 +4566,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "UK Conversion Kit",
@@ -4896,7 +4898,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Red Box Expansion",
@@ -5931,7 +5934,7 @@
 					"number_to_play": 2
 				},
 				{
-					"text": "My mom freaked out when she looked at my browser history and found {{}}.com\/{{}}.",
+					"text": "My mom freaked out when she looked at my browser history and found {{}}.com/{{}}.",
 					"number_to_draw": 1,
 					"number_to_play": 2
 				},
@@ -6006,7 +6009,7 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "Tonight on 20\/20: What you don't know about {{}} could kill you.",
+					"text": "Tonight on 20/20: What you don't know about {{}} could kill you.",
 					"number_to_draw": 1,
 					"number_to_play": 1
 				},
@@ -6071,7 +6074,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Blue Box Expansion",
@@ -7187,7 +7191,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Green Box Expansion",
@@ -7779,7 +7784,7 @@
 					"text": "Starting a shitty podcast."
 				},
 				{
-					"text": "Straight blazin\u2019 24\/7."
+					"text": "Straight blazin\u2019 24/7."
 				},
 				{
 					"text": "Sucking each other\u2019s penises for hours on end."
@@ -7917,7 +7922,7 @@
 					"text": "When the big truck goes \u201cToot! Toot!\u201d"
 				},
 				{
-					"text": "Who really did 9\/11."
+					"text": "Who really did 9/11."
 				},
 				{
 					"text": "Whomsoever let the dogs out."
@@ -8214,7 +8219,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cards Against Humanity: Box Expansion",
@@ -8291,7 +8297,8 @@
 				}
 			],
 			"black": [],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Procedurally-Generated Cards",
@@ -8788,7 +8795,8 @@
 				}
 			],
 			"black": [],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Card Lab",
@@ -9540,7 +9548,8 @@
 				}
 			],
 			"black": [],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Retail Mini Pack",
@@ -9568,7 +9577,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Fantasy Pack",
@@ -9685,7 +9695,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Period Pack",
@@ -9796,7 +9807,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": " 2012 Holiday Pack",
@@ -9909,7 +9921,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX 2012 \"Oops\" Kit",
@@ -9970,7 +9983,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX Prime 2013",
@@ -10125,7 +10139,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX Prime 2015 Food Pack A (Mango)",
@@ -10168,7 +10183,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Reject Pack",
@@ -10265,7 +10281,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Fascism Pack",
@@ -10329,7 +10346,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Vote For Hillary Pack",
@@ -10389,7 +10407,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "90s Nostalgia Pack",
@@ -10508,7 +10527,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "World Wide Web Pack",
@@ -10625,7 +10645,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Weed Pack",
@@ -10729,7 +10750,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "2013 Holiday Pack",
@@ -10846,7 +10868,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX East 2013 Promo Pack A",
@@ -10889,7 +10912,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX East 2014",
@@ -10979,7 +11003,7 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "What the hell?! They added a 6\/6 with flying, trample and {{}}.",
+					"text": "What the hell?! They added a 6/6 with flying, trample and {{}}.",
 					"number_to_draw": 1,
 					"number_to_play": 1
 				},
@@ -10989,7 +11013,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX Prime 2015 Food Pack B (Coconut)",
@@ -11032,7 +11057,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Reject Pack 2",
@@ -11163,7 +11189,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Vote For Trump Pack",
@@ -11223,7 +11250,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Geek Pack",
@@ -11334,7 +11362,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Science Pack",
@@ -11447,7 +11476,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Blackbox Press Kit",
@@ -11458,7 +11488,8 @@
 				}
 			],
 			"black": [],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "2014 Holiday Pack",
@@ -11574,7 +11605,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX East 2013 Promo Pack B",
@@ -11617,7 +11649,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX East 2014 - Panel Cards",
@@ -11660,7 +11693,8 @@
 					"number_to_play": 2
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX Prime 2015 Food Pack C (Cherry)",
@@ -11703,7 +11737,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "College Pack",
@@ -11814,7 +11849,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Sci-Fi Pack",
@@ -11927,7 +11963,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Food Pack",
@@ -12038,7 +12075,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Design Pack",
@@ -12057,7 +12095,7 @@
 					"text": "light brown word on brown background"
 				},
 				{
-					"text": "letters\/numbers printed in white rows on red background"
+					"text": "letters/numbers printed in white rows on red background"
 				},
 				{
 					"text": "blue words on cartoon of chicken giving man blowjob"
@@ -12075,7 +12113,7 @@
 					"text": "colored letters on white background in square formation"
 				},
 				{
-					"text": "In word bubble yelled by a leg wearing green tights in pink\/red face with white background"
+					"text": "In word bubble yelled by a leg wearing green tights in pink/red face with white background"
 				},
 				{
 					"text": "dripping colorful letters on black background with the letters at different heights"
@@ -12133,10 +12171,11 @@
 				}
 			],
 			"black": [],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
-			"name": "Jew Pack\/Chosen People Pack",
+			"name": "Jew Pack/Chosen People Pack",
 			"acronym": "jew",
 			"white": [
 				{
@@ -12242,7 +12281,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX East 2013 Promo Pack C",
@@ -12285,7 +12325,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX Prime 2014 - Panel Cards",
@@ -12334,7 +12375,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Tabletop Pack",
@@ -12394,7 +12436,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Retail Product Pack",
@@ -12465,7 +12508,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Seasons Greetings Pack",
@@ -12578,7 +12622,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "PAX Prime 2014 Custom Printed Cards",
@@ -12907,7 +12952,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Post-Trump Pack",
@@ -12997,7 +13043,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Hidden Compartment Pack",
@@ -13050,7 +13097,8 @@
 				}
 			],
 			"black": [],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cards Against Humanity Saves America",
@@ -13177,7 +13225,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": " 2016 Election Game ",
@@ -14030,7 +14079,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Bad Campaign, The Presidential Party Game!",
@@ -15839,7 +15889,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "The Bay Area Expansion",
@@ -16338,7 +16389,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cards Against Your Face: Cards Against Civility",
@@ -16612,7 +16664,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cards Against Your Face: Cards Against Humility",
@@ -16886,7 +16939,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cards Against Your Face: Cards Against Pervertity",
@@ -17025,7 +17079,7 @@
 					"text": "Spitting on a dick.  Really?"
 				},
 				{
-					"text": "Step-Dad\/Babysitter porn."
+					"text": "Step-Dad/Babysitter porn."
 				},
 				{
 					"text": "Stomping on rodents in stilletto heels.  It's a thing.  Look it up."
@@ -17160,7 +17214,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cards Against Your Face: Cards Against Reality",
@@ -17399,7 +17454,7 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "The worst thing about being filmed 24\/7 for 10 weeks is {{}}.",
+					"text": "The worst thing about being filmed 24/7 for 10 weeks is {{}}.",
 					"number_to_draw": 1,
 					"number_to_play": 2
 				},
@@ -17434,7 +17489,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cards Against Your Face: Cards Against Senility",
@@ -17718,7 +17774,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cards Against Your Face: Cards Against Stupidity",
@@ -17992,7 +18049,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cards and Punishment Vol. One",
@@ -18450,7 +18508,8 @@
 					"number_to_play": 2
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cards and Punishment Vol. Two",
@@ -18855,14 +18914,15 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cats Abiding Horribly: Episode II - A New Low",
 			"acronym": "low",
 			"white": [
 				{
-					"text": "A 9\/11 truther."
+					"text": "A 9/11 truther."
 				},
 				{
 					"text": "A baby daddy."
@@ -19394,7 +19454,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cats Abiding Horribly: Episode III - The SJWs Strike Back",
@@ -19933,7 +19994,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cocks Abreast Hostility",
@@ -19943,7 +20005,7 @@
 					"text": "[Chewbacca Noise]."
 				},
 				{
-					"text": "\/Piss Christ\/."
+					"text": "/Piss Christ/."
 				},
 				{
 					"text": "8=======D"
@@ -19979,10 +20041,10 @@
 					"text": "Accidentally sexting my mom."
 				},
 				{
-					"text": "Alarmist headlines about Hilary Clinton on the \/Drudge Report\/."
+					"text": "Alarmist headlines about Hilary Clinton on the /Drudge Report/."
 				},
 				{
-					"text": "An anniversary gift from the 9\/11 Museum Gift Shop."
+					"text": "An anniversary gift from the 9/11 Museum Gift Shop."
 				},
 				{
 					"text": "Ann Coulter's far right-leaning dildo."
@@ -20012,7 +20074,7 @@
 					"text": "Being required by federal law to introduce yourself to your neighbors."
 				},
 				{
-					"text": "Benghazi: 9\/11, Part II."
+					"text": "Benghazi: 9/11, Part II."
 				},
 				{
 					"text": "Blowing the cat."
@@ -20141,7 +20203,7 @@
 					"text": "Presenting at the shareholder meeting in blackface."
 				},
 				{
-					"text": "Putting my dick through the \/Mona Lisa\/."
+					"text": "Putting my dick through the /Mona Lisa/."
 				},
 				{
 					"text": "Queef Erikson."
@@ -20367,7 +20429,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cocks Abreast Hostility - Cock Pack Two (Fowls Deep)",
@@ -20488,7 +20551,7 @@
 					"text": "Winning a United Negro College Fund scholarship to the Subway Sandwich University."
 				},
 				{
-					"text": "Praying toward Mecca at the 9\/11 Memorial."
+					"text": "Praying toward Mecca at the 9/11 Memorial."
 				},
 				{
 					"text": "More than enough semen to fill an Olympic-sized pool."
@@ -20801,7 +20864,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cords Against Harmony - Volume 1",
@@ -21171,7 +21235,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cords Against Harmony - Volume 2",
@@ -21566,7 +21631,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cords Against Harmony - Volume 3",
@@ -22009,7 +22075,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cords Against the 80s",
@@ -22277,7 +22344,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Cords Against Trekkies",
@@ -22701,7 +22769,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Crows Adopt Vulgarity, Vol. 1",
@@ -22861,7 +22930,7 @@
 					"text": "Orphans genetically engineered to explode when loved."
 				},
 				{
-					"text": "Playing Jenga on 9\/11."
+					"text": "Playing Jenga on 9/11."
 				},
 				{
 					"text": "Porkin' Miss Piggy."
@@ -23065,7 +23134,7 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "The latest 20\/20 episode: The War on {{}}.",
+					"text": "The latest 20/20 episode: The War on {{}}.",
 					"number_to_draw": 1,
 					"number_to_play": 1
 				},
@@ -23100,7 +23169,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Crows Adopt Vulgarity, Vol. 2",
@@ -23499,7 +23569,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Crows Adopt Vulgarity, Vol. 3",
@@ -23898,7 +23969,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Crows Adopt Vulgarity, Vol. 4",
@@ -24297,7 +24369,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Geeks vs Harsh Reality",
@@ -24370,7 +24443,7 @@
 					"text": "Another fucking unoriginal Slave Leia\u2122 costume."
 				},
 				{
-					"text": "Another lame Inego Montoya quote that never sounds spontaneous and\/or interesting."
+					"text": "Another lame Inego Montoya quote that never sounds spontaneous and/or interesting."
 				},
 				{
 					"text": "Ass-crack shaming at CCG tournaments."
@@ -24574,10 +24647,10 @@
 					"text": "Signed CCG cards that will be obsolete in six months."
 				},
 				{
-					"text": "Star Wars\u2122\/Star Trek\u2122 crossovers."
+					"text": "Star Wars\u2122/Star Trek\u2122 crossovers."
 				},
 				{
-					"text": "Strength 18\/00."
+					"text": "Strength 18/00."
 				},
 				{
 					"text": "Super Mario Brothers\u2122? More like Stupid Mario Brothers\u2122. Am I right?"
@@ -24601,7 +24674,7 @@
 					"text": "The Red Box\u2122."
 				},
 				{
-					"text": "The sensation of waiting for another book in the Game of Thrones\u2122\/Wheel of Time\u2122\/Something of Doom book series only to have it snuffed out with the author\u2019s untimely death."
+					"text": "The sensation of waiting for another book in the Game of Thrones\u2122/Wheel of Time\u2122/Something of Doom book series only to have it snuffed out with the author\u2019s untimely death."
 				},
 				{
 					"text": "The shrine of Gary Gygax."
@@ -24836,7 +24909,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Geeks vs Harsh Reality: Expansion 1",
@@ -25375,7 +25449,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Guards Against Insanity",
@@ -25784,7 +25859,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Guards Against Insanity: Edition 2 - An Unofficial Naughty Expansion Pack",
@@ -26173,7 +26249,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Guards Against Insanity: Edition 3 - An Unofficial Naughty Expansion Pack\n\n",
@@ -26231,7 +26308,7 @@
 					"text": "Absolutely fuck all."
 				},
 				{
-					"text": "An 80\/20 nipple to boob ratio."
+					"text": "An 80/20 nipple to boob ratio."
 				},
 				{
 					"text": "An Anne Frank sex doll that doesn't make a sound."
@@ -26562,7 +26639,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Guards Against Insanity: Edition 4 - An Unofficial Naughty Expansion Pack\n",
@@ -26951,7 +27029,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Humanity Hates Trump: Base Set",
@@ -27555,7 +27634,7 @@
 					"text": "Working at Hawley Lane shoes and having a foot fetish."
 				},
 				{
-					"text": "Yelling \"Jenga!\" while watching footage from 9\/11."
+					"text": "Yelling \"Jenga!\" while watching footage from 9/11."
 				}
 			],
 			"black": [
@@ -27570,12 +27649,12 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "{{}} is\/are not the same thing by any stretch of the imagination as (a) {{}}.",
+					"text": "{{}} is/are not the same thing by any stretch of the imagination as (a) {{}}.",
 					"number_to_draw": 1,
 					"number_to_play": 2
 				},
 				{
-					"text": "{{}} is\/are Trump's greatest secret to great hair.",
+					"text": "{{}} is/are Trump's greatest secret to great hair.",
 					"number_to_draw": 1,
 					"number_to_play": 1
 				},
@@ -27680,7 +27759,7 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "I think the only difference between me and the other candidates is that I'm more honest and my {{}} is\/are more beautiful.",
+					"text": "I think the only difference between me and the other candidates is that I'm more honest and my {{}} is/are more beautiful.",
 					"number_to_draw": 1,
 					"number_to_play": 1
 				},
@@ -27810,7 +27889,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Humanity Hates Trump: Kickstarter Promo Cards",
@@ -27833,7 +27913,8 @@
 				}
 			],
 			"black": [],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Humanity Hates Trump: Expansion Pack 1",
@@ -27933,7 +28014,7 @@
 					"text": "Integrity, or progress?"
 				},
 				{
-					"text": "Jokes about 9\/11."
+					"text": "Jokes about 9/11."
 				},
 				{
 					"text": "Legalized marijuana."
@@ -28087,7 +28168,7 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "{{}} is\/are like roaches - you can't kill them",
+					"text": "{{}} is/are like roaches - you can't kill them",
 					"number_to_draw": 1,
 					"number_to_play": 1
 				},
@@ -28117,7 +28198,7 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "Breaking News: CNN Reports that Donald Trump has been assassinated by {{}} for his actions in\/on {{}}.",
+					"text": "Breaking News: CNN Reports that Donald Trump has been assassinated by {{}} for his actions in/on {{}}.",
 					"number_to_draw": 1,
 					"number_to_play": 1
 				},
@@ -28232,7 +28313,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Humanity Hates Trump: Expansion Pack 2 - Humanity Hates Hillary, Too",
@@ -28546,12 +28628,12 @@
 					"number_to_play": 1
 				},
 				{
-					"text": "It depends on what the meaning of the word(s) {{}} is\/are.",
+					"text": "It depends on what the meaning of the word(s) {{}} is/are.",
 					"number_to_draw": 1,
 					"number_to_play": 1
 				},
 				{
-					"text": "It's not cheating if (its\/I'm) {{}}.",
+					"text": "It's not cheating if (its/I'm) {{}}.",
 					"number_to_draw": 1,
 					"number_to_play": 1
 				},
@@ -28631,7 +28713,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "JadedAid: A Card Game to Save Humanitarians",
@@ -29292,7 +29375,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "KinderPerfect: A Timeout For Parents",
@@ -29927,7 +30011,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Oh, For Humanity's Sake!",
@@ -30610,14 +30695,15 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Skewered And Roasted",
 			"acronym": "skew",
 			"white": [
 				{
-					"text": "$200\/hour"
+					"text": "$200/hour"
 				},
 				{
 					"text": "a $100 plaid shirt"
@@ -32564,7 +32650,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Voter's Choice: The First Expansion",
@@ -32619,7 +32706,7 @@
 					"text": "Only getting 71 virgins, due to a clerical error."
 				},
 				{
-					"text": "Playing Jenga on 9\/11"
+					"text": "Playing Jenga on 9/11"
 				},
 				{
 					"text": "Reading erotic braille with your penis."
@@ -32673,7 +32760,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Voter's Choice: The Second Expansion",
@@ -32725,7 +32813,7 @@
 					"text": "Santa Claus teabagging a sleeping child, taking a picture and leaving it in the child's stocking."
 				},
 				{
-					"text": "Telling 9\/11 jokes to the families of 9\/11 victims."
+					"text": "Telling 9/11 jokes to the families of 9/11 victims."
 				},
 				{
 					"text": "The Satanic Verses."
@@ -32817,7 +32905,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Voter's Choice: The Third Expansion",
@@ -32872,7 +32961,7 @@
 					"text": "The Dark Side."
 				},
 				{
-					"text": "The people who jumped on 9\/11."
+					"text": "The people who jumped on 9/11."
 				},
 				{
 					"text": "Titty fucking Susan G. Komen."
@@ -32947,7 +33036,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Voter's Choice: The Fourth Expansion",
@@ -33079,7 +33169,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Wilted Green",
@@ -33762,7 +33853,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Words Against Morality: Volume 1",
@@ -34161,7 +34253,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Words Against Morality: Volume 2",
@@ -34560,7 +34653,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Words Against Morality: Volume 3",
@@ -34956,7 +35050,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		},
 		{
 			"name": "Words Against Morality: Volume 4",
@@ -35355,7 +35450,8 @@
 					"number_to_play": 1
 				}
 			],
-			"enabled": true
+			"enabled": true,
+			"language": "en"
 		}
 	]
 }
