@@ -16,6 +16,8 @@ class CreateCardsetsTable extends Migration
         Schema::create('cardsets', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('language', 6);
+            $table->string('color', 6)->nullable();
             $table->string('acronym')->unique();
         });
     }

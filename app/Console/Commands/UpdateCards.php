@@ -64,10 +64,17 @@ class UpdateCards extends Command
                     continue;
                 }
 
-                $databaseSet = new Cardset([
+                $cardsetContent = [
                     'name' => $cs['name'],
-                    'acronym' => $cs['acronym']
-                ]);
+                    'acronym' => $cs['acronym'],
+                    'language' => $cs['language']
+                ];
+
+                if (!empty($cs['color'])) {
+                    $cardsetContent['color'] = $cs['color'];
+                }
+
+                $databaseSet = new Cardset($cardsetContent);
 
                 $databaseSet->save();
 
